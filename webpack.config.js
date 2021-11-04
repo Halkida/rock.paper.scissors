@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
+
 module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -30,17 +33,38 @@ module.exports = {
           exclude: /(node_modules)/
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: sassRegex,
           use: [
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
               options: {
-                modules: true,
+                sourceMap: true,
+                modules: {
+                  localIdentName: '[path][name]__[local]'
+                }
               }
             },
-          { loader: 'sass-loader' }
-          ]
+            { loader: 'sass-loader' }
+          ],
+          include: sassModuleRegex
+        },
+        {
+          test: sassRegex,
+          use: [
+            { loader: 'style-loader' },
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: {
+                  localIdentName: '[path][name]__[local]'
+                }
+              }
+            },
+            { loader: 'sass-loader' }
+          ],
+          exclude: sassModuleRegex
         }
       ]
     },
