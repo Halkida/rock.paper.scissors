@@ -1,9 +1,10 @@
 import { AxiosInstance } from 'axios';
+import getAxiosInstance from '@/utils/axios';
 
 export default class BaseApi {
   http: AxiosInstance;
 
-  constructor(axios: AxiosInstance) {
-    this.http = axios;
+  constructor(baseUrl: string) {
+    this.http = getAxiosInstance(baseUrl);
   }
 }
