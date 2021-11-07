@@ -2,7 +2,7 @@ import BaseApi from '@/modules/base-api';
 
 class AuthApi extends BaseApi {
   constructor() {
-    super('/auth');
+    super('https://ya-praktikum.tech/api/v2/auth');
   }
 
   getUser(): Promise<string> {
