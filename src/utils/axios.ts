@@ -1,7 +1,15 @@
-import axios from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+} from 'axios';
 
-const instance = axios.create({
+const baseConfig: AxiosRequestConfig = {
   timeout: 1000,
+};
+
+const baseInstance: AxiosInstance = axios.create({
+  ...baseConfig,
+  baseURL: 'https://ya-praktikum.tech/api/v2',
 });
 
-export default instance;
+export default baseInstance;
