@@ -1,0 +1,46 @@
+@import '@/styles/variables.scss';
+
+.button {
+  font-size: $font-medium;
+  background-color: $tulip-tree;
+  color: $white;
+  border-radius: $default-border-radius;
+  cursor: pointer;
+
+  &_default {
+    border: none;
+  }
+
+  &_small {
+    padding: 4px 8px;
+  }
+
+  &_medium {
+    padding: 12px 24px;
+  }
+
+  &_large {
+    padding: 16px 32px;
+  }
+
+  &_outline {
+    border: 2px solid $tulip-tree;
+    background-color: transparent;
+    color: $tulip-tree;
+  }
+
+  &_text {
+    border: none;
+    background-color: inherit;
+    color: $tulip-tree;
+  }
+
+  &:disabled {
+    background-color: $silver;
+    pointer-events: none;
+  }
+}
+
+.link {
+  color: $tulip-tree;
+}
