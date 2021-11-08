@@ -1,17 +1,18 @@
-import { FC, ButtonHTMLAttributes } from 'react';
+import { ReactNode, FC, ButtonHTMLAttributes } from 'react';
+import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import styles from'./Button.scss';
+import styles from'./Button.module.scss';
 
 type OwnProps = {
   view?: 'outline' | 'default' | 'link' | 'text';
   size?: 'small' | 'medium' | 'large';
   href?: string;
-  children: string;
+  children: ReactNode | string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 type Props = FC<OwnProps>;
 
-console.log(styles);
+const cx = classNames.bind(styles);
 
 export const Button: Props = (
   { children,
@@ -21,19 +22,21 @@ export const Button: Props = (
     ...ButtonHTMLAttributes }
   ) => {
 
-  const modifiers = [view, size].map((item) => {
-    const modifier = `button_${item}`;
-    return styles[modifier] ? styles[modifier] : '';
+  const className = cx({
+    ['button']: true,
+    [`button_${view}`]: view,
+    [`button_${size}`]: size,
+    ['button_link']: href.length
   });
 
   if (href.length > 0) {
     return (
-      <Link to={href} className={styles.link}>{children}</Link>
+      <Link to={href} className={className} >{children}</Link>
     );
   } else {
     return (
       <button
-        className={ `${styles.button} ${modifiers.join(' ')}` }
+        className={className}
         { ...ButtonHTMLAttributes }
       >
         {children}
