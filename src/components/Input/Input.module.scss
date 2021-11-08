@@ -1,19 +1,19 @@
-@import '../../styles/variables.scss'; // fix it
+@import '@/styles/variables.scss';
 
 .input {
   background: transparent;
-  border: 2px solid #22272d; // fix it
-  color: #e6b333; // fix it
+  border: 2px solid $color-shark;
+  color: $color-tulip-tree;
 
   width: 100%;
   padding: 5px;
   height: 40px;
-  border-radius: 3px; // fix it
+  border-radius: $default-border-radius;
   margin: 5px 0;
   outline: none;
 
   &_invalid {
-    border-color: #fd8989; // fix it
+    border-color: $color-geraldine;
   }
 
   &:disabled {
@@ -32,6 +32,6 @@
 }
 
 .error-text {
-  font-size: 12px; // fix it
-  color: #fd8989; // fix it
+  font-size: $font-small;
+  color: $color-geraldine;
 }
