@@ -26,7 +26,7 @@ export const Input: Props = (
 
   return (
     <>
-      <input type={type} className={className} { ...InputHTMLAttributes } ></input>
+      <input type={type} className={className} { ...InputHTMLAttributes } />
       {
         (isValid === false && errorText.length > 0) &&
         <span className={styles['error-text']} >{ errorText }</span>
