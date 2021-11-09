@@ -1,14 +1,17 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { FC, InputHTMLAttributes, ChangeEvent, useCallback } from 'react';
 import classNames from 'classnames/bind';
 import styles from'./Input.module.scss';
 
 type OwnProps = {
   isValid?: boolean;
   errorText?: string;
-  type?: 'number' | 'text' | 'password'
-} & InputHTMLAttributes<HTMLInputElement>;
+  type?: 'number' | 'text' | 'password',
+  onChange?: (value: string) => void
+};
 
-type Props = FC<OwnProps>;
+type ReactInputAttributes = InputHTMLAttributes<HTMLInputElement>;
+type InputProps = OwnProps & Omit<ReactInputAttributes, keyof OwnProps>
+type Props = FC<InputProps>;
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +19,8 @@ export const Input: Props = (
   { isValid = true,
     errorText = '',
     type = 'text',
+    onChange,
+    value,
     ...InputHTMLAttributes }
   ) => {
 
@@ -24,11 +29,19 @@ export const Input: Props = (
     ['input_invalid']: !isValid
   });
 
+  const changeHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (onChange) {
+      onChange(value);
+    }
+  }, [value]);
+
   return (
     <>
-      <input type={type} className={className} { ...InputHTMLAttributes } />
+      <input onChange={ changeHandler }
+      type={type} className={className} { ...InputHTMLAttributes } />
       {
-        (isValid === false && errorText.length > 0) &&
+        !isValid && errorText &&
         <span className={styles['error-text']} >{ errorText }</span>
       }
     </>
