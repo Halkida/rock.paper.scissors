@@ -12,7 +12,10 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "moduleResolution": "Node",
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
     "exclude": [
         "node_modules"
