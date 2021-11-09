@@ -1,0 +1,37 @@
+@import '@/styles/variables.scss';
+
+.input {
+  background: transparent;
+  border: 2px solid $color-shark;
+  color: $color-tulip-tree;
+
+  width: 100%;
+  padding: 5px;
+  height: 40px;
+  border-radius: $default-border-radius;
+  margin: 5px 0;
+  outline: none;
+
+  &_invalid {
+    border-color: $color-geraldine;
+  }
+
+  &:disabled {
+    background-color: $color-silver;
+    pointer-events: none;
+  }
+
+  &[type=number]::-webkit-inner-spin-button,
+  &[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+.error-text {
+  font-size: $font-small;
+  color: $color-geraldine;
+}
