@@ -1,8 +1,10 @@
-import BaseApi from '@/modules/base-api';
+import { AxiosInstance } from 'axios';
+import getAxiosInstance from '@/utils/axios';
+class AuthApi {
+  http: AxiosInstance;
 
-class AuthApi extends BaseApi {
   constructor() {
-    super('https://ya-praktikum.tech/api/v2/auth');
+    this.http = getAxiosInstance('https://ya-praktikum.tech/api/v2/auth');
   }
 
   getUser(): Promise<string> {
