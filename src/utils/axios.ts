@@ -5,6 +5,7 @@ import axios, {
 
 const baseConfig: AxiosRequestConfig = {
   timeout: 1000,
+  withCredentials: true,
 };
 
 type GetAxiosInstance = (baseURL: string) => AxiosInstance;
