@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent } from 'react';
+import { FC, FormEvent } from 'react';
 import { Button } from '@/components/Button';
 import styles from'./Form.module.scss';
 
@@ -10,7 +10,6 @@ type OwnFormProps = {
 type FormProps = FC<OwnFormProps>;
 
 export const Form: FormProps = ({onSubmit, renderFields, title}) => {
-
   return (
     <div className={ styles.form }>
       { title &&
@@ -24,25 +23,4 @@ export const Form: FormProps = ({onSubmit, renderFields, title}) => {
       </form>
     </div>
   );
-};
-
-export const useForm = (options: any) => {
-  const [data, setData] = useState(options?.initialValues || {});
-
-  const handleChange = (key: string) => (value: string) => {
-    setData((prevData: any) => {
-      return { ...prevData, [key]: value };
-    });
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log('submit', data);
-  };
-
-  return {
-    data,
-    handleChange,
-    handleSubmit
-  };
 };
