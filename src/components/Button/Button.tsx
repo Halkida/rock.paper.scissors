@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from'./Button.module.scss';
 
 type OwnProps = {
+  className?: string,
   view?: 'outline' | 'default' | 'link' | 'text';
   size?: 'small' | 'medium' | 'large';
   href?: string;
@@ -19,10 +20,12 @@ export const Button: Props = (
     view = 'default',
     size = 'medium',
     href = '',
+    className = '',
     ...ButtonHTMLAttributes }
   ) => {
 
-  const className = cx({
+  const buttonClassNames = cx({
+    [className]: true,
     ['button']: true,
     [`button_${view}`]: view,
     [`button_${size}`]: size,
@@ -31,12 +34,12 @@ export const Button: Props = (
 
   if (href.length > 0) {
     return (
-      <Link to={href} className={className} >{children}</Link>
+      <Link to={href} className={buttonClassNames} >{children}</Link>
     );
   } else {
     return (
       <button
-        className={className}
+        className={buttonClassNames}
         { ...ButtonHTMLAttributes }
       >
         {children}
