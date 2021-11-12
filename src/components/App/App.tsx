@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { SignIn } from '@/pages/SignIn';
+import SignIn from '@/pages/SignIn';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <Router>
         <Routes>
-          <Route path="/signin" element={ <SignIn /> } />
+          <Route path="/sign-in" element={ <SignIn /> } />
         </Routes>
       </Router>
     );

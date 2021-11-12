@@ -1,21 +1,21 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Input } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
 import { PATTERNS } from '@/utils/formValidation';
-import { Link } from 'react-router-dom';
 import styles from'./SignIn.module.scss';
 
 const validationConfig = {
   login: {
     pattern: {
       value: PATTERNS.LOGIN,
-      message: 'Incorrect login',
+      message: 'Неверный ввод',
     },
   },
   password: {
     pattern: {
       value: PATTERNS.PASSWORD,
-      message: 'Incorrect password',
+      message: 'Неверный ввод',
     }
   }
 };
@@ -25,9 +25,9 @@ type SignInForm = {
   password: string
 }
 
-export const SignIn: FC = () => {
+export const SignIn: FC = function SignInPage() {
   const onSubmit = (data: Record<string, unknown>) => {
-    console.log(data);
+    console.log('Здесь должна быть ваша авторизация ', data);
   };
   const { handleChange, handleSubmit, errors} = useForm<SignInForm>({validationConfig, onSubmit});
   const { login: loginError, password: passwordError } = (errors as any);
@@ -35,27 +35,28 @@ export const SignIn: FC = () => {
   return (
     <main className={ styles.signin }>
       <Form
-        title={ 'Sign In' }
-        onSubmit={ handleSubmit }
+        title='Вход'
+        onSubmit={handleSubmit}
+        submitText='Войти'
         renderFields={ () => (
           <>
             <Input onChange={ handleChange('login') }
-              name={'login'}
-              placeholder='Login'
-              isValid={ loginError ? false : true }
-              errorText={ loginError ? loginError : undefined }
+              name='login'
+              placeholder='Логин для входа'
+              isValid={!Boolean(loginError)}
+              errorText={loginError}
             />
             <Input onChange={ handleChange('password') }
-              name={'password'}
-              type={'password'}
-              placeholder='Password'
-              isValid={ passwordError ? false : true }
-              errorText={ passwordError ? passwordError : undefined }
+              name='password'
+              type='password'
+              placeholder='Пароль'
+              isValid={!Boolean(passwordError)}
+              errorText={passwordError}
             />
           </>
         ) }
       />
-      <Link className={ 'link' } to="/signup" >Sign Up</Link>
+      <Link className={ 'link' } to="/sign-up" >Зарегистрироваться</Link>
     </main>
   );
 };
