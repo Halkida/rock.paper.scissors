@@ -11,11 +11,12 @@ const GameStart: FC = function GameStartPage() {
       <div className={styles.buttons}>
         <Button
           className={styles.button}
-          >
+        >
           С комьютером
         </Button>
         <Button
           className={styles.button}
+          disabled
           view="outline"
         >
           С другим игроком
