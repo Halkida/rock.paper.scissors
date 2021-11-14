@@ -1,25 +1,18 @@
-import { getRandomNumber } from '@/utils/get-random-number';
+import { Gamer, GamerInitData } from './Gamer';
+// import { Cards } from './constants';
 
-enum Cards {
-  rock = 'rock',
-  paper = 'paper',
-  scissors = 'scissors',
-}
+const defaultStepsCount = 12;
 
-const winCombinations = {
-  [Cards.rock]: Cards.scissors,
-  [Cards.paper]: Cards.rock,
-  [Cards.scissors]: Cards.paper,
-};
-
-type Gamer = {
-  id: number,
-  cards: []
-};
+// const winCombinations = {
+//   [Cards.rock]: Cards.scissors,
+//   [Cards.paper]: Cards.rock,
+//   [Cards.scissors]: Cards.paper,
+// };
 
 type GameSettings = {
-  stepsCount: number;
-  gamers: Gamer[];
+  stepsCountTotal?: number;
+  gamers: GamerInitData[];
+  isAllCardsEqually?: boolean,
 };
 
 class RPS {
@@ -27,39 +20,48 @@ class RPS {
 
   private stepsCount: number;
   private gamers: Gamer[];
+  private isAllCardsEqually: boolean;
 
-  constructor({ stepsCount, gamers  } : GameSettings) {
-    this.stepsCount = stepsCount;
-    this.gamers = gamers;
+  constructor({
+    stepsCountTotal = defaultStepsCount,
+    gamers,
+    isAllCardsEqually = true,
+  } : GameSettings) {
+
+    this.stepsCountTotal = stepsCountTotal;
+    this.gamers = gamers.map((item) => new Gamer(item));
+    this.isAllCardsEqually = isAllCardsEqually;
   }
 
   public start() {
-    // раздавание карт
-    // инициализация жизней
-    // Присвание stepsCount значения 0
+    this.dealСardsForGamers();
+    this.stepsCount = 0;
   }
 
   public finish() {
     // происходит когда количество жизней у одного из игроков равно 0 или количетсво ходов достигнуто N (надо вынести в переменную по умолчанию равно 10)
   }
 
-  public makeAStep(cardType: string) {
-    // увеличение stepsCount на 1
-    // вычисление победителя в ходу
-    // вычисление окончания игры
+  // public makeAStep(cardType: string) {
+  //   // увеличение stepsCount на 1
+  //   // вычисление победителя в ходу
+  //   // вычисление окончания игры
+  // }
+
+  // private calculateOfFinish() {
+  //   // количество жизней у одного из игроков равно 0 или количетсво ходов достигнуто N (надо вынести в переменную по умолчанию равно 10)
+  // }
+
+  // private calculateWinner() {
+  //   // на основе winCombinations вычислиет победителей
+  // }
+
+  private dealСardsForGamers() {
+    this.gamers.forEach((item) => {
+      item.getCards(this.stepsCount, this.isAllCardsEqually);
+    });
   }
 
-  private calculateOfFinish() {
-    // количество жизней у одного из игроков равно 0 или количетсво ходов достигнуто N (надо вынести в переменную по умолчанию равно 10)
-  }
-
-  private calculateWinner() {
-    // на основе winCombinations вычислиет победителей
-  }
-
-  private dealСardsForGamer() {
-    //
-  }
 }
 
 export default RPS;
