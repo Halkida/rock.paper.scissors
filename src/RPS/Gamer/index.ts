@@ -34,7 +34,7 @@ export class Gamer {
       const oneTypeCardCount = count / Gamer.availableCardsCount;
 
       if (!isInteger(oneTypeCardCount)) {
-        throw new Error('Количество ходов должно быть кратно количество типов карт');
+        throw new Error('Количество ходов должно быть кратно количеству типов карт');
       }
 
       this.cards = new Array(count)
