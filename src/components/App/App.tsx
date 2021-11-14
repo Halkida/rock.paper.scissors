@@ -1,12 +1,15 @@
 import { Component } from 'react';
-import styles from'./app.scss';
+import SignIn from '@/pages/SignIn';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1 className={styles.h1}>Hello React</h1>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/sign-in" element={ <SignIn /> } />
+        </Routes>
+      </Router>
     );
   }
 }

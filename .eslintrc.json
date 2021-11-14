@@ -50,7 +50,7 @@
         "no-tabs": "error",
         "no-trailing-spaces": "error",
         "no-whitespace-before-property": "error",
-        "operator-linebreak":	["warn", "before"],
+        "operator-linebreak":	["warn", "after"],
 
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
