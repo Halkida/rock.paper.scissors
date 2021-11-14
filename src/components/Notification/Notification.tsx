@@ -1,15 +1,24 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
+import classNames from 'classnames/bind';
 import styles from'./Notification.module.scss';
 
 type OwnProps = {
-   text: string
+  className?: string,
+  children: ReactNode | string;
 }
 type NotificationProps = FC<OwnProps>
 
-export const Notification: NotificationProps = function Notification({text}) {
+const cx = classNames.bind(styles);
+
+export const Notification: NotificationProps = function Notification({children, className = ''}) {
+  const notificationClassNames = cx({
+    [className]: true,
+    ['notification']: true
+  });
+
   return (
-    <div className={styles.notification}>
-      {text}
+    <div className={notificationClassNames}>
+      {children}
     </div>
   );
 };
