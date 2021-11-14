@@ -9,7 +9,7 @@ export type GamerInitData = {
   id: number,
 };
 
-export class Gamer {
+export default class Gamer {
   public id: number;
   public cards: Cards[];
   public liveCount: number;
