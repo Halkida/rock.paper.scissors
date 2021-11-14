@@ -58,7 +58,7 @@ type SignUpForm = {
   password: string
 }
 
-export const SignUp: FC = function SignInPage() {
+export const SignUp: FC = function SignUpPage() {
   const onSubmit = (data: Record<string, unknown>) => {
     console.log('Здесь должна быть ваша регистрация ', data);
   };
