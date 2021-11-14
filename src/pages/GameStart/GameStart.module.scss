@@ -5,11 +5,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
 }
 
 .title {
-  font-family: Helvetica, Arial, sans-serif;
-  color: $color-white;
   text-align: center;
   font-size: 2rem;
   margin-top: 0;
