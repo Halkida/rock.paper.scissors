@@ -1,4 +1,4 @@
-import { Gamer } from './Gamer';
+import Gamer from './Gamer';
 // import { Cards } from './constants';
 
 const defaultStepsCount = 12;
