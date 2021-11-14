@@ -18,6 +18,7 @@ export class Gamer {
   constructor({ id }: GamerInitData) {
     this.id = id;
     this.cards = [];
+    this.liveCount = Gamer.availableCardsCount;
   }
 
   static get availableCardsCount(): number {
