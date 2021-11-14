@@ -1,4 +1,4 @@
-import { Gamer, GamerInitData } from './Gamer';
+import { Gamer } from './Gamer';
 // import { Cards } from './constants';
 
 const defaultStepsCount = 12;
@@ -11,13 +11,12 @@ const defaultStepsCount = 12;
 
 type GameSettings = {
   stepsCountTotal?: number;
-  gamers: GamerInitData[];
+  gamers: Gamer[];
   isAllCardsEqually?: boolean,
 };
 
 class RPS {
   readonly stepsCountTotal: number;
-
   private stepsCount: number;
   private gamers: Gamer[];
   private isAllCardsEqually: boolean;
@@ -29,8 +28,17 @@ class RPS {
   } : GameSettings) {
 
     this.stepsCountTotal = stepsCountTotal;
-    this.gamers = gamers.map((item) => new Gamer(item));
+    this.gamers = gamers;
     this.isAllCardsEqually = isAllCardsEqually;
+
+    console.log(this.isFinish);
+  }
+
+  private get isFinish() {
+    const hasSteps = this.stepsCount < this.stepsCountTotal;
+    const hasGamerWithotLives = this.gamers.some(({ liveCount }) => !liveCount);
+
+    return !hasSteps && hasGamerWithotLives;
   }
 
   public start() {
@@ -46,10 +54,6 @@ class RPS {
   //   // увеличение stepsCount на 1
   //   // вычисление победителя в ходу
   //   // вычисление окончания игры
-  // }
-
-  // private calculateOfFinish() {
-  //   // количество жизней у одного из игроков равно 0 или количетсво ходов достигнуто N (надо вынести в переменную по умолчанию равно 10)
   // }
 
   // private calculateWinner() {
