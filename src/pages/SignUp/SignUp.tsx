@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Input } from '@/components/Input';
+import { Input, InputProps } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
 import { PATTERNS } from '@/utils/formValidation';
 import styles from'./SignUp.module.scss';
@@ -73,6 +73,57 @@ export const SignUp: FC = function SignUpPage() {
     confirmPassword: confirmPasswordError
   } = (errors as any);
 
+  const formFieldsConfig: InputProps[] = [{
+    onChange: handleChange('email'),
+    name: 'email',
+    type: 'text',
+    placeholder: 'Почта',
+    isValid: !emailError,
+    errorText: emailError
+  }, {
+    onChange: handleChange('login'),
+    name: 'login',
+    type: 'text',
+    placeholder: 'Логин для входа',
+    isValid: !loginError,
+    errorText: loginError
+  }, {
+    onChange: handleChange('first_name'),
+    name: 'first_name',
+    type: 'text',
+    placeholder: 'Имя',
+    isValid: !nameError,
+    errorText: nameError
+  }, {
+    onChange: handleChange('second_name'),
+    name: 'second_name',
+    type: 'text',
+    placeholder: 'Фамилия',
+    isValid: !secondNameError,
+    errorText: secondNameError
+  }, {
+    onChange: handleChange('phone'),
+    name: 'phone',
+    type: 'text',
+    placeholder: 'Телефон',
+    isValid: !phoneError,
+    errorText: phoneError
+  }, {
+    onChange: handleChange('password'),
+    name: 'password',
+    type: 'password',
+    placeholder: 'Пароль',
+    isValid: !passwordError,
+    errorText: passwordError
+  }, {
+    onChange: handleChange('confirmPassword'),
+    name: 'confirmPassword',
+    type: 'password',
+    placeholder: 'Пароль еще раз',
+    isValid: !confirmPasswordError,
+    errorText: confirmPasswordError
+  }];
+
   return (
     <main className={ styles.signup }>
       <Form
@@ -81,51 +132,7 @@ export const SignUp: FC = function SignUpPage() {
         submitText='Зарегистрироваться'
         renderFields={ () => (
           <>
-            <Input onChange={ handleChange('email') }
-              name='email'
-              placeholder='Почта'
-              isValid={!emailError}
-              errorText={emailError}
-            />
-            <Input onChange={ handleChange('login') }
-              name='login'
-              placeholder='Логин для входа'
-              isValid={!loginError}
-              errorText={loginError}
-            />
-            <Input onChange={ handleChange('first_name') }
-              name='first_name'
-              placeholder='Имя'
-              isValid={!nameError}
-              errorText={nameError}
-            />
-            <Input onChange={ handleChange('second_name') }
-              name='second_name'
-              placeholder='Фамилия'
-              isValid={!secondNameError}
-              errorText={secondNameError}
-            />
-            <Input onChange={ handleChange('phone') }
-              name='phone'
-              placeholder='Телефон'
-              isValid={!phoneError}
-              errorText={phoneError}
-            />
-
-            <Input onChange={ handleChange('password') }
-              name='password'
-              type='password'
-              placeholder='Пароль'
-              isValid={!passwordError}
-              errorText={passwordError}
-            />
-            <Input onChange={ handleChange('confirmPassword') }
-              name='confirmPassword'
-              type='password'
-              placeholder='Пароль еще раз'
-              isValid={!confirmPasswordError}
-              errorText={confirmPasswordError}
-            />
+            { formFieldsConfig.map((field) => <Input key={field.name} {...field} />) }
           </>
         ) }
       />
