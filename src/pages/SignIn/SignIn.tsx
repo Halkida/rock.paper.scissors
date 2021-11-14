@@ -44,7 +44,7 @@ export const SignIn: FC = function SignInPage() {
 
   return (
     <main className={ styles.signin }>
-      { notification && <Notification text={notification} /> }
+      { notification && <Notification>{notification}</Notification> }
       <Form
         title='Вход'
         onSubmit={handleSubmit}
