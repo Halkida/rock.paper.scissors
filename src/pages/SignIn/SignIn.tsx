@@ -43,14 +43,14 @@ export const SignIn: FC = function SignInPage() {
             <Input onChange={ handleChange('login') }
               name='login'
               placeholder='Логин для входа'
-              isValid={!Boolean(loginError)}
+              isValid={!loginError}
               errorText={loginError}
             />
             <Input onChange={ handleChange('password') }
               name='password'
               type='password'
               placeholder='Пароль'
-              isValid={!Boolean(passwordError)}
+              isValid={!passwordError}
               errorText={passwordError}
             />
           </>
