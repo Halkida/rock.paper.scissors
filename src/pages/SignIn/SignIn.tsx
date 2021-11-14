@@ -1,7 +1,9 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
+import { Notification } from '@/components/Notification';
+import authServise from '@/services/auth';
 import { PATTERNS } from '@/utils/formValidation';
 import styles from'./SignIn.module.scss';
 
@@ -26,14 +28,23 @@ type SignInForm = {
 }
 
 export const SignIn: FC = function SignInPage() {
+  const navigate = useNavigate();
+  const [notification, setNotification] = useState('');
+
   const onSubmit = (data: Record<string, unknown>) => {
-    console.log('Здесь должна быть ваша авторизация ', data);
+    authServise.signIn(data)
+      .then(() => navigate('/profile'))
+      .catch((error: Error) => {
+        setNotification(error.message);
+      });
   };
+
   const { handleChange, handleSubmit, errors} = useForm<SignInForm>({validationConfig, onSubmit});
   const { login: loginError, password: passwordError } = (errors as any);
 
   return (
     <main className={ styles.signin }>
+      { notification && <Notification text={notification} /> }
       <Form
         title='Вход'
         onSubmit={handleSubmit}
