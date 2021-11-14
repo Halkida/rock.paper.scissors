@@ -34,7 +34,7 @@ module.exports = {
           exclude: /(node_modules)/
         },
         {
-          test: sassRegex,
+          test: sassModuleRegex,
           use: [
             { loader: 'style-loader' },
             {
@@ -48,7 +48,7 @@ module.exports = {
             },
             { loader: 'sass-loader' }
           ],
-          include: sassModuleRegex
+          exclude: path.resolve(__dirname, './src/styles')
         },
         {
           test: sassRegex,
@@ -58,14 +58,11 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 sourceMap: true,
-                modules: {
-                  localIdentName: '[path][name]__[local]'
-                }
               }
             },
             { loader: 'sass-loader' }
           ],
-          exclude: sassModuleRegex
+          include: path.resolve(__dirname, './src/styles')
         }
       ]
     },

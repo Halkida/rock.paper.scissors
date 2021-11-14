@@ -15,14 +15,14 @@ type Props = FC<OwnProps>;
 
 const cx = classNames.bind(styles);
 
-export const Button: Props = (
+export const Button: Props = function(
   { children,
     view = 'default',
     size = 'medium',
     href = '',
     className = '',
     ...ButtonHTMLAttributes }
-  ) => {
+  ) {
 
   const buttonClassNames = cx({
     [className]: true,
