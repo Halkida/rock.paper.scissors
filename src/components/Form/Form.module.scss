@@ -1,0 +1,18 @@
+@import '@/styles/variables.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-bottom: 20px;
+
+  &__title {
+    color: $color-white;
+    font-size: $font-medium;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+}

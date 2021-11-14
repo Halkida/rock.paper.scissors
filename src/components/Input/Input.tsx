@@ -15,14 +15,14 @@ type Props = FC<InputProps>;
 
 const cx = classNames.bind(styles);
 
-export const Input: Props = (
+export const Input: Props = function Input(
   { isValid = true,
     errorText = '',
     type = 'text',
     onChange,
     value,
     ...InputHTMLAttributes }
-  ) => {
+  ) {
 
   const className = cx({
     ['input']: true,

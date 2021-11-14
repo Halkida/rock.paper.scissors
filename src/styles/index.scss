@@ -1,6 +1,24 @@
 @import '@/styles/variables.scss';
 @import '@/styles/button.scss';
 
+html, body {
+  height: 100%;
+}
+
 body {
-    background-color: $color-background;
+  margin: 0;
+  background-color: $color-background;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+}
+
+.link {
+  font-size: $font-medium;
+  color: $color-tulip-tree;
 }
