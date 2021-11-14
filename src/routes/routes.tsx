@@ -1,4 +1,4 @@
-import typesRoute from '@/types/Route';
+import { RouteObject } from 'react-router-dom';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 import Game from '@/pages/Game';
@@ -6,57 +6,45 @@ import LeaderBoard from '@/pages/LeaderBoard';
 import Profile from '@/pages/Profile';
 import Forum from '@/pages/Forum';
 import NoMatch from '@/pages/NoMatch';
-// TODO
-// import Topic from '@/pages/Topic';
+import Topic from '@/pages/Topic';
+import ForumIndex from '@/pages/ForumIndex';
+import RequireAuth from '@/components/RequireAuth';
 
-export const routes: typesRoute[] = [
+export const routes: RouteObject[] = [
   {
     path: "/sign-in",
     element: <SignIn />,
-    isPrivate: false,
-    exact: true,
+    
   },
   {
     path: "/sign-up",
     element: <SignUp />,
-    isPrivate: false,
-    exact: true,
   },
   {
     path: "/game",
-    element: <Game />,
-    isPrivate: true,
-    exact: true,
+    element: <RequireAuth><Game /></RequireAuth>,
   },
   {
     path: "/leader-board",
     element: <LeaderBoard />,
-    isPrivate: false,
-    exact: true,
   },
   {
     path: "/profile",
-    element: <Profile />,
-    isPrivate: true,
-    exact: true,
+    element: <RequireAuth><Profile /></RequireAuth>,
   },
   {
     path: "/forum",
-    element: <Forum />,
-    isPrivate: false,
-    exact: true,
-    // TODO
-    // children: [{
-    //   path: "/forum/:id",
-    //   element: <Topic />,
-    //   isPrivate: true,
-    //   exact: true,
-    // }]
+    element: <ForumIndex />,
+    children: [
+      { index: true,
+        element: <Forum /> },
+      {
+      path: "/forum/:id",
+      element: <Topic />,
+    }]
   },
   {
     path: "*",
     element: <NoMatch />,
-    isPrivate: false,
-    exact: false,
   },
 ]
