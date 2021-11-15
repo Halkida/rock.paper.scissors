@@ -9,6 +9,11 @@
 
   &_default {
     border: none;
+
+    &:disabled {
+      background-color: $color-silver;
+      opacity: .5;
+    }
   }
 
   &_small {
@@ -24,20 +29,24 @@
   }
 
   &_outline {
-    border: 2px solid $color-tulip-tree;
+    border: 2px solid currentColor;
     background-color: transparent;
     color: $color-tulip-tree;
+
+    &:disabled {
+      color: $color-silver;
+      opacity: .5;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
   }
 
   &_text {
     border: none;
     background-color: inherit;
     color: $color-tulip-tree;
-  }
-
-  &:disabled {
-    background-color: $color-silver;
-    pointer-events: none;
   }
 
   &:link {
