@@ -28,6 +28,12 @@ const data: User[] = [
     name: 'Ваня Пупкин',
     starsCount: 50,
   },
+  {
+    id: 4,
+    index: 4,
+    name: 'Ваня Пупкин',
+    starsCount: 50,
+  },
 ];
 
 const UserRating: FC = function UserRating() {
