@@ -1,0 +1,9 @@
+@import '@/styles/variables.scss';
+
+.notification {
+  padding: 1rem 2rem;
+  border: 1px solid $color-tulip-tree;
+  font-size: $font-large;
+  color: $color-tulip-tree;
+  margin: 0.5rem 0;
+}

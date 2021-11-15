@@ -1,6 +1,7 @@
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
+  AxiosError
 } from 'axios';
 
 const baseConfig: AxiosRequestConfig = {
@@ -17,4 +18,6 @@ const getAxiosInstance: GetAxiosInstance = (baseURL) => (
   })
 );
 
+const isAxiosError = axios.isAxiosError;
 export default getAxiosInstance;
+export { AxiosError, isAxiosError };
