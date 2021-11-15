@@ -1,0 +1,29 @@
+@import '@/styles/variables.scss';
+
+.page {
+  height: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: .75em;
+}
+
+.container {
+  background-color: rgba($color-white, .1);
+  flex-grow: 1;
+  width: 70%;
+  padding: 1.5rem;
+}
+
+.list {
+  min-height: 100%;
+  height: 0;
+  overflow: auto;
+}
