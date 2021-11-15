@@ -1,7 +1,9 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input, InputProps } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
+import { Notification } from '@/components/Notification';
+import authServise from '@/services/auth';
 import { PATTERNS } from '@/utils/formValidation';
 import styles from'./SignUp.module.scss';
 
@@ -59,9 +61,17 @@ type SignUpForm = {
 }
 
 export const SignUp: FC = function SignUpPage() {
+  const navigate = useNavigate();
+  const [notification, setNotification] = useState('');
+
   const onSubmit = (data: Record<string, unknown>) => {
-    console.log('Здесь должна быть ваша регистрация ', data);
+    authServise.signUp(data)
+      .then(() => navigate('/profile'))
+      .catch((error: Error) => {
+        setNotification(error.message);
+      });
   };
+
   const { handleChange, handleSubmit, errors} = useForm<SignUpForm>({validationConfig, onSubmit});
   const {
     email: emailError,
@@ -126,6 +136,7 @@ export const SignUp: FC = function SignUpPage() {
 
   return (
     <main className={ styles.signup }>
+      { notification && <Notification>{notification}</Notification> }
       <Form
         title='Вход'
         onSubmit={handleSubmit}
