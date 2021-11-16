@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Input, InputProps } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
@@ -74,49 +74,49 @@ export const SignUp: FC = function SignUpPage() {
   } = (errors as any);
 
   const formFieldsConfig: InputProps[] = [{
-    onChange: handleChange('email'),
+    onChange: useCallback(handleChange('email'), []),
     name: 'email',
     type: 'text',
     placeholder: 'Почта',
     isValid: !emailError,
     errorText: emailError
   }, {
-    onChange: handleChange('login'),
+    onChange: useCallback(handleChange('login'), []),
     name: 'login',
     type: 'text',
     placeholder: 'Логин для входа',
     isValid: !loginError,
     errorText: loginError
   }, {
-    onChange: handleChange('first_name'),
+    onChange: useCallback(handleChange('first_name'), []),
     name: 'first_name',
     type: 'text',
     placeholder: 'Имя',
     isValid: !nameError,
     errorText: nameError
   }, {
-    onChange: handleChange('second_name'),
+    onChange: useCallback(handleChange('second_name'), []),
     name: 'second_name',
     type: 'text',
     placeholder: 'Фамилия',
     isValid: !secondNameError,
     errorText: secondNameError
   }, {
-    onChange: handleChange('phone'),
+    onChange: useCallback(handleChange('phone'), []),
     name: 'phone',
     type: 'text',
     placeholder: 'Телефон',
     isValid: !phoneError,
     errorText: phoneError
   }, {
-    onChange: handleChange('password'),
+    onChange: useCallback(handleChange('password'), []),
     name: 'password',
     type: 'password',
     placeholder: 'Пароль',
     isValid: !passwordError,
     errorText: passwordError
   }, {
-    onChange: handleChange('confirmPassword'),
+    onChange: useCallback(handleChange('confirmPassword'), []),
     name: 'confirmPassword',
     type: 'password',
     placeholder: 'Пароль еще раз',
