@@ -1,7 +1,7 @@
 import { FC, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Input, InputProps } from '@/components/Input';
-import { Form, useForm } from '@/components/Form';
+import { Form, useForm, FieldError } from '@/components/Form';
 import { Notification } from '@/components/Notification';
 import authServise from '@/services/auth';
 import { PATTERNS } from '@/utils/formValidation';
@@ -48,7 +48,7 @@ const validationConfig = {
   confirmPassword: {
     custom: {
       isValid: (value: string, data: Record<string, unknown>) => {
-        return data.password && data.password === value;
+        return Boolean(data.password && data.password === value);
       },
       message: 'Пароли не совпадают',
     },
@@ -56,8 +56,13 @@ const validationConfig = {
 };
 
 type SignUpForm = {
+  email: string;
+  first_name: string;
+  second_name: string;
+  phone: string;
   login: string;
-  password: string
+  password: string;
+  confirmPassword: string;
 }
 
 export const SignUp: FC = function SignUpPage() {
@@ -81,7 +86,7 @@ export const SignUp: FC = function SignUpPage() {
     login: loginError,
     password: passwordError,
     confirmPassword: confirmPasswordError
-  } = (errors as any);
+  } = errors as FieldError;
 
   const formFieldsConfig: InputProps[] = [{
     onChange: useCallback(handleChange('email'), []),
