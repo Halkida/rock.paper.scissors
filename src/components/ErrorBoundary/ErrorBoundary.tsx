@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-type Props = Record<string, never>;
+type Props = {
+  children: ReactNode,
+};
 
 type State = {
   hasError?: boolean;
