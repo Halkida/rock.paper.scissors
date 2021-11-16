@@ -1,26 +1,26 @@
-import React, { ReactNode } from 'react';
+import { Component, ReactNode } from 'react';
+import Error from './components/Error';
 
-type Props = {
-  children: ReactNode,
-};
-
-type State = {
-  hasError?: boolean;
+interface Props {
+  children: ReactNode;
 }
 
-export default class ErrorBoundary extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+interface State {
+  hasError: boolean;
+}
 
-  static getDerivedStateFromError() {
+export default class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false
+  };
+
+  public static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  render() {
+  public render() {
     if (this.state.hasError) {
-      return <h1>Что-то пошло не так.</h1>;
+      return <Error />;
     }
 
     return this.props.children;
