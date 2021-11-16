@@ -32,7 +32,7 @@ const UserItem: FC<OwnProps> = function UserItem({
       ])}>
         {isThreeFirst ? <IconTrophySolid /> : `${index}.`}
       </div>
-      <div className={styles.name}>
+      <div>
         {name}
       </div>
       <div className={styles.stars}>
