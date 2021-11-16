@@ -9,42 +9,45 @@ import NoMatch from '@/pages/NoMatch';
 import Topic from '@/pages/Topic';
 import ForumIndex from '@/pages/ForumIndex';
 import RequireAuth from '@/components/RequireAuth';
+import urls from '@/utils/urls';
 
 export const routes: RouteObject[] = [
   {
-    path: "/sign-in",
+    path: urls.SIGN_IN,
     element: <SignIn />,
-    
   },
   {
-    path: "/sign-up",
+    path: urls.SIGN_UP,
     element: <SignUp />,
   },
   {
-    path: "/game",
+    path: urls.GAME,
     element: <RequireAuth><Game /></RequireAuth>,
   },
   {
-    path: "/leader-board",
+    path: urls.USER_RATING,
     element: <LeaderBoard />,
   },
   {
-    path: "/profile",
+    path: urls.PROFILE,
     element: <RequireAuth><Profile /></RequireAuth>,
   },
   {
-    path: "/forum",
+    path: urls.FORUM,
     element: <ForumIndex />,
     children: [
-      { index: true,
-        element: <Forum /> },
       {
-      path: "/forum/:id",
-      element: <Topic />,
-    }]
+        index: true,
+        element: <Forum />,
+      },
+      {
+        path: urls.TOPICK,
+        element: <Topic />,
+      },
+    ],
   },
   {
-    path: "*",
+    path: urls.NO_MATCH,
     element: <NoMatch />,
   },
-]
+];

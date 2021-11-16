@@ -6,6 +6,6 @@ export const RequireAuth: FC = ({
 }) => {
   // TODO сделать проверку идентификации
   // let isAuthenticated = getAuth();
-  let isAuthenticated = true;
+  const isAuthenticated = true;
   return isAuthenticated ? children as ReactElement<any> : <Navigate to="/sign-in" />;
-}
+};
