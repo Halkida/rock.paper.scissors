@@ -8,19 +8,12 @@ class App extends Component {
   render() {
     return (
       <ErrorBoundary>
-        <div>
-          {
-            <h1>
-              {new Error()}
-            </h1>
-          }
-          <Router>
-            <Routes>
-              <Route path="/sign-in" element={ <SignIn /> } />
-              <Route path="/game" element={ <GameStart /> } />
-            </Routes>
-          </Router>
-        </div>
+        <Router>
+          <Routes>
+            <Route path="/sign-in" element={ <SignIn /> } />
+            <Route path="/game" element={ <GameStart /> } />
+          </Routes>
+        </Router>
       </ErrorBoundary>
     );
   }
