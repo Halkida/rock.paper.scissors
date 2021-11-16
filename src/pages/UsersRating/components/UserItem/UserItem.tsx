@@ -7,14 +7,14 @@ import styles from './UserItem.module.scss';
 type OwnProps = {
   index: number;
   name: string;
-  starsCount: number;
+  score: number;
   className?: string;
 };
 
 const UserItem: FC<OwnProps> = function UserItem({
   index,
   name,
-  starsCount,
+  score,
   className = '',
 }) {
   const isThreeFirst = index <= 3;
@@ -45,7 +45,7 @@ const UserItem: FC<OwnProps> = function UserItem({
           <IconStarSolid />
         </div>
         <div className={styles.stars_number}>
-          {starsCount}
+          {score}
         </div>
       </div>
     </div>

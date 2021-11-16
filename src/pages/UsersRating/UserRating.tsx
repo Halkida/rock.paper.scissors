@@ -6,7 +6,7 @@ type User = {
   id: number;
   index: number;
   name: string;
-  starsCount: number;
+  score: number;
 };
 
 const data: User[] = [
@@ -14,73 +14,73 @@ const data: User[] = [
     id: 1,
     index: 1,
     name: 'Ваня Иванов',
-    starsCount: 100,
+    score: 100,
   },
   {
     id: 2,
     index: 2,
     name: 'Ваня Пупкин',
-    starsCount: 70,
+    score: 70,
   },
   {
     id: 3,
     index: 3,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
   {
     id: 4,
     index: 4,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
   {
     id: 5,
     index: 5,
     name: 'Ваня Иванов',
-    starsCount: 100,
+    score: 100,
   },
   {
     id: 6,
     index: 7,
     name: 'Ваня Пупкин',
-    starsCount: 70,
+    score: 70,
   },
   {
     id: 8,
     index: 8,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
   {
     id: 9,
     index: 9,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
   {
     id: 10,
     index: 10,
     name: 'Ваня Иванов',
-    starsCount: 100,
+    score: 100,
   },
   {
     id: 11,
     index: 11,
     name: 'Ваня Пупкин',
-    starsCount: 70,
+    score: 70,
   },
   {
     id: 12,
     index: 12,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
   {
     id: 13,
     index: 13,
     name: 'Ваня Пупкин',
-    starsCount: 50,
+    score: 50,
   },
 ];
 
@@ -96,13 +96,13 @@ const UserRating: FC = function UserRating() {
             index,
             id,
             name,
-            starsCount,
+            score,
           }) => (
             <UserItem
               key={id}
               index={index}
               name={name}
-              starsCount={starsCount}
+              score={score}
               className={styles.userItem}
             />
           ))}
