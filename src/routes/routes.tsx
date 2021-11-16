@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
-import Game from '@/pages/Game';
+import GameStart from '@/pages/GameStart';
 import LeaderBoard from '@/pages/LeaderBoard';
 import Profile from '@/pages/Profile';
 import Forum from '@/pages/Forum';
@@ -22,7 +22,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.GAME,
-    element: <RequireAuth><Game /></RequireAuth>,
+    element: <RequireAuth><GameStart /></RequireAuth>,
   },
   {
     path: urls.USER_RATING,
