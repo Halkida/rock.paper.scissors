@@ -147,7 +147,7 @@ export const SignUp: FC = function SignUpPage() {
           </>
         ) }
       />
-      <Link className={ 'link' } to="/sign-up" >Войти</Link>
+      <Link className='link' to="/sign-in">Войти</Link>
     </main>
   );
 };
