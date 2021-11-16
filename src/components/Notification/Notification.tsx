@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 export const Notification: NotificationProps = function Notification({children, className = ''}) {
   const notificationClassNames = cx({
     [className]: true,
-    ['notification']: true
+    notification: true
   });
 
   return (
