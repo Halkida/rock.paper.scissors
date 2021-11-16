@@ -1,5 +1,6 @@
 import { Component, ReactNode } from 'react';
-import Error from './components/Error';
+import IconTimesSolid from '@/icons/TimesSolid';
+import styles from './ErrorBoundary.module.scss';
 
 interface Props {
   children: ReactNode;
@@ -20,7 +21,16 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <Error />;
+      return (
+        <div className={styles.wrapper}>
+          <div className={styles.iconWrapper}>
+            <IconTimesSolid />
+          </div>
+          <div className={styles.title}>
+            Ошибка
+          </div>
+        </div>
+      );
     }
 
     return this.props.children;
