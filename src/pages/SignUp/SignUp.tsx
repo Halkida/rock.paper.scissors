@@ -4,6 +4,7 @@ import { Input, InputProps } from '@/components/Input';
 import { Form, useForm, FieldError } from '@/components/Form';
 import { Notification } from '@/components/Notification';
 import authServise from '@/services/auth';
+
 import { PATTERNS } from '@/utils/formValidation';
 import styles from'./SignUp.module.scss';
 
@@ -49,6 +50,7 @@ const validationConfig = {
     custom: {
       isValid: (value: string, data: Record<string, unknown>) => {
         return Boolean(data.password && data.password === value);
+
       },
       message: 'Пароли не совпадают',
     },
@@ -87,6 +89,7 @@ export const SignUp: FC = function SignUpPage() {
     password: passwordError,
     confirmPassword: confirmPasswordError
   } = errors as FieldError;
+
 
   const formFieldsConfig: InputProps[] = [{
     onChange: useCallback(handleChange('email'), []),
