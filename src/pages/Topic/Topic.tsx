@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import IUser from '@/types';
 import mockTopicData from './mockTopicData';
 import styles from'./Topic.module.scss';
 
@@ -11,7 +12,7 @@ interface Comment {
 interface Topic {
   id: number
   description: string;
-  author: string; // shoud be IUser
+  author: IUser;
   title: string;
   commentsCount: number;
   comments: Comment[];
@@ -32,7 +33,10 @@ export const Topic: FC = () => {
         { topic &&
           <>
             <h1 className={styles.topic_title}>{topic.title}</h1>
-            <div className={styles.topic_author}>{topic.author}</div>
+            <div className={styles.topic_author}>
+              <span>{topic.author.firstName}</span>
+              <img src={topic.author.avatar} className={styles.avatar} />
+            </div>
             <div className={styles.topic_description}>{topic.description}</div>
 
             <ul className={styles.comments_list}>
