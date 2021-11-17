@@ -15,6 +15,7 @@ export default class Gamer {
   public liveCount: number;
   static availableCards: Cards[] = Object.values(Cards);
   public stepsCount: number;
+  public curStep: Cards | null;
 
   constructor({ id }: GamerInitData) {
     this.cards = {
@@ -26,6 +27,7 @@ export default class Gamer {
 
     this.liveCount = Gamer.availableCardsCount;
     this.stepsCount = 0;
+    this.curStep = null;
   }
 
   static get availableCardsCount(): number {
@@ -45,6 +47,7 @@ export default class Gamer {
   public makeAStep(card: Cards) {
     this.stepsCount += 1;
     this.cards[card] -= 1;
+    this.curStep = card;
   }
 
   // private getRandomCard(): Cards {
