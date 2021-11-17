@@ -105,9 +105,18 @@ class RPS {
     }
   }
 
-  // private calculateWinner() {
-  //   // на основе winCombinations вычислиет победителей
-  // }
+  public get circleWinGamerId() {
+    // на основе winCombinations вычислиет победителей
+    return 1;
+  }
+
+  public get winGamerId() {
+    if (!this.isAllMadeAStep) {
+      return;
+    }
+
+    return 1;
+  }
 
   private dealСardsForGamers() {
     this.gamers.forEach((item) => {
