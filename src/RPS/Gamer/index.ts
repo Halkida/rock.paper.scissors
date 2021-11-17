@@ -1,9 +1,9 @@
-import { getRandomNumber } from '@/utils/get-random-number';
+// import { getRandomNumber } from '@/utils/get-random-number';
 import { Cards } from '../constants';
 
-const isInteger = (number: number) => (
-  Math.floor(number) === number
-);
+// const isInteger = (number: number) => (
+//   Math.floor(number) === number
+// );
 
 export type GamerInitData = {
   id: number,
@@ -11,14 +11,21 @@ export type GamerInitData = {
 
 export default class Gamer {
   public id: number;
-  public cards: Cards[];
+  public cards: Record<Cards, number>;
   public liveCount: number;
-  static availableCards: Cards[] = Object.keys(Cards) as Cards[];
+  static availableCards: Cards[] = Object.values(Cards);
+  public stepsCount: number;
 
   constructor({ id }: GamerInitData) {
+    this.cards = {
+      rock: 0,
+      paper: 0,
+      scissors: 0,
+    };
     this.id = id;
-    this.cards = [];
+
     this.liveCount = Gamer.availableCardsCount;
+    this.stepsCount = 0;
   }
 
   static get availableCardsCount(): number {
@@ -26,28 +33,22 @@ export default class Gamer {
   }
 
   public getCards(count: number, isEqually: boolean) {
-    if (!isEqually) {
-      this.cards = new Array(count)
-        .fill(null)
-        .map(this.getRandomCard);
-    } else {
-      const oneTypeCardCount = count / Gamer.availableCardsCount;
-
-      if (!isInteger(oneTypeCardCount)) {
-        throw new Error('Количество ходов должно быть кратно количеству типов карт');
-      }
-
-      this.cards = new Array(count)
-        .fill(null)
-        .map((_, index) => {
-          const indexOfCardType = Math.floor(index / oneTypeCardCount);
-          return Gamer.availableCards[indexOfCardType];
-        });
-    }
+    count;
+    isEqually;
+    this.cards = {
+      rock: 4,
+      paper: 4,
+      scissors: 4,
+    };
   }
 
-  private getRandomCard(): Cards {
-    const index = getRandomNumber(0, Gamer.availableCardsCount);
-    return Gamer.availableCards[index];
+  public makeAStep(card: Cards) {
+    this.stepsCount += 1;
+    this.cards[card] -= 1;
   }
+
+  // private getRandomCard(): Cards {
+  //   const index = getRandomNumber(0, Gamer.availableCardsCount);
+  //   return Gamer.availableCards[index];
+  // }
 }
