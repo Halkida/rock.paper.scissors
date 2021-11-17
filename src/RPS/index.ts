@@ -22,7 +22,7 @@ class RPS {
     init: 'init',
     madeAStep: 'flow:made-a-step',
     circleIsOver: 'flow:circle-is-over',
-    gemeFinished: 'flow:geme-finished',
+    gameFinished: 'flow:game-finished',
   };
 
   readonly stepsCountTotal: number;
@@ -41,19 +41,20 @@ class RPS {
     this.isAllCardsEqually = isAllCardsEqually;
     this.eventBus = new EventBus();
     this.registerEvents();
+    this.eventBus.emit(RPS.events.init);
   }
 
   private registerEvents(): void {
     this.eventBus.on(RPS.events.init, this.init.bind(this));
     this.eventBus.on(RPS.events.madeAStep, this.gamerMadeAStep.bind(this));
     this.eventBus.on(RPS.events.circleIsOver, this.circleIsOver.bind(this));
-    this.eventBus.on(RPS.events.gemeFinished, this.gemeFinished.bind(this));
+    this.eventBus.on(RPS.events.gameFinished, this.gameFinished.bind(this));
   }
 
   public init() {}
   public gamerMadeAStep() {}
   public circleIsOver() {}
-  public gemeFinished() {}
+  public gameFinished() {}
 
   private get isFinish() {
     const hasSteps = this.stepsCount < this.stepsCountTotal;
@@ -85,16 +86,19 @@ class RPS {
   }
 
   public finish() {
-    // происходит когда количество жизней у одного из игроков равно 0 или количетсво ходов достигнуто N (надо вынести в переменную по умолчанию равно 10)
+    this.eventBus.emit(RPS.events.gameFinished);
   }
 
   public makeAStep(userId: number, cardType: Cards) {
     const gamer = this.gamers.find(({ id }) => id === userId);
     gamer?.makeAStep(cardType);
+    this.eventBus.emit(RPS.events.madeAStep);
 
     if (!this.isAllMadeAStep) {
       return;
     }
+
+    this.eventBus.emit(RPS.events.circleIsOver);
 
     if (this.isFinish) {
       this.finish();
