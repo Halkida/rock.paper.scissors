@@ -1,2 +1,2 @@
 export { Form } from './Form';
-export { useForm } from './useForm';
+export { useForm, FieldError } from './useForm';
