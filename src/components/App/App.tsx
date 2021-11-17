@@ -1,20 +1,12 @@
-import { Component } from 'react';
-import SignIn from '@/pages/SignIn';
-import GameStart from '@/pages/GameStart';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from '@/pages/SignUp';
+import { useRoutes } from 'react-router-dom';
+import { routes } from '@/routes/routes';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/sign-in" element={ <SignIn /> } />
-          <Route path="/sign-up" element={ <SignUp /> } />
-          <Route path="/game" element={ <GameStart /> } />
-        </Routes>
-      </Router>
-    );
-  }
+export default function App() {
+  const element = useRoutes(routes);
+
+  return (
+    <div>
+      {element}
+    </div>
+  );
 }
-export default App;
