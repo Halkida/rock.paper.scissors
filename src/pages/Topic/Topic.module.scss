@@ -1,0 +1,28 @@
+@import '@/styles/variables.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 2rem;
+}
+
+.topic {
+  display: flex;
+  flex-wrap: wrap;
+
+  &_title {
+    width: 100%;
+  }
+
+  &_author {
+    flex: 0 1 auto;
+    margin: 20px;
+  }
+
+  &_description {
+    flex: 1;
+  }
+}
