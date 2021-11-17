@@ -1,0 +1,1 @@
+export { ForumIndex as default } from './ForumIndex';

@@ -10,7 +10,7 @@ type OwnProps = {
 };
 
 type ReactInputAttributes = InputHTMLAttributes<HTMLInputElement>;
-type InputProps = OwnProps & Omit<ReactInputAttributes, keyof OwnProps>
+export type InputProps = OwnProps & Omit<ReactInputAttributes, keyof OwnProps>
 type Props = FC<InputProps>;
 
 const cx = classNames.bind(styles);

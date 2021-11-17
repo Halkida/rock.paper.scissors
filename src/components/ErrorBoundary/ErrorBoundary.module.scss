@@ -1,0 +1,26 @@
+@import '@/styles/variables.scss';
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: $color-error;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+}
+

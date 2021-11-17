@@ -5,15 +5,18 @@
     ],
     "extends": [
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
     ],
     "env": {
         "browser": true
     },
     "rules": {
-        "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": ["off"],
         "@typescript-eslint/ban-ts-ignore": "off",
+        "react/jsx-curly-brace-presence": ["error", { "props": "never", "children": "never" }],
+        "no-empty-function": "off",
         "no-duplicate-case": "error",
         "no-extra-semi": "error",
         "no-func-assign": "error",
