@@ -28,7 +28,7 @@ export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>
         }
 
         const custom = validation?.custom;
-        if (custom?.isValid && !custom.isValid(value)) {
+        if (custom?.isValid && !custom.isValid(value, data)) {
           isValid = false;
           errors[key] = custom.message;
         }
