@@ -1,7 +1,10 @@
-import { FC, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useState, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input, InputProps } from '@/components/Input';
-import { Form, useForm } from '@/components/Form';
+import { Form, useForm, FieldError } from '@/components/Form';
+import { Notification } from '@/components/Notification';
+import authServise from '@/services/auth';
+
 import { PATTERNS } from '@/utils/formValidation';
 import styles from'./SignUp.module.scss';
 
@@ -46,7 +49,8 @@ const validationConfig = {
   confirmPassword: {
     custom: {
       isValid: (value: string, data: Record<string, unknown>) => {
-        return data.password && data.password === value;
+        return Boolean(data.password && data.password === value);
+
       },
       message: 'Пароли не совпадают',
     },
@@ -54,14 +58,27 @@ const validationConfig = {
 };
 
 type SignUpForm = {
+  email: string;
+  first_name: string;
+  second_name: string;
+  phone: string;
   login: string;
-  password: string
+  password: string;
+  confirmPassword: string;
 }
 
 export const SignUp: FC = function SignUpPage() {
+  const navigate = useNavigate();
+  const [notification, setNotification] = useState('');
+
   const onSubmit = (data: Record<string, unknown>) => {
-    console.log('Здесь должна быть ваша регистрация ', data);
+    authServise.signUp(data)
+      .then(() => navigate('/profile'))
+      .catch((error: Error) => {
+        setNotification(error.message);
+      });
   };
+
   const { handleChange, handleSubmit, errors} = useForm<SignUpForm>({validationConfig, onSubmit});
   const {
     email: emailError,
@@ -71,7 +88,8 @@ export const SignUp: FC = function SignUpPage() {
     login: loginError,
     password: passwordError,
     confirmPassword: confirmPasswordError
-  } = (errors as any);
+  } = errors as FieldError;
+
 
   const formFieldsConfig: InputProps[] = [{
     onChange: useCallback(handleChange('email'), []),
@@ -126,6 +144,7 @@ export const SignUp: FC = function SignUpPage() {
 
   return (
     <main className={ styles.signup }>
+      { notification && <Notification>{notification}</Notification> }
       <Form
         title='Вход'
         onSubmit={handleSubmit}
@@ -136,7 +155,7 @@ export const SignUp: FC = function SignUpPage() {
           </>
         ) }
       />
-      <Link className={ 'link' } to="/sign-up" >Войти</Link>
+      <Link className='link' to="/sign-in">Войти</Link>
     </main>
   );
 };

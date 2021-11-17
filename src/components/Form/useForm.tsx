@@ -1,11 +1,30 @@
 import { useState, FormEvent } from 'react';
 
-export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>>(options: any) => {
-  const [data, setData] = useState(options?.initialValues || {});
-  const [errors, setErrors] = useState({});
+type Validation = {
+  pattern?: {
+    value: RegExp;
+    message: string;
+  };
+  custom?: {
+    isValid: (value: string, data: Record<string, unknown>) => boolean;
+    message: string;
+  };
+}
+
+type Options<T> = {
+  validationConfig?: Partial<Record<keyof T, Validation>>;
+  initialValues?: Partial<T>;
+  onSubmit?: (data: Record<string, unknown>) => void;
+}
+
+export type FieldError = Record<string, string>
+
+export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>>(options: Options<T>) => {
+  const [data, setData] = useState((options?.initialValues || {}) as Record<keyof T, string>);
+  const [errors, setErrors] = useState<FieldError>({});
 
   const handleChange = (key: string) => (value: string) => {
-    setData((prevData: Record<string, unknown>) => {
+    setData((prevData: Record<keyof T, string>) => {
       return { ...prevData, [key]: value };
     });
   };
@@ -16,7 +35,7 @@ export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>
     const validationConfig = options?.validationConfig;
     let isValid = true;
     if (validationConfig) {
-      const errors: Record<string, string> = {};
+      const fieldErrors: FieldError = {};
       for (const key in validationConfig) {
         const value = typeof data[key] === 'undefined' ? '' : data[key];
         const validation = validationConfig[key];
@@ -24,17 +43,17 @@ export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>
         const pattern = validation?.pattern;
         if (pattern?.value && !value.match(pattern.value)) {
           isValid = false;
-          errors[key] = pattern.message;
+          fieldErrors[key] = pattern.message;
         }
 
         const custom = validation?.custom;
         if (custom?.isValid && !custom.isValid(value, data)) {
           isValid = false;
-          errors[key] = custom.message;
+          fieldErrors[key] = custom.message;
         }
       }
 
-      setErrors(errors);
+      setErrors(fieldErrors);
     }
 
     if (isValid && options?.onSubmit) {

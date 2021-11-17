@@ -26,6 +26,22 @@ class AuthApi {
         }
       });
   }
+
+  signUp(data: Record<string, unknown>): Promise<unknown> {
+    return this.http.post('/signup', data)
+      .catch((error: Error | AxiosError) => {
+        if (isAxiosError(error)) {
+          const status = error.response?.status;
+          if (status && status === 409) {
+            throw new Error('Пользователь с такими данными существует');
+          } else {
+            throw new Error('Непредвиденная ошибка');
+          }
+        } else {
+          throw error;
+        }
+      });
+  }
 }
 
 export default new AuthApi();
