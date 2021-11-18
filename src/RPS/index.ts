@@ -1,15 +1,14 @@
 import { Cards } from './constants';
 import Gamer from './Gamer';
 import EventBus from './event-bus';
-// import { Cards } from './constants';
 
 const defaultStepsCount = 12;
 
-// const winCombinations = {
-//   [Cards.rock]: Cards.scissors,
-//   [Cards.paper]: Cards.rock,
-//   [Cards.scissors]: Cards.paper,
-// };
+const winCombinations = {
+  [Cards.rock]: Cards.scissors,
+  [Cards.paper]: Cards.rock,
+  [Cards.scissors]: Cards.paper,
+};
 
 type GameSettings = {
   stepsCountTotal?: number;
@@ -21,7 +20,7 @@ class RPS {
   static readonly events = {
     init: 'init',
     madeAStep: 'flow:made-a-step',
-    circleIsOver: 'flow:circle-is-over',
+    roundIsOver: 'flow:round-is-over',
     gameFinished: 'flow:game-finished',
   };
 
@@ -47,14 +46,14 @@ class RPS {
   private registerEvents(): void {
     this.eventBus.on(RPS.events.init, this.init.bind(this));
     this.eventBus.on(RPS.events.madeAStep, this.gamerMadeAStep.bind(this));
-    this.eventBus.on(RPS.events.circleIsOver, this.circleIsOver.bind(this));
+    this.eventBus.on(RPS.events.roundIsOver, this.roundIsOver.bind(this));
     this.eventBus.on(RPS.events.gameFinished, this.gameFinished.bind(this));
   }
 
   public init() {}
-  public gamerMadeAStep() {}
-  public circleIsOver() {}
-  public gameFinished() {}
+  public gamerMadeAStep(gamers: Gamer[]) {}
+  public roundIsOver(gamers: Gamer[]) {}
+  public gameFinished(gamers: Gamer[]) {}
 
   private get isFinish() {
     const hasSteps = this.stepsCount < this.stepsCountTotal;
@@ -86,36 +85,57 @@ class RPS {
   }
 
   public finish() {
-    this.eventBus.emit(RPS.events.gameFinished);
+    this.calculateResultOfGame();
+    this.eventBus.emit(RPS.events.gameFinished, this.gamers);
   }
 
   public makeAStep(userId: number, cardType: Cards) {
     const gamer = this.gamers.find(({ id }) => id === userId);
     gamer?.makeAStep(cardType);
-    this.eventBus.emit(RPS.events.madeAStep);
+    this.eventBus.emit(RPS.events.madeAStep, this.gamers);
 
     if (!this.isAllMadeAStep) {
       return;
     }
 
-    this.eventBus.emit(RPS.events.circleIsOver);
+    this.calculateResultOfRound();
+
+    this.eventBus.emit(RPS.events.roundIsOver, this.gamers);
 
     if (this.isFinish) {
       this.finish();
     }
   }
 
-  public get circleWinGamerId() {
-    // на основе winCombinations вычислиет победителей
-    return 1;
+  private calculateResultOfRound() {
+    // примитивно, надо будет переписать на нормальную
+    // учитывает только что в игре 2 игрока
+
+    const firstGamer = this.gamers[0];
+    const secondGamer = this.gamers[1];
+
+    const isFirstWin = winCombinations[firstGamer.curCard as Cards] === secondGamer.curCard;
+    const isSecondWin = winCombinations[secondGamer.curCard as Cards] === firstGamer.curCard;
+
+    if (isFirstWin) {
+      firstGamer.winRound();
+      secondGamer.loseRound();
+    } else if (isSecondWin) {
+      secondGamer.winRound();
+      firstGamer.loseRound();
+    }
   }
 
-  public get winGamerId() {
+  private calculateResultOfGame() {
     if (!this.isAllMadeAStep) {
       return;
     }
 
-    return 1;
+    this.gamers.forEach((gamer) => {
+      if (gamer.liveCount < 3) {
+        gamer.gameOver();
+      }
+    });
   }
 
   private dealСardsForGamers() {
@@ -123,7 +143,6 @@ class RPS {
       item.getCards(this.stepsCount, this.isAllCardsEqually);
     });
   }
-
 }
 
 export default RPS;
