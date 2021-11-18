@@ -1,11 +1,13 @@
 import { FC, useState, useEffect } from 'react';
+import { Image } from '@/components/Image';
+import { Comment } from './components/Comment';
 import IUser from '@/types';
 import mockTopicData from './mockTopicData';
 import styles from'./Topic.module.scss';
 
 interface Comment {
   id: number;
-  author: string;
+  author: IUser;
   content: string;
 }
 
@@ -35,20 +37,21 @@ export const Topic: FC = () => {
             <h1 className={styles.topic_title}>{topic.title}</h1>
             <div className={styles.topic_author}>
               <span>{topic.author.firstName}</span>
-              <img src={topic.author.avatar} className={styles.avatar} />
+              <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар пользователя' />
             </div>
             <div className={styles.topic_description}>{topic.description}</div>
+            <div className={styles.comments}>
+              <ul className={styles.comments_list}>
+                { topic.comments.map((comment: Comment) => {
+                  return (
+                    <li key={comment.id} className={styles.item}>
+                      <Comment author={comment.author} content={comment.content} />
+                    </li>
+                  );
+                }) }
+              </ul>
+            </div>
 
-            <ul className={styles.comments_list}>
-              { topic.comments.map((comment: Comment) => {
-                return (
-                  <li key={comment.id} className={styles.item}>
-                    <div className={styles.comment_author}>{comment.author}</div>
-                    <div className={styles.comment_content}>{comment.content}</div>
-                  </li>
-                );
-              }) }
-            </ul>
           </>
         }
       </div>

@@ -29,7 +29,8 @@
   }
 }
 
-.avatar {
-  width: 60px;
-  height: 60px;
+.comments {
+  display: flex;
+  margin-left: auto;
+  flex: 0 1 80%;
 }
