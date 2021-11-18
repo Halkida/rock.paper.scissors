@@ -13,12 +13,28 @@ const mockTopicData = {
   commentsCount: 3000,
   comments: [{
     id: 1,
-    author: 'Автор коммента',
+    author: {
+      email: 'dummy@email.com',
+      firstName: 'Имя Автор 1',
+      secondName: 'Некая фамилия',
+      phone: '+79999999999',
+      nickName: 'super_user',
+      avatar: ''
+    },
     content: 'Контент первого коммента'
   }, {
     id: 2,
-    author: 'Автор коммента',
-    content: 'Контент второго коммента'
+    author: {
+      email: 'dummy@email.com',
+      firstName: 'Имя Автор 2',
+      secondName: 'Некая фамилия',
+      phone: '+79999999999',
+      nickName: 'super_user',
+      avatar: ''
+    },
+    content: `Контент второго коммента
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',`
   }]
 };
 
