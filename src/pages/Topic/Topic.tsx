@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { Image } from '@/components/Image';
 import { Comment } from './components/Comment';
-import IUser from '@/types';
+import { IUser } from '@/types';
 import mockTopicData from './mockTopicData';
 import styles from'./Topic.module.scss';
 
@@ -36,8 +36,8 @@ export const Topic: FC = () => {
           <>
             <h1 className={styles.topic_title}>{topic.title}</h1>
             <div className={styles.topic_author}>
-              <span>{topic.author.firstName}</span>
-              <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар пользователя' />
+              <span>{topic.author.nickName}</span>
+              <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар' />
             </div>
             <div className={styles.topic_description}>{topic.description}</div>
             <div className={styles.comments}>
