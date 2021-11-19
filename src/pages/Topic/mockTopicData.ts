@@ -7,7 +7,7 @@ const mockTopicData = {
     secondName: 'Некая фамилия',
     phone: '+79999999999',
     nickName: 'super_user',
-    avatar: ''
+    avatar: 'https://picsum.photos/400/500?random=1'
   },
   title: 'Название топика',
   commentsCount: 3000,
@@ -19,7 +19,7 @@ const mockTopicData = {
       secondName: 'Некая фамилия',
       phone: '+79999999999',
       nickName: 'super_user',
-      avatar: 'https://picsum.photos/400/500'
+      avatar: 'https://picsum.photos/400/500?random=2'
     },
     content: 'Контент первого коммента'
   }, {
@@ -30,7 +30,7 @@ const mockTopicData = {
       secondName: 'Некая фамилия',
       phone: '+79999999999',
       nickName: 'super_user',
-      avatar: 'https://picsum.photos/400/500'
+      avatar: 'https://picsum.photos/400/500?random=3'
     },
     content: `Контент второго коммента
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
