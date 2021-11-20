@@ -14,6 +14,10 @@ type GameSettings = {
   stepsCountTotal?: number;
   gamers: Gamer[];
   isAllCardsEqually?: boolean,
+  onInit?: () => void,
+  onGamerMadeAStep?: (gamers: Gamer[]) => void,
+  onRoundIsOver?: (gamers: Gamer[]) => void,
+  onGameFinished?: (gamers: Gamer[]) => void,
 };
 
 class RPS {
@@ -26,14 +30,19 @@ class RPS {
 
   readonly stepsCountTotal: number;
   private stepsCount: number;
-  private gamers: Gamer[];
+  public gamers: Gamer[];
   private isAllCardsEqually: boolean;
   private eventBus: EventBus;
+  private handlers: Record<string, ((...param: unknown[]) => void) | undefined>
 
   constructor({
     stepsCountTotal = defaultStepsCount,
     gamers,
     isAllCardsEqually = true,
+    onInit,
+    onGamerMadeAStep,
+    onRoundIsOver,
+    onGameFinished,
   } : GameSettings) {
     this.stepsCountTotal = stepsCountTotal;
     this.gamers = gamers;
@@ -41,6 +50,12 @@ class RPS {
     this.eventBus = new EventBus();
     this.registerEvents();
     this.eventBus.emit(RPS.events.init);
+    this.handlers = {
+      onInit,
+      onGamerMadeAStep,
+      onRoundIsOver,
+      onGameFinished,
+    };
   }
 
   private registerEvents(): void {
@@ -50,15 +65,17 @@ class RPS {
     this.eventBus.on(RPS.events.gameFinished, this.gameFinished.bind(this));
   }
 
-  public init() {}
-  public gamerMadeAStep(gamers: Gamer[]) {
-    gamers;
+  private init() {
+    this.handlers.onInit && this.handlers.onInit();
   }
-  public roundIsOver(gamers: Gamer[]) {
-    gamers;
+  private gamerMadeAStep() {
+    this.handlers.onGamerMadeAStep && this.handlers.onGamerMadeAStep(this.gamers);
   }
-  public gameFinished(gamers: Gamer[]) {
-    gamers;
+  private roundIsOver() {
+    this.handlers.onRoundIsOver && this.handlers.onRoundIsOver(this.gamers);
+  }
+  private gameFinished() {
+    this.handlers.onGameFinished && this.handlers.onGameFinished(this.gamers);
   }
 
   private get isFinish() {
