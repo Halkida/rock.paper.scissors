@@ -29,7 +29,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Как же он хорош!',
@@ -41,7 +41,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -53,7 +53,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -65,7 +65,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -77,7 +77,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -89,7 +89,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -101,7 +101,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -113,7 +113,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -125,7 +125,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -137,7 +137,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -149,7 +149,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -161,7 +161,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -173,7 +173,7 @@ const moсkTopicList = [{
     firstName: 'Иван',
     secondName: 'Иванов',
     phone: '+79999999999',
-    nickName: 'ivan',
+    nickName: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
