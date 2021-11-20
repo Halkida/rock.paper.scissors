@@ -33,7 +33,7 @@ class RPS {
   public gamers: Gamer[];
   private isAllCardsEqually: boolean;
   private eventBus: EventBus;
-  private handlers: Record<string, ((...param: unknown[]) => void) | undefined>
+  private handlers: Record<string, ((...param: unknown[]) => void) | undefined> = {};
 
   constructor({
     stepsCountTotal = defaultStepsCount,
