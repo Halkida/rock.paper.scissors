@@ -13,6 +13,10 @@ import urls from '@/utils/urls';
 
 export const routes: RouteObject[] = [
   {
+    path: urls.HOME,
+    element: <SignIn />,
+  },
+  {
     path: urls.SIGN_IN,
     element: <SignIn />,
   },
