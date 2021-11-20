@@ -51,9 +51,15 @@ class RPS {
   }
 
   public init() {}
-  public gamerMadeAStep(gamers: Gamer[]) {}
-  public roundIsOver(gamers: Gamer[]) {}
-  public gameFinished(gamers: Gamer[]) {}
+  public gamerMadeAStep(gamers: Gamer[]) {
+    gamers;
+  }
+  public roundIsOver(gamers: Gamer[]) {
+    gamers;
+  }
+  public gameFinished(gamers: Gamer[]) {
+    gamers;
+  }
 
   private get isFinish() {
     const hasSteps = this.stepsCount < this.stepsCountTotal;
