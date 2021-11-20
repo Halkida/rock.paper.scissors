@@ -41,10 +41,10 @@ export const Topic: FC = () => {
             </div>
             <div className={styles.topic_description}>{topic.description}</div>
             <div className={styles.comments}>
-              <ul className={styles.comments_list}>
+              <ul>
                 { topic.comments.map((comment: Comment) => {
                   return (
-                    <li key={comment.id} className={styles.item}>
+                    <li key={comment.id}>
                       <Comment author={comment.author} content={comment.content} />
                     </li>
                   );
