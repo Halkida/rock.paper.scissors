@@ -5,8 +5,6 @@ export default function App() {
   const element = useRoutes(routes);
 
   return (
-    <div>
-      {element}
-    </div>
+    element
   );
 }
