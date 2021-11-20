@@ -6,13 +6,26 @@ import styles from './Game.module.scss';
 
 export const Game: FC = () => {
   
+  const [gamers, setGamers] = useState<Gamer[]>([
+    new Gamer({ id: 1 }),
+    new Gamer({ id: 2 }),
+  ]);
   const [game, setGame] = useState<RPS>();
   useEffect(() => {
     setGame(new RPS({
-      gamers: [
-        new Gamer({ id: 1 }),
-        new Gamer({ id: 2 }),
-      ],
+      gamers,
+      onInit() {
+        console.log('init');
+      },
+      onGameStarted(gamers) {
+        setGamers([...gamers]);
+      },
+      onGamerMadeAStep(gamers) {
+        setGamers([...gamers]);
+      },
+      onGameFinished() {
+        console.log('onGameFinished');
+      },
     }));
   }, []);
 
@@ -29,24 +42,40 @@ export const Game: FC = () => {
       <div className={styles.gamers}>
         {game?.gamers.map(({
           id,
+          cards,
+          curCard,
+          liveCount,
         }) => (
           <div
             key={id}
           >
             <div>
               {`Gamer #${id}`}
+              <br />
+              {`LiveCount: ${liveCount}`}
             </div>
-            {Object.keys(cardsTitles)
-              .map((card: Cards) => (
-                <button
-                  key={card}
-                  type="button"
-                  data-card={card}
-                  onClick={handleCardClick(id)}
-                >
-                  {cardsTitles[card]}
-                </button>
-              ))}
+
+            {Object.keys(cards)
+              .map((card: Cards) => {
+                const isDisabled = cards[card] === 0 || Boolean(curCard);
+                return (
+                  <div
+                    key={card}
+                  >
+                    <button
+                      type="button"
+                      data-card={card}
+                      disabled={isDisabled}
+                      onClick={handleCardClick(id)}
+                    >
+                      {cardsTitles[card]}
+                    </button>
+                    <div>
+                      {cards[card]}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         ))}
       </div>
