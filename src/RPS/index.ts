@@ -15,6 +15,7 @@ type GameSettings = {
   gamers: Gamer[];
   isAllCardsEqually?: boolean,
   onInit?: () => void,
+  onGameStarted?: (gamers: Gamer[]) => void,
   onGamerMadeAStep?: (gamers: Gamer[]) => void,
   onRoundIsOver?: (gamers: Gamer[]) => void,
   onGameFinished?: (gamers: Gamer[]) => void,
@@ -23,6 +24,7 @@ type GameSettings = {
 class RPS {
   static readonly events = {
     init: 'init',
+    start: 'start',
     madeAStep: 'flow:made-a-step',
     roundIsOver: 'flow:round-is-over',
     gameFinished: 'flow:game-finished',
@@ -43,6 +45,7 @@ class RPS {
     onGamerMadeAStep,
     onRoundIsOver,
     onGameFinished,
+    onGameStarted,
   } : GameSettings) {
     this.stepsCountTotal = stepsCountTotal;
     this.gamers = gamers;
@@ -54,21 +57,25 @@ class RPS {
       onGamerMadeAStep,
       onRoundIsOver,
       onGameFinished,
+      onGameStarted,
     };
     this.eventBus.emit(RPS.events.init);
-    console.log('constructor');
+    this.start();
   }
 
   private registerEvents(): void {
     this.eventBus.on(RPS.events.init, this.init.bind(this));
+    this.eventBus.on(RPS.events.start, this.gameStarted.bind(this));
     this.eventBus.on(RPS.events.madeAStep, this.gamerMadeAStep.bind(this));
     this.eventBus.on(RPS.events.roundIsOver, this.roundIsOver.bind(this));
     this.eventBus.on(RPS.events.gameFinished, this.gameFinished.bind(this));
   }
 
   private init() {
-    console.log('RPS init');
     this.handlers.onInit && this.handlers.onInit();
+  }
+  private gameStarted() {
+    this.handlers.onGameStarted && this.handlers.onGameStarted(this.gamers);
   }
   private gamerMadeAStep() {
     this.handlers.onGamerMadeAStep && this.handlers.onGamerMadeAStep(this.gamers);
@@ -92,13 +99,13 @@ class RPS {
     let prevValue: number | null = null;
 
     this.gamers.forEach(({ stepsCount }) => {
-      if (!prevValue || !isEqually) {
+      if (prevValue === null || !isEqually) {
+        prevValue = stepsCount;
         return;
       }
 
       isEqually = prevValue === stepsCount;
 
-      prevValue = stepsCount;
     });
 
     return isEqually;
@@ -107,6 +114,7 @@ class RPS {
   public start() {
     this.dealСardsForGamers();
     this.stepsCount = 0;
+    this.eventBus.emit(RPS.events.start);
   }
 
   public finish() {
@@ -124,6 +132,11 @@ class RPS {
     }
 
     this.calculateResultOfRound();
+
+
+    this.gamers.forEach((gamer) => {
+      gamer.curCard = null;
+    });
 
     this.eventBus.emit(RPS.events.roundIsOver, this.gamers);
 
