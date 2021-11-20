@@ -49,13 +49,14 @@ class RPS {
     this.isAllCardsEqually = isAllCardsEqually;
     this.eventBus = new EventBus();
     this.registerEvents();
-    this.eventBus.emit(RPS.events.init);
     this.handlers = {
       onInit,
       onGamerMadeAStep,
       onRoundIsOver,
       onGameFinished,
     };
+    this.eventBus.emit(RPS.events.init);
+    console.log('constructor');
   }
 
   private registerEvents(): void {
@@ -66,6 +67,7 @@ class RPS {
   }
 
   private init() {
+    console.log('RPS init');
     this.handlers.onInit && this.handlers.onInit();
   }
   private gamerMadeAStep() {
