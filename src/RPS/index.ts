@@ -42,10 +42,10 @@ class RPS {
     gamers,
     isAllCardsEqually = true,
     onInit,
+    onGameStarted,
     onGamerMadeAStep,
     onRoundIsOver,
     onGameFinished,
-    onGameStarted,
   } : GameSettings) {
     this.stepsCountTotal = stepsCountTotal;
     this.gamers = gamers;
@@ -54,10 +54,10 @@ class RPS {
     this.registerEvents();
     this.handlers = {
       onInit,
+      onGameStarted,
       onGamerMadeAStep,
       onRoundIsOver,
       onGameFinished,
-      onGameStarted,
     };
     this.eventBus.emit(RPS.events.init);
     this.start();
@@ -89,9 +89,9 @@ class RPS {
 
   private get isFinish() {
     const hasSteps = this.stepsCount < this.stepsCountTotal;
-    const hasGamerWithotLives = this.gamers.some(({ liveCount }) => !liveCount);
+    const hasGamerWithoutLives = this.gamers.some(({ liveCount }) => !liveCount);
 
-    return !hasSteps && hasGamerWithotLives;
+    return !hasSteps || hasGamerWithoutLives;
   }
 
   private get isAllMadeAStep() {
