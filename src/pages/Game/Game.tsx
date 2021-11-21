@@ -11,6 +11,7 @@ export const Game: FC = () => {
     new Gamer({ id: 2 }),
   ]);
   const [game, setGame] = useState<RPS>();
+  const [isFinish, setIsFinish] = useState(false);
   useEffect(() => {
     setGame(new RPS({
       gamers,
@@ -24,7 +25,7 @@ export const Game: FC = () => {
         setGamers([...gamers]);
       },
       onGameFinished() {
-        console.log('onGameFinished');
+        setIsFinish(true);
       },
     }));
   }, []);
@@ -57,7 +58,9 @@ export const Game: FC = () => {
 
             {Object.keys(cards)
               .map((card: Cards) => {
-                const isDisabled = cards[card] === 0 || Boolean(curCard);
+                const isDisabled = cards[card] === 0
+                  || Boolean(curCard)
+                  || isFinish;
                 return (
                   <div
                     key={card}
@@ -79,6 +82,11 @@ export const Game: FC = () => {
           </div>
         ))}
       </div>
+      {isFinish && (
+        <div>
+          Конец игры
+        </div>
+      )}
     </main>
   );
 };
