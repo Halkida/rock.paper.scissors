@@ -1,4 +1,4 @@
-// import { getRandomNumber } from '@/utils/get-random-number';
+import { getRandomNumber } from '@/utils/get-random-number';
 import { Cards } from '../constants';
 
 // const isInteger = (number: number) => (
@@ -6,7 +6,8 @@ import { Cards } from '../constants';
 // );
 
 export type GamerInitData = {
-  id: number,
+  id: number;
+  type?: 'computer' | 'person';
 };
 
 export default class Gamer {
@@ -16,8 +17,12 @@ export default class Gamer {
   static availableCards: Cards[] = Object.values(Cards);
   public stepsCount: number;
   public curCard: Cards | null;
+  public type: 'computer' | 'person';
 
-  constructor({ id }: GamerInitData) {
+  constructor({
+    id,
+    type = 'person',
+  }: GamerInitData) {
     this.cards = {
       rock: 0,
       paper: 0,
@@ -28,6 +33,7 @@ export default class Gamer {
     this.liveCount = 3;
     this.stepsCount = 0;
     this.curCard = null;
+    this.type = type;
   }
 
   static get availableCardsCount(): number {
@@ -66,4 +72,13 @@ export default class Gamer {
   //   const index = getRandomNumber(0, Gamer.availableCardsCount);
   //   return Gamer.availableCards[index];
   // }
+
+  public makeARandomStep() {
+    const availableCards: Cards[] = Object.keys(this.cards)
+      .filter((card: Cards) => this.cards[card] > 0) as Cards[];
+  
+    const index = getRandomNumber(0, availableCards.length);
+
+    this.makeAStep(availableCards[index]);
+  }
 }
