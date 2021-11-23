@@ -2,7 +2,20 @@ import { FC } from 'react';
 import { Button } from '@/components/Button';
 import styles from'./GameStart.module.scss';
 
-const GameStart: FC = function GameStartPage() {
+export type OnGameStartParams = {
+  withComputer: boolean,
+};
+
+type OwnProps = {
+  onGameStart: ({ withComputer }: OnGameStartParams) => void;
+};
+
+const GameStart: FC<OwnProps> = function GameStartPage({
+  onGameStart,
+}) {
+  const handleWithComputerClick = () => { onGameStart({ withComputer: true }) };
+  const handleWithPersonClick = () => { onGameStart({ withComputer: false }) };
+
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>
@@ -11,13 +24,14 @@ const GameStart: FC = function GameStartPage() {
       <div className={styles.buttons}>
         <Button
           className={styles.button}
+          onClick={handleWithComputerClick}
         >
           С комьютером
         </Button>
         <Button
           className={styles.button}
-          disabled
           view="outline"
+          onClick={handleWithPersonClick}
         >
           С другим игроком
         </Button>
