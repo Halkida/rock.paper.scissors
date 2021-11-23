@@ -31,7 +31,7 @@ class RPS {
   };
 
   readonly stepsCountTotal: number;
-  private stepsCount: number;
+  private roundsCount: number;
   public gamers: Gamer[];
   private isAllCardsEqually: boolean;
   private eventBus: EventBus;
@@ -88,7 +88,7 @@ class RPS {
   }
 
   private get isFinish() {
-    const hasSteps = this.stepsCount < this.stepsCountTotal;
+    const hasSteps = this.roundsCount < this.stepsCountTotal;
     const hasGamerWithoutLives = this.gamers.some(({ liveCount }) => !liveCount);
 
     return !hasSteps || hasGamerWithoutLives;
@@ -113,7 +113,7 @@ class RPS {
 
   public start() {
     this.dealСardsForGamers();
-    this.stepsCount = 0;
+    this.roundsCount = 0;
     this.eventBus.emit(RPS.events.start);
     this.computersInitSteps();
   }
@@ -139,6 +139,7 @@ class RPS {
     });
 
     this.eventBus.emit(RPS.events.roundIsOver, this.gamers);
+    this.roundsCount += 1;
 
     if (this.isFinish) {
       this.finish();
@@ -190,7 +191,7 @@ class RPS {
 
   private dealСardsForGamers() {
     this.gamers.forEach((item) => {
-      item.getCards(this.stepsCount, this.isAllCardsEqually);
+      item.getCards(this.stepsCountTotal, this.isAllCardsEqually);
     });
   }
 }
