@@ -168,7 +168,9 @@ class RPS {
 
   private computersInitSteps() {
     this.gamers.forEach((gamer) => {
-      if (gamer.type === 'computer') {
+      if (gamer.type === 'computer' &&
+        gamer.stepsCount < this.stepsCountTotal
+      ) {
         gamer.makeARandomStep();
       }
     });
