@@ -4,11 +4,19 @@ import Gamer from '@/RPS/Gamer';
 import { cardsTitles, Cards } from '@/RPS/constants';
 import styles from './Game.module.scss';
 
-export const Game: FC = () => {
-  
+type OwnProps = {
+  withComputer?: boolean;
+};
+
+export const Game: FC<OwnProps> = ({
+  withComputer = true,
+}) => {
   const [gamers, setGamers] = useState<Gamer[]>([
     new Gamer({ id: 1 }),
-    new Gamer({ id: 2 }),
+    new Gamer({
+      id: 2,
+      type: withComputer ? 'computer' : 'person',
+    }),
   ]);
   const [game, setGame] = useState<RPS>();
   const [isFinish, setIsFinish] = useState(false);
@@ -43,6 +51,7 @@ export const Game: FC = () => {
       <div className={styles.gamers}>
         {game?.gamers.map(({
           id,
+          type,
           cards,
           curCard,
           liveCount,
@@ -60,7 +69,8 @@ export const Game: FC = () => {
               .map((card: Cards) => {
                 const isDisabled = cards[card] === 0
                   || Boolean(curCard)
-                  || isFinish;
+                  || isFinish
+                  || type === 'computer';
                 return (
                   <div
                     key={card}
