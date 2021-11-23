@@ -115,6 +115,7 @@ class RPS {
     this.dealСardsForGamers();
     this.stepsCount = 0;
     this.eventBus.emit(RPS.events.start);
+    this.computersInitSteps();
   }
 
   public finish() {
@@ -133,7 +134,6 @@ class RPS {
 
     this.calculateResultOfRound();
 
-
     this.gamers.forEach((gamer) => {
       gamer.curCard = null;
     });
@@ -142,6 +142,8 @@ class RPS {
 
     if (this.isFinish) {
       this.finish();
+    } else {
+      this.computersInitSteps();
     }
   }
 
@@ -162,6 +164,14 @@ class RPS {
       secondGamer.winRound();
       firstGamer.loseRound();
     }
+  }
+
+  private computersInitSteps() {
+    this.gamers.forEach((gamer) => {
+      if (gamer.type === 'computer') {
+        gamer.makeARandomStep();
+      }
+    });
   }
 
   private calculateResultOfGame() {
