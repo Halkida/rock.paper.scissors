@@ -1,4 +1,3 @@
-# FROM  --platform=linux/amd64 node:12.22.0
 FROM node:16.13.0-alpine
 ENV DOCKER_DEFAULT_PLATFORM=linux/amd64
 
