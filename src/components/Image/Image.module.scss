@@ -1,0 +1,8 @@
+@import '@/styles/variables.scss';
+
+.image {
+  margin: 1rem;
+  &__round {
+    border-radius: 50%;
+  }
+}
