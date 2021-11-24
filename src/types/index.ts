@@ -1,1 +1,2 @@
-export { default } from './User';
+export { IUser } from './User';
+export { IState, UserState } from './State';
