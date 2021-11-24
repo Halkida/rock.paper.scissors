@@ -32,22 +32,22 @@ export function userReducer(state: UserState = defaultState, {type, user}: ItemA
     case actions.PENDING:
       return {
         ...state,
-        status: 'pending',
+        status: 'pending'
       };
     case actions.SUCCESS:
       return {
         ...state,
-        status: 'success',
+        status: 'success'
       };
     case actions.FAILED:
       return {
         ...state,
-        status: 'failed',
+        status: 'failed'
       };
     case actions.SET_USER:
       return {
         ...state,
-        user,
+        user
       };
     default:
       return state;
