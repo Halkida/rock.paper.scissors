@@ -1,18 +1,12 @@
 import { IUser, UserState } from '@/types';
 
-type userActions = {
-  PENDING: string;
-  SUCCESS: string;
-  FAILED: string;
-  SET_USER: string;
+enum actions {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+  SET_USER = 'SET_USER'
 }
-
-const actions: userActions = {
-  PENDING: 'PENDING',
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  SET_USER: 'SET_USER'
-};
+type KeyofActions = keyof typeof actions;
 
 const defaultState: UserState = {
   status: 'pending',
@@ -23,7 +17,7 @@ interface BaseActionType<T> {
   type: T;
 }
 
-interface ItemActionType extends BaseActionType<keyof userActions> {
+interface ItemActionType extends BaseActionType<KeyofActions> {
   user: IUser;
 }
 
@@ -54,15 +48,15 @@ export function userReducer(state: UserState = defaultState, {type, user}: ItemA
   }
 }
 
-export function loadSuccess(): BaseActionType<keyof userActions> {
-  return {type: actions.SUCCESS as keyof userActions};
+export function loadSuccess(): BaseActionType<KeyofActions> {
+  return {type: actions.SUCCESS};
 }
-export function loadFailed(): BaseActionType<keyof userActions> {
-  return {type: actions.FAILED as keyof userActions};
+export function loadFailed(): BaseActionType<KeyofActions> {
+  return {type: actions.FAILED};
 }
-export function loadPending(): BaseActionType<keyof userActions> {
-  return {type: actions.PENDING as keyof userActions};
+export function loadPending(): BaseActionType<KeyofActions> {
+  return {type: actions.PENDING};
 }
 export function setUser(user: IUser): ItemActionType {
-  return {type: actions.SET_USER as keyof userActions, user: user};
+  return {type: actions.SET_USER, user: user};
 }
