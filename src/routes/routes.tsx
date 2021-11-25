@@ -8,7 +8,6 @@ import Forum from '@/pages/Forum';
 import NoMatch from '@/pages/NoMatch';
 import Topic from '@/pages/Topic';
 import ForumIndex from '@/pages/ForumIndex';
-import RequireAuth from '@/components/RequireAuth';
 import urls from '@/utils/urls';
 
 export const routes: RouteObject[] = [
@@ -26,7 +25,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.GAME,
-    element: <RequireAuth><GameStart /></RequireAuth>,
+    element: <GameStart />,
   },
   {
     path: urls.USER_RATING,
@@ -34,7 +33,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.PROFILE,
-    element: <RequireAuth><Profile /></RequireAuth>,
+    element: <Profile />,
   },
   {
     path: urls.FORUM,
