@@ -1,1 +1,4 @@
-export { Game as default } from './Game';
+import withAuth from '@/hocs/with-auth';
+import { Game } from './Game';
+
+export default withAuth(Game);
