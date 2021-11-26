@@ -9,7 +9,7 @@ module.exports = merge(common, {
       static: {
           directory: path.join(__dirname, 'public'),
       },
-      watchFiles: ['src/**/*.tsx', 'src/**/*.scss'],
+      watchFiles: ['src/**/*.tsx', 'src/**/*.ts', 'src/**/*.scss'],
       compress: true,
       hot: true,
       open: true,
