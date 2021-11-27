@@ -9,7 +9,7 @@ class AuthApi {
     this.http = getAxiosInstance('https://ya-praktikum.tech/api/v2/auth');
   }
 
-  async getUser(): Promise<IUser> {
+  getUser(): Promise<IUser> {
     return this.http.get<IUser>('/user')
       .then((response) => response.data);
   }
