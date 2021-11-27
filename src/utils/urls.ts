@@ -1,4 +1,5 @@
 const urls : {[key: string]: string} = {
+  HOME: '/',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   GAME: '/game',
