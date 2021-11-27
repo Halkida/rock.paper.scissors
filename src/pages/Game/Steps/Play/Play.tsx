@@ -47,7 +47,7 @@ export const Play: FC<OwnProps> = ({
       }
       game?.makeAStep(id, card);
     },
-    [],
+    [game],
   );
 
   return (
