@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, SyntheticEvent } from 'react';
+import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
 import RPS from '@/RPS';
 import Gamer from '@/RPS/Gamer';
 import { cardsTitles, Cards } from '@/RPS/constants';
@@ -39,13 +39,16 @@ export const Play: FC<OwnProps> = ({
     }));
   }, []);
 
-  const handleCardClick = (id: number) => (e: SyntheticEvent<HTMLButtonElement>) => {
-    const { card }: { card?: Cards } = e.currentTarget.dataset;
-    if (!card) {
-      return;
-    }
-    game?.makeAStep(id, card)
-  };
+  const handleCardClick = useCallback(
+    (id: number) => (e: SyntheticEvent<HTMLButtonElement>) => {
+      const { card }: { card?: Cards } = e.currentTarget.dataset;
+      if (!card) {
+        return;
+      }
+      game?.makeAStep(id, card);
+    },
+    [],
+  );
 
   return (
     <main>
