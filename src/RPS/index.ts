@@ -152,8 +152,7 @@ class RPS {
     // примитивно, надо будет переписать на нормальную
     // учитывает только что в игре 2 игрока
 
-    const firstGamer = this.gamers[0];
-    const secondGamer = this.gamers[1];
+    const [firstGamer, secondGamer] = this.gamers;
 
     const isFirstWin = winCombinations[firstGamer.curCard as Cards] === secondGamer.curCard;
     const isSecondWin = winCombinations[secondGamer.curCard as Cards] === firstGamer.curCard;
