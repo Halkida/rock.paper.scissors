@@ -9,7 +9,7 @@ type OwnProps = {
   onFinish: () => void;
 };
 
-export const Play: FC<OwnProps> = ({
+export const GamePlay: FC<OwnProps> = ({
   withComputer = true,
   onFinish,
 }) => {

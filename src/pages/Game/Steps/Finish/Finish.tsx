@@ -1,21 +1,7 @@
 import { FC } from 'react';
-// import { Button } from '@/components/Button';
 import styles from'./Finish.module.scss';
 
-export type OnGameStartParams = {
-  withComputer: boolean,
-};
-
-type OwnProps = {
-  // onGameStart: ({ withComputer }: OnGameStartParams) => void;
-};
-
-const GameStart: FC<OwnProps> = function GameStartPage({
-  // onGameStart,
-}) {
-  // const handleWithComputerClick = () => { onGameStart({ withComputer: true }) };
-  // const handleWithPersonClick = () => { onGameStart({ withComputer: false }) };
-
+export const GameFinish: FC = () => {
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>
@@ -24,5 +10,3 @@ const GameStart: FC<OwnProps> = function GameStartPage({
     </div>
   );
 };
-
-export default GameStart;

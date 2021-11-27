@@ -1,1 +1,1 @@
-export { default } from './Finish';
+export { GameFinish as default } from './Finish';

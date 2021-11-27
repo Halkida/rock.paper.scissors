@@ -1,1 +1,1 @@
-export { Play as default } from './Play';
+export { GamePlay as default } from './Play';

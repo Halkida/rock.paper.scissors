@@ -1,32 +1,30 @@
-import { FC, useState } from 'react';
+import { FC, useState, useCallback } from 'react';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
-// import { cardsTitles, Cards } from '@/RPS/constants';
-// import styles from './Game.module.scss';
 
 enum Steps {
   start = 'start',
   play = 'play',
   finish = 'finish',
-};
+}
 
-// const viewSteps = {
-//   [Steps.start]: Start,
-// };
-
-type OwnProps = {};
-
-export const Game: FC<OwnProps> = () => {
+export const Game: FC = () => {
   const [step, setStep] = useState<Steps>(Steps.start);
   const [gameWithComputer, setGameWithComputer] = useState<boolean>();
-  const handleGameStart = ({ withComputer }: OnGameStartParams) => {
-    setStep(Steps.play);
-    setGameWithComputer(withComputer);
-  };
-  const handleGameFinish = () => {
-    setStep(Steps.finish);
-  };
+  const handleGameStart = useCallback(
+    ({ withComputer }: OnGameStartParams) => {
+      setStep(Steps.play);
+      setGameWithComputer(withComputer);
+    },
+    [setStep, setGameWithComputer, Steps]
+  );
+  const handleGameFinish = useCallback(
+    () => {
+      setStep(Steps.finish);
+    },
+    [setStep],
+  );
   return (
     <main>
       {(step === Steps.start) && (

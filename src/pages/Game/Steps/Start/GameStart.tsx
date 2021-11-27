@@ -10,11 +10,11 @@ type OwnProps = {
   onGameStart: ({ withComputer }: OnGameStartParams) => void;
 };
 
-const GameStart: FC<OwnProps> = function GameStartPage({
+export const GameStart: FC<OwnProps> = ({
   onGameStart,
-}) {
-  const handleWithComputerClick = () => { onGameStart({ withComputer: true }) };
-  const handleWithPersonClick = () => { onGameStart({ withComputer: false }) };
+}) => {
+  const handleWithComputerClick = () => { onGameStart({ withComputer: true }); };
+  const handleWithPersonClick = () => { onGameStart({ withComputer: false }); };
 
   return (
     <div className={styles.page}>
@@ -39,5 +39,3 @@ const GameStart: FC<OwnProps> = function GameStartPage({
     </div>
   );
 };
-
-export default GameStart;
