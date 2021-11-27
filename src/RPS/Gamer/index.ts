@@ -1,10 +1,6 @@
 import { getRandomNumber } from '@/utils/get-random-number';
 import { Cards } from '../constants';
 
-// const isInteger = (number: number) => (
-//   Math.floor(number) === number
-// );
-
 export type GamerInitData = {
   id: number;
   type?: 'computer' | 'person';
@@ -68,15 +64,10 @@ export default class Gamer {
     this.liveCount = 0;
   }
 
-  // private getRandomCard(): Cards {
-  //   const index = getRandomNumber(0, Gamer.availableCardsCount);
-  //   return Gamer.availableCards[index];
-  // }
-
   public makeARandomStep() {
     const availableCards: Cards[] = Object.keys(this.cards)
       .filter((card: Cards) => this.cards[card] > 0) as Cards[];
-  
+
     const index = getRandomNumber(0, availableCards.length);
 
     this.makeAStep(availableCards[index]);
