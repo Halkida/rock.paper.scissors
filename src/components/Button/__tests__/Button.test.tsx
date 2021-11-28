@@ -2,23 +2,41 @@ import { Button } from '../';
 import * as renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 
+const propsToTest = {
+  className: 'test-class',
+  view: ['outline', 'default', 'link', 'text'],
+  size: ['small', 'medium', 'large']
+};
 
 describe('Button component testing', () => {
   test('Button', () => {
-    const component = renderer.create(
-      <Button>Button</Button>
-    );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+
+    Object.entries(propsToTest).forEach(([prop, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((item) => {
+          const component = renderer.create(
+            <Button {...{[prop]: item}}>Button</Button>
+          );
+          const tree = component.toJSON();
+          expect(tree).toMatchSnapshot();
+        });
+      } else {
+        const component = renderer.create(
+          <Button {...{[prop]: value}}>Button</Button>
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+      }
+    });
   });
 
-  test('Link', () => {
+  test('Link button', () => {
     const component = renderer.create(
       <MemoryRouter>
         <Button href='https://ya.ru/'>Link</Button>
       </MemoryRouter>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
