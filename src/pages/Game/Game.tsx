@@ -2,6 +2,7 @@ import { FC, useState, useCallback } from 'react';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
+import styles from './Game.module.scss';
 
 enum Steps {
   start = 'start',
@@ -26,7 +27,7 @@ export const Game: FC = () => {
     [setStep],
   );
   return (
-    <main>
+    <main className={styles.page}>
       {(step === Steps.start) && (
         <Start
           onGameStart={handleGameStart}
