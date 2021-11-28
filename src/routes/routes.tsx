@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router-dom';
+import Home from '@/pages/Home';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 import Game from '@/pages/Game';
@@ -13,7 +14,7 @@ import urls from '@/utils/urls';
 export const routes: RouteObject[] = [
   {
     path: urls.HOME,
-    element: <SignIn />,
+    element: <Home />,
   },
   {
     path: urls.SIGN_IN,
