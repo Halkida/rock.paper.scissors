@@ -11,7 +11,7 @@ export type GamerInitData = {
 export default class Gamer {
   public id: number;
   public cards: Record<Cards, number>;
-  public liveCount: number;
+  public score: number;
   static availableCards: Cards[] = Object.values(Cards);
   public stepsCount: number;
   public curCard: Cards | null;
@@ -30,7 +30,7 @@ export default class Gamer {
     };
     this.id = id;
 
-    this.liveCount = 3;
+    this.score = 3;
     this.stepsCount = 0;
     this.curCard = null;
     this.type = type;
@@ -58,15 +58,15 @@ export default class Gamer {
   }
 
   public winRound() {
-    this.liveCount += 1;
+    this.score += 1;
   }
 
   public loseRound() {
-    this.liveCount -= 1;
+    this.score -= 1;
   }
 
   public gameOver() {
-    this.liveCount = 0;
+    this.score = 0;
   }
 
   public makeARandomStep() {

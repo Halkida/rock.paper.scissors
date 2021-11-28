@@ -89,7 +89,7 @@ class RPS {
 
   private get isFinish() {
     const hasSteps = this.roundsCount < this.stepsCountTotal;
-    const hasGamerWithoutLives = this.gamers.some(({ liveCount }) => !liveCount);
+    const hasGamerWithoutLives = this.gamers.some(({ score }) => !score);
 
     return !hasSteps || hasGamerWithoutLives;
   }
@@ -182,7 +182,7 @@ class RPS {
     }
 
     this.gamers.forEach((gamer) => {
-      if (gamer.liveCount < 3) {
+      if (gamer.score < 3) {
         gamer.gameOver();
       }
     });
