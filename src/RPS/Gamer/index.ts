@@ -1,9 +1,11 @@
 import { getRandomNumber } from '@/utils/get-random-number';
+import { IUser } from '@/types';
 import { Cards } from '../constants';
 
 export type GamerInitData = {
   id: number;
   type?: 'computer' | 'person';
+  info?: IUser;
 };
 
 export default class Gamer {
@@ -14,10 +16,12 @@ export default class Gamer {
   public stepsCount: number;
   public curCard: Cards | null;
   public type: 'computer' | 'person';
+  public info?: IUser;
 
   constructor({
     id,
     type = 'person',
+    info,
   }: GamerInitData) {
     this.cards = {
       rock: 0,
@@ -30,6 +34,7 @@ export default class Gamer {
     this.stepsCount = 0;
     this.curCard = null;
     this.type = type;
+    this.info = info;
   }
 
   static get availableCardsCount(): number {
