@@ -1,9 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button 1`] = `
+exports[`Button component testing Button 1`] = `
+<button
+  className="test-class button button_default button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 2`] = `
+<button
+  className=" button button_outline button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 3`] = `
 <button
   className=" button button_default button_medium"
 >
   Button
 </button>
+`;
+
+exports[`Button component testing Button 4`] = `
+<button
+  className=" button button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 5`] = `
+<button
+  className=" button button_text button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 6`] = `
+<button
+  className=" button button_default button_small"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 7`] = `
+<button
+  className=" button button_default button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 8`] = `
+<button
+  className=" button button_default button_large"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Link button 1`] = `
+<a
+  className=" button button_default button_medium button_link"
+  href="/https://ya.ru/"
+  onClick={[Function]}
+>
+  Link
+</a>
 `;
