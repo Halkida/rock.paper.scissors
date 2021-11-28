@@ -7,9 +7,9 @@ import urls from '@/utils/urls';
 const withAuth = <P extends object>(Component: React.ComponentType<P>): FC => (
   function WithAuth(props: P) {
     const isUserAuthorized = useSelector(selectIsUserAuthorized);
-    return isUserAuthorized ?
+    return !isUserAuthorized ?
       <Component {...props} /> :
-      <Navigate to={urls.SIGN_IN} />;
+      <Navigate to={urls.HOME} />;
   }
 );
 
