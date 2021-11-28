@@ -2,7 +2,9 @@ import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
 import RPS from '@/RPS';
 import Gamer from '@/RPS/Gamer';
 import { cardsTitles, Cards } from '@/RPS/constants';
+import GamerView from './components/Gamer';
 import styles from './Play.module.scss';
+import * as mocks from './mocks';
 
 type OwnProps = {
   withComputer?: boolean;
@@ -14,10 +16,14 @@ export const GamePlay: FC<OwnProps> = ({
   onFinish,
 }) => {
   const [gamers, setGamers] = useState<Gamer[]>([
-    new Gamer({ id: 1 }),
+    new Gamer({
+      id: 1,
+      info: mocks.firstGamer,
+    }),
     new Gamer({
       id: 2,
       type: withComputer ? 'computer' : 'person',
+      info: mocks.secondGamer,
     }),
   ]);
   const [game, setGame] = useState<RPS>();
@@ -50,15 +56,22 @@ export const GamePlay: FC<OwnProps> = ({
     [game],
   );
 
+  const firstGamer = gamers[0];
+
   return (
     <main>
       <div className={styles.gamers}>
+        <GamerView
+          avatar={firstGamer.info?.avatar}
+          fullName={firstGamer.info?.nickName}
+          score={firstGamer.score}
+        />
         {game?.gamers.map(({
           id,
           type,
           cards,
           curCard,
-          liveCount,
+          score,
         }) => (
           <div
             key={id}
@@ -66,7 +79,7 @@ export const GamePlay: FC<OwnProps> = ({
             <div>
               {`Gamer #${id}`}
               <br />
-              {`LiveCount: ${liveCount}`}
+              {`LiveCount: ${score}`}
             </div>
 
             {Object.keys(cards)
