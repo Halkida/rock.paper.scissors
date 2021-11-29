@@ -5,7 +5,7 @@ type OwnProps = {
   className?: string,
 };
 
-const TrophySolid: FC<OwnProps> = function IconTrophySolid({
+const UserSolid: FC<OwnProps> = function IconUserSolid({
   className = '',
 }) {
   return (
@@ -19,4 +19,4 @@ const TrophySolid: FC<OwnProps> = function IconTrophySolid({
   );
 };
 
-export default TrophySolid;
+export default UserSolid;
