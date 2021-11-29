@@ -3,6 +3,7 @@ import RPS from '@/RPS';
 import Gamer from '@/RPS/Gamer';
 import { cardsTitles, Cards } from '@/RPS/constants';
 import GamerView from './components/Gamer';
+import CardView from './components/Card';
 import styles from './Play.module.scss';
 import * as mocks from './mocks';
 
@@ -59,13 +60,28 @@ export const GamePlay: FC<OwnProps> = ({
   const firstGamer = gamers[0];
 
   return (
-    <main>
+    <div>
       <div className={styles.gamers}>
         <GamerView
           avatar={firstGamer.info?.avatar}
           fullName={firstGamer.info?.nickName}
           score={firstGamer.score}
         />
+
+        {Object.keys(firstGamer.cards)
+            .map((card: Cards) => {
+              const isDisabled = firstGamer.cards[card] === 0 ||
+                Boolean(firstGamer.curCard) ||
+                firstGamer.type === 'computer';
+              return (
+                <CardView
+                  key={card}
+                  disabled={isDisabled}
+                  count={firstGamer.cards[card]}
+                  onClick={handleCardClick(firstGamer.id)}
+                />
+              );
+            })}
         {game?.gamers.map(({
           id,
           type,
@@ -108,7 +124,7 @@ export const GamePlay: FC<OwnProps> = ({
           </div>
         ))}
       </div>
-    </main>
+    </div>
   );
 };
 
