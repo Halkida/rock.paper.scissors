@@ -64,7 +64,18 @@ module.exports = {
             { loader: 'sass-loader' }
           ],
           include: path.resolve(__dirname, './src/styles')
-        }
+        },
+        {
+          test: /\.(png|jpg|gif)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+              },
+            },
+          ],
+        },
       ]
     },
     plugins: [new HtmlWebpackPlugin({
