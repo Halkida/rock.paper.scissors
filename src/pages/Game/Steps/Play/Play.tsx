@@ -1,12 +1,12 @@
 import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
-import RPS from '@/RPS';
+import RPS, { GameStats } from '@/RPS';
 import Gamer from '@/RPS/Gamer';
 import { cardsTitles, Cards } from '@/RPS/constants';
 import styles from './Play.module.scss';
 
 type OwnProps = {
   withComputer?: boolean;
-  onFinish: () => void;
+  onFinish: (gameStats: GameStats) => void;
 };
 
 export const GamePlay: FC<OwnProps> = ({
@@ -33,8 +33,8 @@ export const GamePlay: FC<OwnProps> = ({
       onGamerMadeAStep(gamers) {
         setGamers([...gamers]);
       },
-      onGameFinished() {
-        onFinish();
+      onGameFinished(gameStats) {
+        onFinish(gameStats);
       },
     }));
   }, []);

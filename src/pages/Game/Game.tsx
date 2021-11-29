@@ -20,7 +20,8 @@ export const Game: FC = () => {
     [setStep, setGameWithComputer, Steps]
   );
   const handleGameFinish = useCallback(
-    () => {
+    (gameStats) => {
+      console.log(gameStats);
       setStep(Steps.finish);
     },
     [setStep],
