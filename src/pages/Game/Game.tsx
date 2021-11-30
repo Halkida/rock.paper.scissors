@@ -2,6 +2,7 @@ import { FC, useState, useCallback } from 'react';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
+import { GameStats } from '@/RPS';
 
 enum Steps {
   start = 'start',
@@ -12,6 +13,7 @@ enum Steps {
 export const Game: FC = () => {
   const [step, setStep] = useState<Steps>(Steps.start);
   const [gameWithComputer, setGameWithComputer] = useState<boolean>();
+  const [gameStats, setGameStats] = useState<Nullable<GameStats>>(null);
   const handleGameStart = useCallback(
     ({ withComputer }: OnGameStartParams) => {
       setStep(Steps.play);
@@ -21,7 +23,7 @@ export const Game: FC = () => {
   );
   const handleGameFinish = useCallback(
     (gameStats) => {
-      console.log(gameStats);
+      setGameStats(gameStats);
       setStep(Steps.finish);
     },
     [setStep],
@@ -40,7 +42,7 @@ export const Game: FC = () => {
         />
       )}
       {(step === Steps.finish) && (
-        <Finish />
+        <Finish gameStats={gameStats} />
       )}
     </main>
   );
