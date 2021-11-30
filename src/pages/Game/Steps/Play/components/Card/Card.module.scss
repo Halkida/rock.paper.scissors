@@ -13,7 +13,27 @@
   height: 9rem;
   width: 6.5rem;
   padding: 0;
-  background: center / contain no-repeat url('./images/shirt-card.jpeg');
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+  
+  &_shirtUp {
+    background: center / contain no-repeat url('@/assets/shirt-card.jpeg');
+  }
+
+  &_rock {
+    background: center / 90% auto no-repeat url('@/assets/rock.png'), $color-rock;
+  }
+
+  &_paper {
+    background: center / 90% auto no-repeat url('@/assets/paper.png'), $color-paper;
+  }
+
+  &_scissors {
+    background: center / 90% auto no-repeat url('@/assets/scissors.png'), $color-scissors;
+  }
 }
 
 .count {

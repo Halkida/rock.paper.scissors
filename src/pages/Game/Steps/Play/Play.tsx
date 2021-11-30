@@ -1,7 +1,7 @@
-import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
+import { FC, useEffect, useState, useCallback } from 'react';
 import RPS from '@/RPS';
 import Gamer from '@/RPS/Gamer';
-import { cardsTitles, Cards } from '@/RPS/constants';
+import { Cards } from '@/RPS/constants';
 import GamerView from './components/Gamer';
 import CardView from './components/Card';
 import styles from './Play.module.scss';
@@ -19,11 +19,11 @@ export const GamePlay: FC<OwnProps> = ({
   const [gamers, setGamers] = useState<Gamer[]>([
     new Gamer({
       id: 1,
+      type: withComputer ? 'computer' : 'person',
       info: mocks.firstGamer,
     }),
     new Gamer({
       id: 2,
-      type: withComputer ? 'computer' : 'person',
       info: mocks.secondGamer,
     }),
   ]);
@@ -47,82 +47,66 @@ export const GamePlay: FC<OwnProps> = ({
   }, []);
 
   const handleCardClick = useCallback(
-    (id: number) => (e: SyntheticEvent<HTMLButtonElement>) => {
-      const { card }: { card?: Cards } = e.currentTarget.dataset;
-      if (!card) {
-        return;
-      }
+    (id: number, card: Cards) => () => {
       game?.makeAStep(id, card);
     },
     [game],
   );
 
-  const firstGamer = gamers[0];
+  const [firstGamer, secondGamer] = gamers;
 
   return (
     <div>
       <div className={styles.gamers}>
-        <GamerView
-          avatar={firstGamer.info?.avatar}
-          fullName={firstGamer.info?.nickName}
-          score={firstGamer.score}
-        />
-
-        {Object.keys(firstGamer.cards)
-            .map((card: Cards) => {
-              const isDisabled = firstGamer.cards[card] === 0 ||
-                Boolean(firstGamer.curCard) ||
-                firstGamer.type === 'computer';
-              return (
-                <CardView
-                  key={card}
-                  disabled={isDisabled}
-                  count={firstGamer.cards[card]}
-                  onClick={handleCardClick(firstGamer.id)}
-                />
-              );
-            })}
-        {game?.gamers.map(({
-          id,
-          type,
-          cards,
-          curCard,
-          score,
-        }) => (
-          <div
-            key={id}
-          >
-            <div>
-              {`Gamer #${id}`}
-              <br />
-              {`LiveCount: ${score}`}
-            </div>
-
-            {Object.keys(cards)
-              .map((card: Cards) => {
-                const isDisabled = cards[card] === 0
-                  || Boolean(curCard)
-                  || type === 'computer';
-                return (
-                  <div
-                    key={card}
-                  >
-                    <button
-                      type="button"
-                      data-card={card}
+        <div className={styles.gamer}>
+          <GamerView
+            avatar={firstGamer.info?.avatar}
+            fullName={firstGamer.info?.nickName}
+            score={firstGamer.score}
+          />
+          <div className={styles.cards}>
+            {Object.keys(firstGamer.cards)
+                .map((card: Cards) => {
+                  const isDisabled = firstGamer.cards[card] === 0 ||
+                    Boolean(firstGamer.curCard) ||
+                    firstGamer.type === 'computer';
+                  return (
+                    <CardView
+                      key={card}
+                      type={card}
                       disabled={isDisabled}
-                      onClick={handleCardClick(id)}
-                    >
-                      {cardsTitles[card]}
-                    </button>
-                    <div>
-                      {cards[card]}
-                    </div>
-                  </div>
-                );
-              })}
+                      count={firstGamer.cards[card]}
+                      onClick={handleCardClick(firstGamer.id, card)}
+                    />
+                  );
+                })}
           </div>
-        ))}
+        </div>
+        <div className={styles.gamer}>
+          <GamerView
+            avatar={secondGamer.info?.avatar}
+            fullName={secondGamer.info?.nickName}
+            score={secondGamer.score}
+          />
+          <div className={styles.cards}>
+            {Object.keys(secondGamer.cards)
+                .map((card: Cards) => {
+                  const isDisabled = secondGamer.cards[card] === 0 ||
+                    Boolean(secondGamer.curCard) ||
+                    secondGamer.type === 'computer';
+                  return (
+                    <CardView
+                      key={card}
+                      type={card}
+                      isMine
+                      disabled={isDisabled}
+                      count={secondGamer.cards[card]}
+                      onClick={handleCardClick(secondGamer.id, card)}
+                    />
+                  );
+                })}
+          </div>
+        </div>
       </div>
     </div>
   );
