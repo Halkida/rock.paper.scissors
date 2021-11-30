@@ -28,6 +28,8 @@ export const Game: FC = () => {
     },
     [setStep],
   );
+  const handleGameComplete = useCallback(() => setStep(Steps.start), []);
+
   return (
     <>
       {(step === Steps.start) && (
@@ -42,7 +44,7 @@ export const Game: FC = () => {
         />
       )}
       {(step === Steps.finish) && (
-        <Finish gameStats={gameStats} />
+        <Finish gameStats={gameStats} onGameComplete={handleGameComplete} />
       )}
     </>
   );
