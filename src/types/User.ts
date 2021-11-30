@@ -4,5 +4,6 @@ export interface IUser {
   secondName: string,
   phone: string,
   nickName: string,
-  avatar: string
+  avatar: string,
+  id: number
 }
