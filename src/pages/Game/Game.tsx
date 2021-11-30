@@ -29,7 +29,7 @@ export const Game: FC = () => {
     [setStep],
   );
   return (
-    <main>
+    <>
       {(step === Steps.start) && (
         <Start
           onGameStart={handleGameStart}
@@ -44,6 +44,6 @@ export const Game: FC = () => {
       {(step === Steps.finish) && (
         <Finish gameStats={gameStats} />
       )}
-    </main>
+    </>
   );
 };
