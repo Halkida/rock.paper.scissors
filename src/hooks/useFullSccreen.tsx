@@ -1,16 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useFullScreen = () => {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
-  const checkFullScreen = (): boolean => {
-    return Boolean(document.fullscreenElement ||
-      document.mozFullScreenElement ||
-      document.webkitFullscreenElement ||
-      document.msFullscreenElement);
-  };
-
-  const requestFullScreen = (element: HTMLElement) => {
+  const requestFullScreen = useCallback((element: HTMLElement) => {
     if (element.requestFullscreen) {
       element.requestFullscreen();
     } else if (element.msRequestFullscreen) {
@@ -22,9 +15,9 @@ export const useFullScreen = () => {
     }
 
     setIsFullScreen(true);
-  };
+  }, []);
 
-  const exitFullScreen = () => {
+  const exitFullScreen = useCallback(() => {
     if (document.msExitFullscreen) {
       document.msExitFullscreen();
     } else if (document.mozCancelFullScreen) {
@@ -34,21 +27,18 @@ export const useFullScreen = () => {
     }
 
     setIsFullScreen(false);
-  };
+  }, []);
 
-  const toggleFullScreen = (element: HTMLElement = document.body) => {
+  const toggleFullScreen = useCallback((element: HTMLElement = document.body) => {
     if (isFullScreen) {
       exitFullScreen();
     } else {
       requestFullScreen(element);
     }
-  };
+  }, [isFullScreen]);
 
   return {
     isFullScreen,
-    requestFullScreen,
-    exitFullScreen,
-    toggleFullScreen,
-    checkFullScreen
+    toggleFullScreen
   };
 };
