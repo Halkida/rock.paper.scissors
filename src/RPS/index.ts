@@ -9,7 +9,7 @@ type HistoryItem = {
 
 export type GameStats = {
   history: HistoryItem[];
-  winner: Nullable<number>;
+  winnerId: Nullable<number>;
   gamers: Gamer[];
 }
 
@@ -63,7 +63,7 @@ class RPS {
     this.gamers = gamers;
     this.gameStats = {
       history: [],
-      winner: null,
+      winnerId: null,
       gamers: this.gamers
     };
     this.isAllCardsEqually = isAllCardsEqually;
@@ -136,7 +136,7 @@ class RPS {
   }
 
   public finish() {
-    this.gameStats.winner = this.calculateResultOfGame();
+    this.gameStats.winnerId = this.calculateResultOfGame();
     this.eventBus.emit(RPS.events.gameFinished, this.gamers);
   }
 
