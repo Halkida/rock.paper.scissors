@@ -1,0 +1,32 @@
+.page {
+  padding-top: 5rem;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.imageWrapper {
+  max-width: 1000px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.buttons {
+  display: flex;
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+.button {
+  & + & {
+    margin-left: 3rem;
+  }
+}
