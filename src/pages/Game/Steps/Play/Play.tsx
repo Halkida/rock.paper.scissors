@@ -1,6 +1,9 @@
 import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import RPS, { GameStats } from '@/RPS';
 import Gamer from '@/RPS/Gamer';
+import { selectUser } from '@/store/user/selectors';
+import { IUser } from '@/types';
 import { cardsTitles, Cards } from '@/RPS/constants';
 import styles from './Play.module.scss';
 
@@ -13,10 +16,11 @@ export const GamePlay: FC<OwnProps> = ({
   withComputer = true,
   onFinish,
 }) => {
+  const user: IUser = useSelector(selectUser) as IUser;
   const [gamers, setGamers] = useState<Gamer[]>([
-    new Gamer({ id: 1 }),
+    new Gamer({ id: user.id }),
     new Gamer({
-      id: 2,
+      id: 0,
       type: withComputer ? 'computer' : 'person',
     }),
   ]);
