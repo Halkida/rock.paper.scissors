@@ -23,7 +23,6 @@ export const GamerWithCards: FC<OwnProps> = ({
 }) => {
   const handleCardClick = useCallback(
     (id: number, card: Cards) => () => {
-      console.log(id, card);
       onCardClick(id, card);
     },
     [onCardClick],

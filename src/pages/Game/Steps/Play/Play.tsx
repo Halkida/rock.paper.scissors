@@ -30,9 +30,6 @@ export const GamePlay: FC<OwnProps> = ({
   useEffect(() => {
     setGame(new RPS({
       gamers,
-      onInit() {
-        console.log('init');
-      },
       onGameStarted(gamers) {
         setGamers([...gamers]);
       },
@@ -47,14 +44,10 @@ export const GamePlay: FC<OwnProps> = ({
 
   const handleCardClick = useCallback(
     (id: number, card: Cards) => {
-      console.log(game);
       game?.makeAStep(id, card);
     },
     [game],
   );
-
-  console.log(handleCardClick);
-  console.log(game);
 
   const [firstGamer, secondGamer] = gamers;
 
