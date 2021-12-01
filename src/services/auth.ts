@@ -1,5 +1,7 @@
 import { AxiosInstance } from 'axios';
 import getAxiosInstance, { AxiosError, isAxiosError } from '@/utils/axios';
+import { IUser } from '@/types';
+
 class AuthApi {
   http: AxiosInstance;
 
@@ -7,8 +9,9 @@ class AuthApi {
     this.http = getAxiosInstance('https://ya-praktikum.tech/api/v2/auth');
   }
 
-  getUser(): Promise<string> {
-    return this.http.get('/user');
+  getUser(): Promise<IUser> {
+    return this.http.get<IUser>('/user')
+      .then((response) => response.data);
   }
 
   signIn(data: Record<string, unknown>): Promise<unknown> {

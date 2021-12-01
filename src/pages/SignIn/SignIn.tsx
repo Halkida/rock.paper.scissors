@@ -44,7 +44,7 @@ export const SignIn: FC = function SignInPage() {
 
   return (
     <main className={ styles.signin }>
-      { notification && <Notification>{notification}</Notification> }
+      {notification && <Notification>{notification}</Notification>}
       <Form
         title='Вход'
         onSubmit={handleSubmit}
@@ -67,7 +67,7 @@ export const SignIn: FC = function SignInPage() {
           </>
         ) }
       />
-      <Link className={ 'link' } to="/sign-up" >Зарегистрироваться</Link>
+      <Link className="link" to="/sign-up" >Зарегистрироваться</Link>
     </main>
   );
 };

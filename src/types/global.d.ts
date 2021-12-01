@@ -12,3 +12,5 @@ interface HTMLElement {
   mozRequestFullscreen?: () => Promise<void>;
   webkitRequestFullscreen?: () => Promise<void>;
 }
+
+type Nullable<T> = T | null;
