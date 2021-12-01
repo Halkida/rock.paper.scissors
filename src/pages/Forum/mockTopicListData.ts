@@ -1,6 +1,7 @@
 const moсkTopicList = [{
   id: 1,
   author: {
+    id: 1,
     email: 'dummy@email.com',
     firstName: 'Хорошее Имя',
     secondName: 'Хорошая Фамилия',
@@ -13,6 +14,7 @@ const moсkTopicList = [{
 }, {
   id: 2,
   author: {
+    id: 2,
     email: 'dummy@email.com',
     firstName: 'Обычное имя',
     secondName: 'Обычная фамилия',
@@ -25,6 +27,7 @@ const moсkTopicList = [{
 }, {
   id: 3,
   author: {
+    id: 3,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -37,6 +40,7 @@ const moсkTopicList = [{
 }, {
   id: 4,
   author: {
+    id: 4,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -49,6 +53,7 @@ const moсkTopicList = [{
 }, {
   id: 5,
   author: {
+    id: 5,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -61,6 +66,7 @@ const moсkTopicList = [{
 }, {
   id: 6,
   author: {
+    id: 6,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -73,6 +79,7 @@ const moсkTopicList = [{
 }, {
   id: 7,
   author: {
+    id: 7,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -85,6 +92,7 @@ const moсkTopicList = [{
 }, {
   id: 8,
   author: {
+    id: 8,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -97,6 +105,7 @@ const moсkTopicList = [{
 }, {
   id: 9,
   author: {
+    id: 9,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -109,6 +118,7 @@ const moсkTopicList = [{
 }, {
   id: 10,
   author: {
+    id: 10,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -121,6 +131,7 @@ const moсkTopicList = [{
 }, {
   id: 11,
   author: {
+    id: 11,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -133,6 +144,7 @@ const moсkTopicList = [{
 }, {
   id: 12,
   author: {
+    id: 12,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -145,6 +157,7 @@ const moсkTopicList = [{
 }, {
   id: 13,
   author: {
+    id: 13,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -157,6 +170,7 @@ const moсkTopicList = [{
 }, {
   id: 14,
   author: {
+    id: 14,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',
@@ -169,6 +183,7 @@ const moсkTopicList = [{
 }, {
   id: 15,
   author: {
+    id: 15,
     email: 'dummy@email.com',
     firstName: 'Иван',
     secondName: 'Иванов',

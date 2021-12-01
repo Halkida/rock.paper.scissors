@@ -2,6 +2,17 @@ import { Cards } from './constants';
 import Gamer from './Gamer';
 import EventBus from './event-bus';
 
+type HistoryItem = {
+  round: number,
+  winnerId: Nullable<number>;
+}
+
+export type GameStats = {
+  history: HistoryItem[];
+  winnerId: Nullable<number>;
+  gamers: Gamer[];
+}
+
 const defaultStepsCount = 12;
 
 const winCombinations = {
@@ -18,7 +29,7 @@ type GameSettings = {
   onGameStarted?: (gamers: Gamer[]) => void,
   onGamerMadeAStep?: (gamers: Gamer[]) => void,
   onRoundIsOver?: (gamers: Gamer[]) => void,
-  onGameFinished?: (gamers: Gamer[]) => void,
+  onGameFinished?: (gameStats: GameStats) => void,
 };
 
 class RPS {
@@ -33,6 +44,7 @@ class RPS {
   readonly stepsCountTotal: number;
   private roundsCount: number;
   public gamers: Gamer[];
+  public gameStats: GameStats;
   private isAllCardsEqually: boolean;
   private eventBus: EventBus;
   private handlers: Record<string, ((...param: unknown[]) => void) | undefined> = {};
@@ -49,6 +61,11 @@ class RPS {
   } : GameSettings) {
     this.stepsCountTotal = stepsCountTotal;
     this.gamers = gamers;
+    this.gameStats = {
+      history: [],
+      winnerId: null,
+      gamers: this.gamers
+    };
     this.isAllCardsEqually = isAllCardsEqually;
     this.eventBus = new EventBus();
     this.registerEvents();
@@ -84,7 +101,7 @@ class RPS {
     this.handlers.onRoundIsOver && this.handlers.onRoundIsOver(this.gamers);
   }
   private gameFinished() {
-    this.handlers.onGameFinished && this.handlers.onGameFinished(this.gamers);
+    this.handlers.onGameFinished && this.handlers.onGameFinished(this.gameStats);
   }
 
   private get isFinish() {
@@ -119,7 +136,7 @@ class RPS {
   }
 
   public finish() {
-    this.calculateResultOfGame();
+    this.gameStats.winnerId = this.calculateResultOfGame();
     this.eventBus.emit(RPS.events.gameFinished, this.gamers);
   }
 
@@ -132,7 +149,11 @@ class RPS {
       return;
     }
 
-    this.calculateResultOfRound();
+    const winnerId = this.calculateResultOfRound();
+    this.gameStats.history.push({
+      winnerId,
+      round: this.roundsCount + 1
+    });
 
     this.gamers.forEach((gamer) => {
       gamer.curCard = null;
@@ -153,6 +174,7 @@ class RPS {
     // учитывает только что в игре 2 игрока
 
     const [firstGamer, secondGamer] = this.gamers;
+    let winnerId: Nullable<number> = null;
 
     const isFirstWin = winCombinations[firstGamer.curCard as Cards] === secondGamer.curCard;
     const isSecondWin = winCombinations[secondGamer.curCard as Cards] === firstGamer.curCard;
@@ -160,10 +182,14 @@ class RPS {
     if (isFirstWin) {
       firstGamer.winRound();
       secondGamer.loseRound();
+      winnerId = firstGamer.id;
     } else if (isSecondWin) {
       secondGamer.winRound();
       firstGamer.loseRound();
+      winnerId = secondGamer.id;
     }
+
+    return winnerId;
   }
 
   private computersInitSteps() {
@@ -177,8 +203,12 @@ class RPS {
   }
 
   private calculateResultOfGame() {
-    if (!this.isAllMadeAStep) {
-      return;
+    let winnerId: Nullable<number> = null;
+    const [firstGamer, secondGamer] = this.gamers;
+    if (firstGamer.liveCount > secondGamer.liveCount) {
+      winnerId = firstGamer.id;
+    } else if (firstGamer.liveCount < secondGamer.liveCount) {
+      winnerId = secondGamer.id;
     }
 
     this.gamers.forEach((gamer) => {
@@ -186,6 +216,8 @@ class RPS {
         gamer.gameOver();
       }
     });
+
+    return winnerId;
   }
 
   private dealСardsForGamers() {
