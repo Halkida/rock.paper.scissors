@@ -64,7 +64,7 @@ module.exports = {
             { loader: 'sass-loader' }
           ],
           include: path.resolve(__dirname, './src/styles')
-        },
+        }
       ]
     },
     plugins: [new HtmlWebpackPlugin({
