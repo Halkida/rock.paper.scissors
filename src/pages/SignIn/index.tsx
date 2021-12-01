@@ -1,1 +1,4 @@
-export { SignIn as default } from './SignIn';
+import withoutAuth from '@/hocs/without-auth';
+import { SignIn } from './SignIn';
+
+export default withoutAuth(SignIn);

@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router-dom';
+import Home from '@/pages/Home';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 import Game from '@/pages/Game';
@@ -8,13 +9,12 @@ import Forum from '@/pages/Forum';
 import NoMatch from '@/pages/NoMatch';
 import Topic from '@/pages/Topic';
 import ForumIndex from '@/pages/ForumIndex';
-import RequireAuth from '@/components/RequireAuth';
 import urls from '@/utils/urls';
 
 export const routes: RouteObject[] = [
   {
     path: urls.HOME,
-    element: <SignIn />,
+    element: <Home />,
   },
   {
     path: urls.SIGN_IN,
@@ -26,7 +26,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.GAME,
-    element: <RequireAuth><Game /></RequireAuth>,
+    element: <Game />,
   },
   {
     path: urls.USER_RATING,
@@ -34,7 +34,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.PROFILE,
-    element: <RequireAuth><Profile /></RequireAuth>,
+    element: <Profile />,
   },
   {
     path: urls.FORUM,
