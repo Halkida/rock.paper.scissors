@@ -19,8 +19,8 @@ export function userReducer(
     case actions.SUCCESS:
       return {
         ...state,
-        status: 'success',
         user,
+        status: 'success',
       };
     case actions.FAILED:
       return {

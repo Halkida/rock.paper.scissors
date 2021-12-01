@@ -1,0 +1,151 @@
+@import '@/styles/variables.scss';
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  div {
+    margin: 0;
+  }
+}
+
+.avatar__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: $color-white;
+  margin-bottom: 15px;
+}
+
+.avatar__default {
+  color: $color-background;
+  font-size: 60px;
+  text-transform: uppercase;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0)
+}
+
+.input_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15px;
+  align-items: center;
+  margin: 0;
+
+  span {
+    grid-column: 2 / -1;
+  }
+}
+
+.input_name {
+  text-align: right;
+  color: $color-silver;
+}
+
+.container button[type="submit"]:not(.profilePage__buttonSubmit) {
+  display: none;
+}
+
+.container input,
+.container .input_name {
+  pointer-events: none;
+  border: none;
+}
+
+.container input {
+  height: unset;
+  border-bottom: 1px solid transparent;
+}
+
+.profilePage__buttonSubmit,
+.profilePage__buttonCancel,
+.profilePage__buttonsWrapper {
+  display: none;
+}
+
+.profilePage__buttonChange {
+  margin-top: 15px;
+  padding: 0;
+  background-color: unset;
+  color: $color-success;
+}
+
+.passwordSection {
+  margin-top: 15px;
+
+  form {
+    display: none;
+  }
+
+  .profilePage__buttonChange {
+    margin-top: 0;
+  }
+}
+
+.isEdit {
+  display: grid;
+
+  form {
+    display: flex;
+  }
+
+  input {
+    pointer-events: unset;
+    position: relative;
+    border-bottom: 1px solid $color-tulip-tree-dark;
+    border-radius: 0;
+  }
+  
+  .input_name {
+    pointer-events: unset;
+  }
+
+  .profilePage__buttonsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .profilePage__buttonSubmit,
+  .profilePage__buttonCancel  {
+    display: block;
+    background-color: unset;
+    padding: 0;
+  }
+
+  .profilePage__buttonSubmit {
+    color: $color-success;
+  }
+
+  .profilePage__buttonCancel {
+    color: $color-red;
+  }
+
+  .profilePage__buttonChange {
+    display: none;
+  }
+}
