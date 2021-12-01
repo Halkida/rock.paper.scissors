@@ -1,18 +1,23 @@
 import { FC, useMemo } from 'react';
+import cx from 'classnames';
 import styles from './Gamer.module.scss';
 import IconStarSolid from '@/icons/StarSolid';
 import IconUserSolid from '@/icons/UserSolid';
 
 type OwnProps = {
   avatar?: string,
+  className?: string,
   fullName?: string,
   score: number,
+  isReverse?: boolean,
 };
 
 export const Gamer: FC<OwnProps> = ({
   avatar,
   fullName = 'Неизвестный игрок',
+  className = '',
   score,
+  isReverse = false,
 }) => {
   const scoreArray = useMemo(() => Array.from(
     { length: score },
@@ -20,7 +25,13 @@ export const Gamer: FC<OwnProps> = ({
   ), [score]);
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={cx([
+        styles.wrapper,
+        { [styles.reverse]: isReverse },
+        className,
+      ])}
+    >
       <div className={styles.user}>
         <div className={styles.avatar}>
           {avatar ? (

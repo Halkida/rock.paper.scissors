@@ -124,6 +124,7 @@ class RPS {
   }
 
   public makeAStep(userId: number, cardType: Cards) {
+    console.log('makeAStep', { userId, cardType });
     const gamer = this.gamers.find(({ id }) => id === userId);
     gamer?.makeAStep(cardType);
     this.eventBus.emit(RPS.events.madeAStep, this.gamers);

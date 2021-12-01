@@ -8,6 +8,7 @@ type OwnProps = {
   disabled: boolean,
   isMine?: boolean,
   type: Cards,
+  className?: string,
   onClick: (e: SyntheticEvent<HTMLButtonElement>) => void,
 };
 
@@ -16,12 +17,13 @@ export const Card: FC<OwnProps> = ({
   disabled,
   isMine = false,
   type,
+  className = '',
   onClick,
 }) => {
   const shirtUp = !isMine;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cx(styles.wrapper, className)}>
       <button
         type="button"
         className={cx([

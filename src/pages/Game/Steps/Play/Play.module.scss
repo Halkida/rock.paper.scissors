@@ -1,8 +1,7 @@
-.gamer {
-  width: 100%;
+.wrapper {
+  height: 100%;
+  padding: 1rem;
   display: flex;
-}
-
-.cards {
-  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }

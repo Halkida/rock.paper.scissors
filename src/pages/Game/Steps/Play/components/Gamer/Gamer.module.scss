@@ -1,9 +1,5 @@
 @import '@/styles/variables.scss';
 
-.wrapper {
-  display: flex;
-}
-
 .user {
   display: flex;
   flex-direction: column;
@@ -46,5 +42,18 @@
   &_iconWrapper {
     padding: 0 .25rem;
     margin-bottom: .375rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    .score {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
   }
 }
