@@ -50,12 +50,18 @@
   color: $color-tulip-tree;
   font-size: 2rem;
   padding: 0 0.5rem;
+  position: relative;
 
-  &_silver {
-    color: $color-silver;
-  }
-
-  &_geraldine {
-    color: $color-geraldine;
+  &_lose {
+    &::after {
+      position: absolute;
+      content: '';
+      width: 6px;
+      height: 55px;
+      background-color: $color-bright-red;
+      transform: rotate(-45deg);
+      top: -10px;
+      left: calc(50% - 3px);
+    }
   }
 }

@@ -40,14 +40,13 @@ export const GameFinish: FC<OwnProps> = ({
             gameStats.history.map((round) => {
               const isDraw = round.winnerId === null;
               const isRoundWinner = round.winnerId === user.id;
-              const star = isRoundWinner ? <IconStarSolid /> : <Star />;
+              const star = isDraw ? <Star /> : <IconStarSolid />;
               return (
                 <div
                   key={round.round}
                   className={cx([
                     styles.star,
-                    { [styles.star_silver]: isDraw },
-                    { [styles.star_geraldine]: !isDraw && !isRoundWinner }
+                    { [styles.star_lose]: !isDraw && !isRoundWinner }
                   ])}
                 >
                   {star}
