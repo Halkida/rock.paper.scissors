@@ -1,30 +1,31 @@
 import { FC, useEffect, useState, useCallback } from 'react';
-import RPS from '@/RPS';
+import { useSelector } from 'react-redux';
+import { IUser } from '@/types';
+import RPS, { GameStats } from '@/RPS';
 import Gamer from '@/RPS/Gamer';
 import { Cards } from '@/RPS/constants';
+import { selectUser } from '@/store/user/selectors';
 import GamerWithCards from './components/GamerWithCards';
 import styles from './Play.module.scss';
 import * as mocks from './mocks';
 
 type OwnProps = {
   withComputer?: boolean;
-  onFinish: () => void;
+  onFinish: (gameStats: GameStats) => void;
 };
 
 export const GamePlay: FC<OwnProps> = ({
   withComputer = true,
   onFinish,
 }) => {
+  const user: IUser = useSelector(selectUser) as IUser;
   const [gamers, setGamers] = useState<Gamer[]>([
     new Gamer({
-      id: 1,
+      id: mocks.computerGamer.id,
       type: withComputer ? 'computer' : 'person',
-      info: mocks.firstGamer,
+      info: mocks.computerGamer,
     }),
-    new Gamer({
-      id: 2,
-      info: mocks.secondGamer,
-    }),
+    new Gamer({ id: user.id }),
   ]);
   const [game, setGame] = useState<RPS>();
   useEffect(() => {
@@ -36,8 +37,8 @@ export const GamePlay: FC<OwnProps> = ({
       onGamerMadeAStep(gamers) {
         setGamers([...gamers]);
       },
-      onGameFinished() {
-        onFinish();
+      onGameFinished(gameStats) {
+        onFinish(gameStats);
       },
     }));
   }, []);

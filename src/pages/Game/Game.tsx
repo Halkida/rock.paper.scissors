@@ -2,6 +2,7 @@ import { FC, useState, useCallback } from 'react';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
+import { GameStats } from '@/RPS';
 import styles from './Game.module.scss';
 
 enum Steps {
@@ -13,6 +14,7 @@ enum Steps {
 export const Game: FC = () => {
   const [step, setStep] = useState<Steps>(Steps.start);
   const [gameWithComputer, setGameWithComputer] = useState<boolean>();
+  const [gameStats, setGameStats] = useState<Nullable<GameStats>>(null);
   const handleGameStart = useCallback(
     ({ withComputer }: OnGameStartParams) => {
       setStep(Steps.play);
@@ -21,11 +23,14 @@ export const Game: FC = () => {
     [setStep, setGameWithComputer, Steps]
   );
   const handleGameFinish = useCallback(
-    () => {
+    (gameStats) => {
+      setGameStats(gameStats);
       setStep(Steps.finish);
     },
     [setStep],
   );
+  const handleGameComplete = useCallback(() => setStep(Steps.start), []);
+
   return (
     <main className={styles.page}>
       {(step === Steps.start) && (
@@ -40,7 +45,7 @@ export const Game: FC = () => {
         />
       )}
       {(step === Steps.finish) && (
-        <Finish />
+        <Finish gameStats={gameStats} onGameComplete={handleGameComplete} />
       )}
     </main>
   );

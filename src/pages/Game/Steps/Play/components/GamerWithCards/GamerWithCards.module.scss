@@ -1,16 +1,16 @@
 .gamer {
   display: flex;
-  padding-right: 180px;
+  padding-right: 240px;
   
   &.reverse {
     padding-right: 0px;
-    padding-left: 180px;
+    padding-left: 240px;
     flex-direction: row-reverse;
   }
 }
 
 .gamerView {
-  width: 180px;
+  width: 240px;
 }
 
 .cards {

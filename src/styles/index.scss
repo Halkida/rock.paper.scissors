@@ -20,6 +20,10 @@ body {
   height: 100%;
 }
 
+#fullscreen::backdrop {
+  background-color: transparent;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

@@ -1,19 +1,11 @@
 import { IUser } from '@/types';
 
-export const firstGamer: IUser = {
+export const computerGamer: IUser = {
+  id: 0,
   email: 'test1@mail.ru',
-  firstName: 'Игрок',
-  secondName: 'Номер 1',
+  firstName: 'Компьтер',
+  secondName: '',
   phone: '',
-  nickName: 'player_1',
-  avatar: '',
-};
-
-export const secondGamer: IUser = {
-  email: 'test2@mail.ru',
-  firstName: 'Игрок',
-  secondName: 'Номер 2',
-  phone: '',
-  nickName: 'player_2',
+  nickName: 'computer',
   avatar: '',
 };
