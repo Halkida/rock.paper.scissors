@@ -106,9 +106,9 @@ class RPS {
 
   private get isFinish() {
     const hasSteps = this.roundsCount < this.stepsCountTotal;
-    const hasGamerWithoutLives = this.gamers.some(({ liveCount }) => !liveCount);
+    const hasGamerWithoutScore = this.gamers.some(({ score }) => !score);
 
-    return !hasSteps || hasGamerWithoutLives;
+    return !hasSteps || hasGamerWithoutScore;
   }
 
   private get isAllMadeAStep() {
@@ -205,14 +205,14 @@ class RPS {
   private calculateResultOfGame() {
     let winnerId: Nullable<number> = null;
     const [firstGamer, secondGamer] = this.gamers;
-    if (firstGamer.liveCount > secondGamer.liveCount) {
+    if (firstGamer.score > secondGamer.score) {
       winnerId = firstGamer.id;
-    } else if (firstGamer.liveCount < secondGamer.liveCount) {
+    } else if (firstGamer.score < secondGamer.score) {
       winnerId = secondGamer.id;
     }
 
     this.gamers.forEach((gamer) => {
-      if (gamer.liveCount < 3) {
+      if (gamer.score < 3) {
         gamer.gameOver();
       }
     });

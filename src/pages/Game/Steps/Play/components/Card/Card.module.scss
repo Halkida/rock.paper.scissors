@@ -1,0 +1,49 @@
+@import '@/styles/variables.scss';
+
+.wrapper {
+  position: relative;
+
+}
+
+.card {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  height: 9rem;
+  width: 6.5rem;
+  padding: 0;
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+  
+  &_shirtUp {
+    background: center / contain no-repeat url('@/assets/shirt-card.jpeg');
+  }
+
+  &_rock {
+    background: center / 90% auto no-repeat url('@/assets/rock.png'), $color-rock;
+  }
+
+  &_paper {
+    background: center / 90% auto no-repeat url('@/assets/paper.png'), $color-paper;
+  }
+
+  &_scissors {
+    background: center / 90% auto no-repeat url('@/assets/scissors.png'), $color-scissors;
+  }
+}
+
+.count {
+  text-align: center;
+  position: absolute;
+  bottom: 1rem;
+  background-color: rgba($color-shark, 0.7);
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  line-height: 2;
+  left: calc(50% - 1em);
+}

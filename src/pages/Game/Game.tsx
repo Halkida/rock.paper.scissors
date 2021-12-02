@@ -3,6 +3,7 @@ import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
 import { GameStats } from '@/RPS';
+import styles from './Game.module.scss';
 
 enum Steps {
   start = 'start',
@@ -31,7 +32,7 @@ export const Game: FC = () => {
   const handleGameComplete = useCallback(() => setStep(Steps.start), []);
 
   return (
-    <>
+    <main className={styles.page}>
       {(step === Steps.start) && (
         <Start
           onGameStart={handleGameStart}
@@ -46,6 +47,6 @@ export const Game: FC = () => {
       {(step === Steps.finish) && (
         <Finish gameStats={gameStats} onGameComplete={handleGameComplete} />
       )}
-    </>
+    </main>
   );
 };

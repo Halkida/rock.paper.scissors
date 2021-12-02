@@ -1,0 +1,23 @@
+.gamer {
+  display: flex;
+  padding-right: 240px;
+  
+  &.reverse {
+    padding-right: 0px;
+    padding-left: 240px;
+    flex-direction: row-reverse;
+  }
+}
+
+.gamerView {
+  width: 240px;
+}
+
+.cards {
+  display: flex;
+  margin: 0 auto;
+}
+
+.card {
+  margin: .25rem;
+}

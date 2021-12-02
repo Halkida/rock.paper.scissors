@@ -1,11 +1,13 @@
-import { FC, useEffect, useState, SyntheticEvent, useCallback } from 'react';
+import { FC, useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { IUser } from '@/types';
 import RPS, { GameStats } from '@/RPS';
 import Gamer from '@/RPS/Gamer';
+import { Cards } from '@/RPS/constants';
 import { selectUser } from '@/store/user/selectors';
-import { IUser } from '@/types';
-import { cardsTitles, Cards } from '@/RPS/constants';
+import GamerWithCards from './components/GamerWithCards';
 import styles from './Play.module.scss';
+import * as mocks from './mocks';
 
 type OwnProps = {
   withComputer?: boolean;
@@ -18,19 +20,17 @@ export const GamePlay: FC<OwnProps> = ({
 }) => {
   const user: IUser = useSelector(selectUser) as IUser;
   const [gamers, setGamers] = useState<Gamer[]>([
-    new Gamer({ id: user.id }),
     new Gamer({
-      id: 0,
+      id: mocks.computerGamer.id,
       type: withComputer ? 'computer' : 'person',
+      info: mocks.computerGamer,
     }),
+    new Gamer({ id: user.id }),
   ]);
   const [game, setGame] = useState<RPS>();
   useEffect(() => {
     setGame(new RPS({
       gamers,
-      onInit() {
-        console.log('init');
-      },
       onGameStarted(gamers) {
         setGamers([...gamers]);
       },
@@ -44,62 +44,27 @@ export const GamePlay: FC<OwnProps> = ({
   }, []);
 
   const handleCardClick = useCallback(
-    (id: number) => (e: SyntheticEvent<HTMLButtonElement>) => {
-      const { card }: { card?: Cards } = e.currentTarget.dataset;
-      if (!card) {
-        return;
-      }
+    (id: number, card: Cards) => {
       game?.makeAStep(id, card);
     },
     [game],
   );
 
-  return (
-    <main>
-      <div className={styles.gamers}>
-        {game?.gamers.map(({
-          id,
-          type,
-          cards,
-          curCard,
-          liveCount,
-        }) => (
-          <div
-            key={id}
-          >
-            <div>
-              {`Gamer #${id}`}
-              <br />
-              {`LiveCount: ${liveCount}`}
-            </div>
+  const [firstGamer, secondGamer] = gamers;
 
-            {Object.keys(cards)
-              .map((card: Cards) => {
-                const isDisabled = cards[card] === 0
-                  || Boolean(curCard)
-                  || type === 'computer';
-                return (
-                  <div
-                    key={card}
-                  >
-                    <button
-                      type="button"
-                      data-card={card}
-                      disabled={isDisabled}
-                      onClick={handleCardClick(id)}
-                    >
-                      {cardsTitles[card]}
-                    </button>
-                    <div>
-                      {cards[card]}
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        ))}
+  return (
+      <div className={styles.wrapper}>
+        <GamerWithCards
+          gamer={firstGamer}
+          onCardClick={handleCardClick}
+        />
+        <GamerWithCards
+          isMine
+          isReverse
+          gamer={secondGamer}
+          onCardClick={handleCardClick}
+        />
       </div>
-    </main>
   );
 };
 
