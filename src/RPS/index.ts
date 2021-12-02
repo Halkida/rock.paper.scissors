@@ -89,9 +89,9 @@ class RPS {
 
   private get isFinish() {
     const hasSteps = this.roundsCount < this.stepsCountTotal;
-    const hasGamerWithoutLives = this.gamers.some(({ score }) => !score);
+    const hasGamerWithoutScore = this.gamers.some(({ score }) => !score);
 
-    return !hasSteps || hasGamerWithoutLives;
+    return !hasSteps || hasGamerWithoutScore;
   }
 
   private get isAllMadeAStep() {
