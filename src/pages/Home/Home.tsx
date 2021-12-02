@@ -1,5 +1,6 @@
 import { FC, Fragment } from 'react';
 import { useSelector } from 'react-redux';
+import rPSImage from '@/assets/rps.png';
 import urls from '@/utils/urls';
 import { Button } from '@/components/Button';
 import { selectIsUserAuthorized } from '@/store/user/selectors';
@@ -14,7 +15,7 @@ export const Home: FC = () => {
       <div className={styles.imageWrapper}>
         <img
           className={styles.image}
-          src="/images/rpc.png"
+          src={rPSImage}
         />
       </div>
       <div className={styles.buttons}>
