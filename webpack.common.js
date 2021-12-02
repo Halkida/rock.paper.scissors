@@ -64,6 +64,15 @@ module.exports = {
             { loader: 'sass-loader' }
           ],
           include: path.resolve(__dirname, './src/styles')
+        },
+        {
+          test: /\.(jpg|png|gif|woff|eot|ttf|svg)/,
+          use: {
+          loader: 'url-loader',
+            options: {
+            limit: 50000,
+            }
+          }
         }
       ]
     },
