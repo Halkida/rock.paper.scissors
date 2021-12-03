@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import * as renderer from 'react-test-renderer';
-import { Input } from '../';
+import { Input } from '@/components/Input';
 
 const propsToTest = {
   isValid: [true, false],

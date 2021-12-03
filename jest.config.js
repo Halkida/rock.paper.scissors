@@ -5,6 +5,7 @@ module.exports = {
   roots: ['<rootDir>/src'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sss|styl)$': '<rootDir>/node_modules/jest-css-modules'
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/node_modules/jest-css-modules',
+    '^@/(.*)$': '<rootDir>/src/$1'
   }
 };
