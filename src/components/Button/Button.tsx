@@ -5,6 +5,7 @@ import styles from'./Button.module.scss';
 
 type OwnProps = {
   className?: string,
+  viewType?: 'success' | 'danger' | 'default';
   view?: 'outline' | 'default' | 'link' | 'text';
   size?: 'small' | 'medium' | 'large';
   href?: string;
@@ -17,6 +18,7 @@ const cx = classNames.bind(styles);
 
 export const Button: Props = function(
   { children,
+    viewType = 'default',
     view = 'default',
     size = 'medium',
     href = '',
@@ -27,6 +29,7 @@ export const Button: Props = function(
   const buttonClassNames = cx({
     [className]: true,
     ['button']: true,
+    [`button_${viewType}`]: viewType,
     [`button_${view}`]: view,
     [`button_${size}`]: size,
     ['button_link']: href.length
