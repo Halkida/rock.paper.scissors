@@ -6,5 +6,5 @@ export interface IUser {
   login: string,
   display_name: string | null,
   avatar?: string | null
-  id?: number
+  id: number
 }
