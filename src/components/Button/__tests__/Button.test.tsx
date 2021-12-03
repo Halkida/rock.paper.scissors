@@ -1,4 +1,4 @@
-import { Button } from '../';
+import { Button } from '@/components/Button';
 import * as renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 
