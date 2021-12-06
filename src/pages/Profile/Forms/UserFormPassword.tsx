@@ -1,11 +1,11 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import cx from 'classnames';
 import { Form, useForm, FieldError } from '@/components/Form';
 import { Input, InputProps } from '@/components/Input';
 import { Button } from '@/components/Button';
 import userServise from '@/services/user';
 import { PATTERNS } from '@/utils/formValidation';
-import styles from'./Profile.module.scss';
+import styles from'./UserFormPassword.module.scss';
 
 const validationConfig = {
   password: {
@@ -31,11 +31,17 @@ type PasswordForm = {
   confirmPassword: string;
 }
 
-const userFormData: FC = () => {
-  const [isEdit, setIsEdit] = useState(false);
+type OwnProps = {
+  isEdit: boolean;
+  onEdit: () => void;
+};
+
+
+const userFormData: FC<OwnProps> = ({ isEdit, onEdit }) => {
+  // const [isEdit, setIsEdit] = useState(false);
 
   const changeData = () => {
-    setIsEdit(!isEdit);
+    onEdit();
   }
   
   const onSubmit = (data: Record<string, string>) => {
@@ -87,35 +93,38 @@ const userFormData: FC = () => {
   return (
     <div className={cx([
       styles.container,
-      styles.passwordSection,
+      styles.userFormPassword,
       { [styles.isEdit]: isEdit },
+      // { [styles.isNotEdit]: !isEdit },
     ])}>
       <Form
         onSubmit={handleSubmit}
         renderFields={ () => (
           <>
-            { formUserDataConfig.map((field) => 
-              <>
-                <p
-                  className={styles.input_wrapper}
-                  key={field.name}
-                >
-                  <label className={styles.input_name} htmlFor={field.id}>{field.placeholder}</label>
-                  <Input key={field.name} {...field} />
-                </p>
-              </>
-            ) }
-            <div className={styles.profilePage__buttonsWrapper}>
+            <div className={styles.userFormData__inputsWrapper}>
+              { formUserDataConfig.map((field) => 
+                  <p
+                    className={styles.input_wrapper}
+                    key={field.name}
+                  >
+                    <label className={styles.input_name} htmlFor={field.id}>{field.placeholder}</label>
+                    <Input key={field.name} {...field} />
+                  </p>
+              ) }
+            </div>
+            <div className={styles.userFormPassword__buttonsWrapper}>
               <Button
+                viewType="success"
                 type="submit"
-                className={styles.profilePage__buttonSubmit}
+                className={styles.userFormPassword__buttonSubmit}
               >
                 Сохранить
               </Button>
               <Button
+                viewType="danger"
                 type="button"
                 onClick={changeData}
-                className={styles.profilePage__buttonCancel}
+                className={styles.userFormPassword__buttonCancel}
               >
                 Отменить
               </Button>
@@ -123,13 +132,6 @@ const userFormData: FC = () => {
           </>
         ) }
       />
-      <Button
-        type="button"
-        onClick={changeData}
-        className={styles.profilePage__buttonChange}
-      >
-        Изменить пароль
-      </Button>
     </div>
   );
 };

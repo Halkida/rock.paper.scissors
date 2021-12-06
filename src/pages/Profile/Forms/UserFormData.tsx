@@ -7,7 +7,7 @@ import { Input, InputProps } from '@/components/Input';
 import { Button } from '@/components/Button';
 import userServise from '@/services/user';
 import { PATTERNS } from '@/utils/formValidation';
-import styles from'./Profile.module.scss';
+import styles from'./UserFormData.module.scss';
 import { loadSuccess, loadPending } from '@/store/user/actions';
 import { selectUser } from '@/store/user/selectors';
 
@@ -52,14 +52,20 @@ type ProfileForm = {
   login: string;
 }
 
-const userFormData: FC = () => {
+type OwnProps = {
+  isEdit: boolean;
+  isEditPassword: boolean;
+  onEdit: () => void;
+};
+
+const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit }) => {
   const dispatch = useDispatch();
 
   const user: Nullable<IUser> = useSelector(selectUser);
 
   const [data, setData] = useState(user as IUser);
   const [inputsData, setInputsData] = useState(user as IUser);
-  const [isEdit, setIsEdit] = useState(false);
+  // const [isEdit, setIsEdit] = useState(false);
 
   const onInputChange = (key: string) => (value: string) => {
     setInputsData((prevData: IUser) => {
@@ -68,14 +74,15 @@ const userFormData: FC = () => {
     handleChange(key)(value);
   };
 
-  const changeData = () => {
-    setIsEdit(!isEdit);
-  }
+  // const changeData = () => {
+  //   setIsEdit(!isEdit);
+  // }
 
   const onCancelData = () => {
     setInputsData(data);
     clearErrors();
-    changeData();
+    // changeData();
+    onEdit();
   }
 
   const onSubmit = () => {
@@ -96,7 +103,7 @@ const userFormData: FC = () => {
         setData(user as IUser);
         setInputsData(user as IUser);
       })
-      .then(() => changeData())
+      .then(() => onEdit())
       .catch((error: Error) => {
         console.log(error.message);
       });
@@ -169,14 +176,17 @@ const userFormData: FC = () => {
   return (
     <div className={cx([
       styles.container,
+      styles.userFormData,
+      // { [styles.dataSection]: !isEditPassword },
       { [styles.isEdit]: isEdit },
+      { [styles.isEditPasswordForm]: isEditPassword },
     ])}>
       <Form
         onSubmit={handleSubmit}
         renderFields={ () => (
           <>
-            { formUserDataConfig.map((field) => 
-              <>
+            <div className={styles.userFormData__inputsWrapper}>
+              { formUserDataConfig.map((field) => 
                 <p
                   className={styles.input_wrapper}
                   key={field.name}
@@ -184,33 +194,30 @@ const userFormData: FC = () => {
                   <label className={styles.input_name} htmlFor={field.id}>{field.placeholder}</label>
                   <Input key={field.name} {...field} />
                 </p>
-              </>
-            ) }
-            <div className={styles.profilePage__buttonsWrapper}>
-              <Button
-                type="submit"
-                className={styles.profilePage__buttonSubmit}
-              >
-                Сохранить
-              </Button>
-              <Button
-                type="button"
-                onClick={onCancelData}
-                className={styles.profilePage__buttonCancel}
-              >
-                Отменить
-              </Button>
+              ) }
             </div>
+            { isEdit &&
+              <div className={styles.userFormData__buttonsWrapper}>
+                <Button
+                  viewType="success"
+                  type="submit"
+                  className={styles.userFormData__buttonSubmit}
+                >
+                  Сохранить
+                </Button>
+                <Button
+                  viewType="danger"
+                  type="button"
+                  onClick={onCancelData}
+                  className={styles.userFormData__buttonCancel}
+                >
+                  Отменить
+                </Button>
+              </div>
+            }
           </>
         ) }
       />
-      <Button
-        type="button"
-        onClick={changeData}
-        className={styles.profilePage__buttonChange}
-      >
-        Изменить данные
-      </Button>
     </div>
   );
 };

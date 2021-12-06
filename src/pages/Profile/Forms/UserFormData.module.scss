@@ -1,0 +1,91 @@
+@import '@/styles/variables.scss';
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.userFormData {
+  height: 100%;
+  transition: opacity .5s;
+  min-width: 380px;
+  min-height: calc(280px - 42px - 15px);
+
+  & > div {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  form {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr min-content;
+    height: 100%;
+  }
+
+  .input_name {
+    text-align: right;
+    color: $color-silver;
+    pointer-events: none;
+    border: none;
+  }
+  
+  input {
+    height: unset;
+    border: none;
+    border-bottom: 1px solid transparent;
+    pointer-events: none;
+  }
+
+  button {
+    display: none;
+  }
+
+  .userFormData__buttonsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .userFormData__buttonSubmit,
+  .userFormData__buttonCancel  {
+    display: block;
+  }
+}
+
+
+.userFormData.isEdit {
+  min-height: 280px;
+
+  input {
+    pointer-events: unset;
+    position: relative;
+    border-bottom: 1px solid $color-tulip-tree-dark;
+    border-radius: 0;
+  }
+    
+  .input_name {
+    pointer-events: unset;
+  }
+}
+
+.userFormData.isEditPasswordForm {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.input_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15px;
+  align-items: center;
+  margin: 0;
+
+  span {
+    grid-column: 2 / -1;
+  }
+}
