@@ -57,8 +57,11 @@ exports[`Button component testing Button 7`] = `
 `;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Button props snapshot tests
+=======
+>>>>>>> 030edea3dd7ae84f6f0b7e1ac257e8471b9c92d3
 
 exports[`Button component testing Button 8`] = `
 <button
@@ -78,7 +81,10 @@ exports[`Button component testing Link button 1`] = `
 </a>
 `;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> simple button snapshot test
 =======
 >>>>>>> Button props snapshot tests
+=======
+>>>>>>> 030edea3dd7ae84f6f0b7e1ac257e8471b9c92d3
