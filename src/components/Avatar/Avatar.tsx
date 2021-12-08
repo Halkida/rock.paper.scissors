@@ -25,8 +25,8 @@ const Avatar: FC<OwnProps> = ({ avatar, initials, isEditable, getNotification, s
   const [newAvatar, setNewAvatar] = useState(false);
 
   const validateImgFile = (file: File | undefined)  => {
-    return !!file?.type.match('image.*')
-  }
+    return !!file?.type.match('image.*');
+  };
 
   const onInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const files: Nullable<FileList> = evt.target.files;
@@ -39,24 +39,24 @@ const Avatar: FC<OwnProps> = ({ avatar, initials, isEditable, getNotification, s
 
     const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
-          setNewAvatar(true)
-          setSrc(e.target?.result as string)
+          setNewAvatar(true);
+          setSrc(e.target?.result as string);
           if (elementImage?.current) {
             elementImage.current.src = e.target?.result as string;
           }
       };
       reader.readAsDataURL(files?.[0]);
-  }
+  };
 
-  const onSubmit = (event: FormEvent ) => {
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const file = elementInputFile.current?.files?.[0]
+    const file = elementInputFile.current?.files?.[0];
     if (!file) {
       return;
     }
-    const form = new FormData()
-    form.append("avatar", file)
-    dispatch(loadPending())
+    const form = new FormData();
+    form.append('avatar', file);
+    dispatch(loadPending());
     userServise.changeAvatar(form)
       .then((response) => {
         dispatch(loadSuccess(response as IUser));
@@ -72,12 +72,12 @@ const Avatar: FC<OwnProps> = ({ avatar, initials, isEditable, getNotification, s
 
   const addDefaultSrc = () => {
     setSrc(avatar ? `https://ya-praktikum.tech/api/v2/resources${avatar}` : undefined);
-  }
+  };
 
   const onCancelData = () => {
     addDefaultSrc();
     setNewAvatar(false);
-  }
+  };
 
   return (
     <div className={cx([

@@ -63,7 +63,7 @@ export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>
 
   const clearErrors = () => {
     setErrors({});
-  }
+  };
 
   return {
     data,

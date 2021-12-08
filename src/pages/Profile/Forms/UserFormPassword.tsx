@@ -41,8 +41,8 @@ type OwnProps = {
 const userFormData: FC<OwnProps> = ({ isEdit, onEdit, getNotification }) => {
   const changeData = () => {
     onEdit();
-  }
-  
+  };
+
   const onSubmit = (data: Record<string, string>) => {
     userServise.changePassword({
       oldPassword: data.oldPassword,
@@ -56,7 +56,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, onEdit, getNotification }) => {
   };
 
   const { handleChange, handleSubmit, errors} = useForm<PasswordForm>({validationConfig, onSubmit});
-  
+
   const {
     password: passwordError,
     confirmPassword: confirmPasswordError,
@@ -101,15 +101,14 @@ const userFormData: FC<OwnProps> = ({ isEdit, onEdit, getNotification }) => {
         renderFields={ () => (
           <>
             <div className={styles.userFormData__inputsWrapper}>
-              { formUserDataConfig.map((field) => 
+              { formUserDataConfig.map((field) =>
                   <p
                     className={styles.input_wrapper}
                     key={field.name}
                   >
                     <label className={styles.input_name} htmlFor={field.id}>{field.placeholder}</label>
                     <Input key={field.name} {...field} />
-                  </p>
-              ) }
+                  </p>) }
             </div>
             <div className={styles.userFormPassword__buttonsWrapper}>
               <Button

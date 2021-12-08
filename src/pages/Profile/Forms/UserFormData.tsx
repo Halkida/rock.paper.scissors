@@ -79,19 +79,19 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
     setInputsData(data);
     clearErrors();
     onEdit();
-  }
+  };
 
   const onSubmit = () => {
     userServise.changeProfile({
-      "first_name": inputsData.first_name,
-      "second_name": inputsData.second_name,
-      "display_name": inputsData.login,
-      "login": inputsData.login,
-      "email": inputsData.email,
-      "phone": inputsData.phone,
+      'first_name': inputsData.first_name,
+      'second_name': inputsData.second_name,
+      'display_name': inputsData.login,
+      'login': inputsData.login,
+      'email': inputsData.email,
+      'phone': inputsData.phone,
     })
       .then((response) => {
-        dispatch(loadPending())
+        dispatch(loadPending());
         dispatch(loadSuccess(response as IUser));
       })
       .then(() => {
@@ -106,7 +106,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
   };
 
   const { handleChange, handleSubmit, errors, clearErrors} = useForm<ProfileForm>({validationConfig, initialValues: user, onSubmit});
-  
+
   const {
     email: emailError,
     first_name: nameError,
@@ -182,15 +182,14 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
         renderFields={ () => (
           <>
             <div className={styles.userFormData__inputsWrapper}>
-              { formUserDataConfig.map((field) => 
+              { formUserDataConfig.map((field) =>
                 <p
                   className={styles.input_wrapper}
                   key={field.name}
                 >
                   <label className={styles.input_name} htmlFor={field.id}>{field.placeholder}</label>
                   <Input key={field.name} {...field} />
-                </p>
-              ) }
+                </p>) }
             </div>
             { isEdit &&
               <div className={styles.userFormData__buttonsWrapper}>

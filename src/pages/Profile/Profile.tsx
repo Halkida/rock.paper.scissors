@@ -17,16 +17,16 @@ export const Profile: FC = () => {
   const changeData = () => {
     setIsEditPassword(false);
     setIsEditData(!isEditData);
-  }
+  };
   const changePassword = () => {
     setIsEditData(false);
     setIsEditPassword(!isEditPassword);
-  }
+  };
 
   const user: Nullable<IUser> = useSelector(selectUser) as IUser;
   const defaultAvatarText =  user?.first_name?.[0] + user?.second_name?.[0] || '';
   const avatarSrc = user?.avatar || undefined;
-  
+
   // const onChangeAvatar = () => {}
   return (
     <main className={styles.content}>
@@ -46,7 +46,7 @@ export const Profile: FC = () => {
         <UserFormData
           isEdit={isEditData}
           isEditPassword={isEditPassword}
-          onEdit={changeData} 
+          onEdit={changeData}
           getNotification={setNotification}
         />
         <UserFormPassword

@@ -14,8 +14,8 @@ type FormProps = FC<OwnFormProps>;
 
 const cx = classNames.bind(styles);
 
-export const Form: FormProps = function Form(
-  { onSubmit,
+export const Form: FormProps = function Form({
+    onSubmit,
     renderFields,
     title,
     submitText = 'Отправить',
@@ -24,7 +24,7 @@ export const Form: FormProps = function Form(
   const formClassNames = cx({
     [className]: true,
     ['form']: true,
-  })
+  });
   return (
     <div className={ formClassNames }>
       { title &&
