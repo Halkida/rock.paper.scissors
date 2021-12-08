@@ -34,24 +34,24 @@ type PasswordForm = {
 type OwnProps = {
   isEdit: boolean;
   onEdit: () => void;
+  getNotification: (notification: string) => void
 };
 
 
-const userFormData: FC<OwnProps> = ({ isEdit, onEdit }) => {
-  // const [isEdit, setIsEdit] = useState(false);
-
+const userFormData: FC<OwnProps> = ({ isEdit, onEdit, getNotification }) => {
   const changeData = () => {
     onEdit();
   }
   
   const onSubmit = (data: Record<string, string>) => {
-    userServise.changePasswodr({
+    userServise.changePassword({
       oldPassword: data.oldPassword,
       newPassword: data.password,
     })
       .then(() => changeData())
       .catch((error: Error) => {
-        console.log(error.message);
+        console.error(error.message);
+        getNotification(error.message);
       });
   };
 
@@ -95,7 +95,6 @@ const userFormData: FC<OwnProps> = ({ isEdit, onEdit }) => {
       styles.container,
       styles.userFormPassword,
       { [styles.isEdit]: isEdit },
-      // { [styles.isNotEdit]: !isEdit },
     ])}>
       <Form
         onSubmit={handleSubmit}

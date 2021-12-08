@@ -56,9 +56,10 @@ type OwnProps = {
   isEdit: boolean;
   isEditPassword: boolean;
   onEdit: () => void;
+  getNotification: (notification: string) => void
 };
 
-const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit }) => {
+const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotification }) => {
   const dispatch = useDispatch();
 
   const user: Nullable<IUser> = useSelector(selectUser);
@@ -74,14 +75,9 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit }) => {
     handleChange(key)(value);
   };
 
-  // const changeData = () => {
-  //   setIsEdit(!isEdit);
-  // }
-
   const onCancelData = () => {
     setInputsData(data);
     clearErrors();
-    // changeData();
     onEdit();
   }
 
@@ -95,7 +91,6 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit }) => {
       "phone": inputsData.phone,
     })
       .then((response) => {
-        console.log(response)
         dispatch(loadPending())
         dispatch(loadSuccess(response as IUser));
       })
@@ -105,7 +100,8 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit }) => {
       })
       .then(() => onEdit())
       .catch((error: Error) => {
-        console.log(error.message);
+        console.error(error.message);
+        getNotification(error.message);
       });
   };
 

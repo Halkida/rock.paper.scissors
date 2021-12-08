@@ -7,10 +7,13 @@ import { selectUser } from '@/store/user/selectors';
 import { Button } from '@/components/Button';
 import UserFormData from '@/pages/Profile/Forms/UserFormData';
 import UserFormPassword from '@/pages/Profile/Forms/UserFormPassword';
+import Avatar from '@/components/Avatar/Avatar';
+import { Notification } from '@/components/Notification';
 
 export const Profile: FC = () => {
   const [isEditData, setIsEditData] = useState(false);
   const [isEditPassword, setIsEditPassword] = useState(false);
+  const [notification, setNotification] = useState('');
   const changeData = () => {
     setIsEditPassword(false);
     setIsEditData(!isEditData);
@@ -21,25 +24,36 @@ export const Profile: FC = () => {
   }
 
   const user: Nullable<IUser> = useSelector(selectUser) as IUser;
-  const defaultAvatarText =  user?.first_name[0] + user?.second_name[0] || '';
+  const defaultAvatarText =  user?.first_name?.[0] + user?.second_name?.[0] || '';
+  const avatarSrc = user?.avatar || undefined;
   
-  const onChangeAvatar = () => {}
+  // const onChangeAvatar = () => {}
   return (
     <main className={styles.content}>
-      <div className={styles.container}>
-        <label className={styles.avatar__wrapper} htmlFor="avatar">
-        <img src="" alt="" />
-        <input type="file" onChange={onChangeAvatar} />
-        <span className={styles.avatar__default}>{ defaultAvatarText }</span>
-        </label>
-      </div>
+    { notification && <Notification>{notification}</Notification> }
+      <Avatar
+        avatar={avatarSrc}
+        initials={defaultAvatarText}
+        isEditable
+        getNotification={setNotification}
+        size="large"
+      />
       <div className={ cx([
         styles.profilePage__formsWrapper,
         { [styles.profilePage__formsWrapperIsEditPassword]: isEditPassword },
         { [styles.profilePage__formsWrapperIsEditData]: isEditData },
     ])}>
-        <UserFormData isEdit={isEditData} isEditPassword={isEditPassword} onEdit={changeData}/>
-        <UserFormPassword isEdit={isEditPassword} onEdit={changePassword}/>
+        <UserFormData
+          isEdit={isEditData}
+          isEditPassword={isEditPassword}
+          onEdit={changeData} 
+          getNotification={setNotification}
+        />
+        <UserFormPassword
+          isEdit={isEditPassword}
+          onEdit={changePassword}
+          getNotification={setNotification}
+        />
       </div>
       <div className={ styles.profilePage__buttonsWrapper }>
         <Button
