@@ -43,6 +43,12 @@ export const Home: FC = () => {
           </Button>
         )}
       </div>
+      <Button
+        href="/profile"
+        className={styles.button__profile}
+      >
+        <span className="visuallyHidden">Профиль</span>
+      </Button>
     </div>
   );
 };
