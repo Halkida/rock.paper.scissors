@@ -17,13 +17,7 @@ export const Comment: Props = ({ author, content }) => {
     <div className={styles.comment}>
       <div className={styles.comment_author}>
         <span>{display_name}</span>
-        {/* TODO need to fix empty avatar */}
-        { avatar ?
-          <>
-            <Image src={avatar} width='60px' height='60px' alt='Аватар' />
-          </>
-          : null
-        }
+        { avatar && <Image src={avatar} width='60px' height='60px' alt='Аватар' /> }
       </div>
       <div className={styles.comment_content}>{content}</div>
     </div>
