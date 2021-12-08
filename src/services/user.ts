@@ -19,7 +19,6 @@ class UserApi {
   }
   
   changeAvatar(form: FormData): Promise<IUser> {
-    console.log('form', form);
     return this.http.put('/user/profile/avatar', form)
       .then(response => response.data);
   }

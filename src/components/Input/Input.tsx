@@ -37,8 +37,6 @@ export const Input: Props = function Input(
     }
   }, [value]);
 
-  console.log('InputHTMLAttributes', InputHTMLAttributes);
-
   return (
     <>
       <input
