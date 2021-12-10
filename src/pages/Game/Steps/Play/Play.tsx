@@ -6,6 +6,7 @@ import Gamer from '@/RPS/Gamer';
 import { Cards } from '@/RPS/constants';
 import { selectUser } from '@/store/user/selectors';
 import GamerWithCards from './components/GamerWithCards';
+import Canvas from './components/Canvas';
 import styles from './Play.module.scss';
 import * as mocks from './mocks';
 
@@ -58,6 +59,7 @@ export const GamePlay: FC<OwnProps> = ({
           gamer={firstGamer}
           onCardClick={handleCardClick}
         />
+        <Canvas />
         <GamerWithCards
           isMine
           isReverse
