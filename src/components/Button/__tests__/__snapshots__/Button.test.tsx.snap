@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component testing Button 1`] = `
+<button
+  className="test-class button button_default button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 2`] = `
+<button
+  className=" button button_outline button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 3`] = `
+<button
+  className=" button button_default button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 4`] = `
+<button
+  className=" button button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 5`] = `
+<button
+  className=" button button_text button_medium"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 6`] = `
+<button
+  className=" button button_default button_small"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Button 7`] = `
+<button
+  className=" button button_default button_medium"
+>
+  Button
+</button>
+`;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Button props snapshot tests
+=======
+>>>>>>> 030edea3dd7ae84f6f0b7e1ac257e8471b9c92d3
+
+exports[`Button component testing Button 8`] = `
+<button
+  className=" button button_default button_large"
+>
+  Button
+</button>
+`;
+
+exports[`Button component testing Link button 1`] = `
+<a
+  className=" button button_default button_medium button_link"
+  href="/https://ya.ru/"
+  onClick={[Function]}
+>
+  Link
+</a>
+`;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> simple button snapshot test
+=======
+>>>>>>> Button props snapshot tests
+=======
+>>>>>>> 030edea3dd7ae84f6f0b7e1ac257e8471b9c92d3

@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component testing Input props 1`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="text"
+>
+  Input
+</input>
+`;
+
+exports[`Input component testing Input props 2`] = `
+Array [
+  <input
+    className="input input_invalid"
+    onChange={[Function]}
+    type="text"
+  >
+    Input
+  </input>,
+  "",
+]
+`;
+
+exports[`Input component testing Input props 3`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="text"
+>
+  Input
+</input>
+`;
+
+exports[`Input component testing Input props 4`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="text"
+>
+  Input
+</input>
+`;
+
+exports[`Input component testing Input props 5`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="number"
+>
+  Input
+</input>
+`;
+
+exports[`Input component testing Input props 6`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="text"
+>
+  Input
+</input>
+`;
+
+exports[`Input component testing Input props 7`] = `
+<input
+  className="input"
+  onChange={[Function]}
+  type="password"
+>
+  Input
+</input>
+`;
