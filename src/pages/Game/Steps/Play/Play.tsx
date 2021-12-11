@@ -1,12 +1,12 @@
-import { FC, useEffect, useState, useCallback } from 'react';
+import { FC, useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { IUser } from '@/types';
 import RPS, { GameStats } from '@/RPS';
+import RPSCanvas from './RPSCanvas';
 import Gamer from '@/RPS/Gamer';
 import { Cards } from '@/RPS/constants';
 import { selectUser } from '@/store/user/selectors';
 import GamerWithCards from './components/GamerWithCards';
-import Canvas from './components/Canvas';
 import styles from './Play.module.scss';
 import * as mocks from './mocks';
 
@@ -19,6 +19,19 @@ export const GamePlay: FC<OwnProps> = ({
   withComputer = true,
   onFinish,
 }) => {
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const rPSCanvas = useMemo(() => (
+    canvas.current ?
+      new RPSCanvas(
+          canvas.current,
+          {
+            width: 500,
+            height: 250,
+          }
+        ) : null),
+    [canvas.current, RPSCanvas]);
+    console.log(rPSCanvas);
+
   const user: IUser = useSelector(selectUser) as IUser;
   const [gamers, setGamers] = useState<Gamer[]>([
     new Gamer({
@@ -59,7 +72,14 @@ export const GamePlay: FC<OwnProps> = ({
           gamer={firstGamer}
           onCardClick={handleCardClick}
         />
-        <Canvas />
+        <div className={styles.canvasWrapper}>
+        <canvas
+          ref={canvas}
+          className={styles.canvas}
+        >
+          Для просмотра анимации воспользуйтесь браузером, который поддерживает технологию canvas
+        </canvas>
+        </div>
         <GamerWithCards
           isMine
           isReverse

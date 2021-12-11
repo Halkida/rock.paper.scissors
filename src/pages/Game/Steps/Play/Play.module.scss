@@ -1,7 +1,33 @@
+@import '@/styles/variables.scss';
+
 .wrapper {
-  height: 100%;
   padding: 1rem;
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   flex-direction: column;
+}
+
+.canvasWrapper {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:export {
+  colorBackground: $color-background;
+  colorTulipTree: $color-tulip-tree;
+  colorPrimary: $color-primary;
+  colorWhite: $color-white;
+  colorSilver: $color-silver;
+  colorGeraldine: $color-geraldine;
+  colorShark: $color-shark;
+  colorRed: $color-red;
+  colorRock: $color-rock;
+  colorPaper: $color-paper;
+  colorScissors: $color-scissors;
+  colorBright: $color-bright-red;
+  colorError: $color-error;
 }
