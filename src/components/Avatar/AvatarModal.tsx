@@ -22,7 +22,6 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
   const dispatch = useDispatch();
   const elementInputFile = useRef<HTMLInputElement>(null);
   const [newSrc, setNewSrc] = useState('');
-  console.log('isShown', isShown)
 
   const validateImgFile = (file: File | undefined)  => {
     return !!file?.type.match('image.*');
@@ -74,7 +73,6 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
   }
 
   const onCancelModal = () => {
-    console.log('onCancelModal')
     clearInputAvatar();
     toggle();
   }

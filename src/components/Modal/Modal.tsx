@@ -17,8 +17,7 @@ export const Modal: FC<ModalProps> = ({
   modalContent,
   headerText,
 }) => {
-  const { ref, isClickOutside } = useClickOutside(false, hide)
-  console.log('isClickOutside', isClickOutside);
+  const { ref } = useClickOutside(false, hide);
 
   const modal = (
     <>

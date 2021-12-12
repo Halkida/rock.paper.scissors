@@ -17,7 +17,6 @@ export const Profile: FC = () => {
   const [isEditAvatar, setIsEditAvatar] = useState(false);
   const [notification, setNotification] = useState('');
   const { isShown, toggle } = useModal();
-console.log('isShowProfile', isShown);
   const changeData = () => {
     setIsEditPassword(false);
     setIsEditAvatar(false);
