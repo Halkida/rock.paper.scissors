@@ -1,0 +1,43 @@
+@import '@/styles/variables.scss';
+
+.avatarModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatarModal__form {
+  margin: 15px 0 0;
+
+  button {
+    display: none;
+  }
+
+  .avatarModal__buttonSubmit,
+  .avatarModal__buttonCancel {
+    display: block;
+    color: $color-background;
+  }
+}
+
+.avatarModal__input {
+  font-size: $font-medium;
+  background-color: $color-tulip-tree;
+  color: $color-white;
+  border-radius: $default-border-radius;
+  cursor: pointer;
+  padding: 12px 24px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 380px;
+  color: $color-background;
+}
+
+.avatarModal__buttonsWrapper  {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 15px;
+  min-width: 380px;
+}
