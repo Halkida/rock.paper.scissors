@@ -97,6 +97,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, onEdit, getNotification }) => {
       { [styles.isEdit]: isEdit },
     ])}>
       <Form
+        className={styles.userForm}
         onSubmit={handleSubmit}
         renderFields={ () => (
           <>

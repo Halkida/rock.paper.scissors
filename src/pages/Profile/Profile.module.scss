@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100%;
+  overflow: hidden;
 }
 
 .container {
@@ -41,4 +42,8 @@
 .profilePage__formsWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.profilePage__buttonChange {
+  color: $color-background;
 }

@@ -66,7 +66,6 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
 
   const [data, setData] = useState(user as IUser);
   const [inputsData, setInputsData] = useState(user as IUser);
-  // const [isEdit, setIsEdit] = useState(false);
 
   const onInputChange = (key: string) => (value: string) => {
     setInputsData((prevData: IUser) => {
@@ -173,7 +172,6 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
     <div className={cx([
       styles.container,
       styles.userFormData,
-      // { [styles.dataSection]: !isEditPassword },
       { [styles.isEdit]: isEdit },
       { [styles.isEditPasswordForm]: isEditPassword },
     ])}>
