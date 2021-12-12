@@ -5,10 +5,10 @@ import styles from'./Form.module.scss';
 
 type OwnFormProps = {
   className?: string,
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void,
   renderFields: () => JSX.Element,
-  submitText?: string
-  title?: string
+  submitText?: string,
+  title?: string,
 };
 type FormProps = FC<OwnFormProps>;
 
@@ -32,7 +32,11 @@ export const Form: FormProps = function Form({
           {title}
         </span>
       }
-      <form onSubmit={onSubmit} action='' className={styles.form__body}>
+      <form
+        onSubmit={onSubmit}
+        action=''
+        className={styles.form__body}
+      >
         { renderFields() }
         <Button type='submit' size='small'>{submitText}</Button>
       </form>
