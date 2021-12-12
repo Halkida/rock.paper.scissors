@@ -8,7 +8,7 @@ import './styles/index.scss';
 
 const store = configureStore(getInitialState());
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Router>
     <ErrorBoundary>
       <Provider store={store}>
