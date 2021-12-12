@@ -1,4 +1,4 @@
-export const loadImage = (src: string) => (
+export const loadImage = (src: string): Promise<HTMLImageElement> => (
   new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
