@@ -16,6 +16,16 @@
   justify-content: center;
 }
 
+.button {
+  display: block;
+  margin: 1rem auto;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
 :export {
   colorBackground: $color-background;
   colorTulipTree: $color-tulip-tree;
