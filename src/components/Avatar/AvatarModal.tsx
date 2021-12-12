@@ -49,6 +49,9 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
     if (!file) {
       return;
     }
+    if (!validateImgFile(file)) {
+      return;
+    }
     const form = new FormData();
     form.append('avatar', file);
     dispatch(loadPending());
