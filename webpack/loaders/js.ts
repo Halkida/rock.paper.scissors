@@ -19,7 +19,7 @@ export default {
       use: {
         loader: 'ts-loader',
         options: {
-          configFile: path.resolve(ROOT_DIR, '../tsconfig.json')
+          configFile: path.resolve(ROOT_DIR, 'tsconfig.json')
         }
       }
   },
