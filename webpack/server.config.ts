@@ -1,10 +1,10 @@
 
-import path from 'path';
+import * as path from 'path';
 import { Configuration } from 'webpack';
-import nodeExternals from 'webpack-node-externals';
+import * as nodeExternals from 'webpack-node-externals';
 // import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 
-import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
+import { /* IS_DEV, */ DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
@@ -25,6 +25,10 @@ const config: Configuration = {
     },
     resolve: {
         modules: ['src', 'node_modules'],
+        alias: {
+          // 'react-dom': '@hot-loader/react-dom',
+          '@': path.resolve(SRC_DIR)
+        },
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
         // plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },

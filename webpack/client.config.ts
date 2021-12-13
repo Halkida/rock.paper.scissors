@@ -1,10 +1,10 @@
-import path from 'path';
+import * as path from 'path';
 import { Configuration, /* Plugin, Entry  */} from 'webpack';
 // import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 // import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import CompressionPlugin from 'compression-webpack-plugin';
 
-import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
+import { /* IS_DEV, */ DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
@@ -33,10 +33,11 @@ const config: Configuration = {
     resolve: {
         modules: ['src', 'node_modules'],
         alias: {
-          'react-dom': '@hot-loader/react-dom',
-          '@': path.resolve(__dirname, 'src/')
+          // 'react-dom': '@hot-loader/react-dom',
+          '@': path.resolve(SRC_DIR)
         },
-        extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+        // extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
         // plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
     // plugins: [
@@ -46,9 +47,9 @@ const config: Configuration = {
 
     devtool: 'source-map',
 
-    performance: {
-        hints: IS_DEV ? false : 'warning',
-    },
+    // performance: {
+    //     hints: IS_DEV ? false : 'warning',
+    // },
 };
 
 export default config;
