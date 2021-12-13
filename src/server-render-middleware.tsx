@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 import { App } from '@/components/App/App';
 
 export default (req: Request, res: Response) => {
+  console.log(req);
+
   const jsx = (<App />);
   const reactHtml = renderToString(jsx);
 
@@ -17,8 +19,7 @@ function getHtml(reactHtml: string) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link rel="shortcut icon" type="image/png" href="/images/favicon.jpg">
-      <title>Sneakers shop</title>
+      <title>RPS</title>
       <link href="/main.css" rel="stylesheet">
   </head>
   <body>
