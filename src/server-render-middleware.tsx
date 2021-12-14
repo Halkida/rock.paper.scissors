@@ -1,11 +1,14 @@
 import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom/server';
 import { Request, Response } from 'express';
 import { App } from '@/components/App/App';
 
 export default (req: Request, res: Response) => {
-  console.log(req);
-
-  const jsx = (<App />);
+  const jsx = (
+    <StaticRouter location={req.url}>
+      <App />
+    </StaticRouter>
+  );
   const reactHtml = renderToString(jsx);
 
   res.send(getHtml(reactHtml));
