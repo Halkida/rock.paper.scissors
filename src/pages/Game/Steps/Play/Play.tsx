@@ -89,6 +89,7 @@ export const GamePlay: FC<OwnProps> = ({
   return (
     <div className={styles.wrapper}>
       <GamerWithCards
+        disabled={shouldShowButton}
         gamer={firstGamer}
         onCardClick={handleCardClick}
       />
@@ -114,6 +115,7 @@ export const GamePlay: FC<OwnProps> = ({
       <GamerWithCards
         isMine
         isReverse
+        disabled={shouldShowButton}
         gamer={secondGamer}
         onCardClick={handleCardClick}
       />
