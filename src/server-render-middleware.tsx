@@ -1,12 +1,18 @@
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
+import { Provider } from 'react-redux';
 import { Request, Response } from 'express';
 import { App } from '@/components/App/App';
+import { configureStore, getInitialState } from '@/store';
 
 export default (req: Request, res: Response) => {
+  const store = configureStore(getInitialState());
+
   const jsx = (
     <StaticRouter location={req.url}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </StaticRouter>
   );
   const reactHtml = renderToString(jsx);
@@ -26,7 +32,7 @@ function getHtml(reactHtml: string) {
       <link href="/main.css" rel="stylesheet">
   </head>
   <body>
-      <div id="mount">${reactHtml}</div>
+      <div id="root">${reactHtml}</div>
       <script src="/main.js"></script>
   </body>
   </html>
