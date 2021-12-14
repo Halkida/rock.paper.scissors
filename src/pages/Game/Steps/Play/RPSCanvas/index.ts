@@ -1,9 +1,9 @@
 import { Cards } from '@/RPS/constants';
 import { loadImage } from '@/utils/images';
 import shirtCard from '@/assets/shirt-card.png';
-import paperCard from '@/assets/paper.png';
-import rockCard from '@/assets/rock.png';
-import scissorsCard from '@/assets/scissors.png';
+import paperCard from '@/assets/paper-card.png';
+import rockCard from '@/assets/rock-card.png';
+import scissorsCard from '@/assets/scissors-card.png';
 import styles from '../Play.module.scss';
 
 type Card = {
@@ -16,8 +16,8 @@ type CanvasOptions = {
   height: number,
 };
 
-const CARD_HEIGHT = 159;
-const CARD_WIDTH = 112;
+const CARD_HEIGHT = 207;
+const CARD_WIDTH = 146;
 const CARD_INDENT = 10;
 
 export default class RPSCanvas {
