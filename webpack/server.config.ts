@@ -1,7 +1,7 @@
 
 import * as path from 'path';
 import { Configuration } from 'webpack';
-import * as nodeExternals from 'webpack-node-externals';
+import nodeExternals from 'webpack-node-externals';
 
 import { /* IS_DEV, */ DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
