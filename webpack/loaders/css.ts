@@ -1,4 +1,3 @@
-
 import { SRC_DIR } from '../env';
 
 const path = require('path');
@@ -41,7 +40,35 @@ export default {
     }
   },
   server: {
-      test: /\.css$/,
-      loader: 'null-loader',
-  },
+    scssModules: {
+      test: sassModuleRegex,
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            modules: {
+              localIdentName: '[path][name]__[local]',
+              exportOnlyLocals: true
+            }
+          }
+        },
+        { loader: 'sass-loader' }
+      ],
+      exclude: path.resolve(SRC_DIR, './styles')
+    },
+    scss: {
+      test: sassRegex,
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+          }
+        },
+        { loader: 'sass-loader' }
+      ],
+      include: path.resolve(SRC_DIR, './styles')
+    }
+  }
 };

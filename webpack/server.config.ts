@@ -2,7 +2,6 @@
 import * as path from 'path';
 import { Configuration } from 'webpack';
 import * as nodeExternals from 'webpack-node-externals';
-// import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 
 import { /* IS_DEV, */ DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
@@ -15,7 +14,12 @@ const config: Configuration = {
     node: { __dirname: false },
     entry: path.join(SRC_DIR, 'server'),
     module: {
-        rules: [fileLoader.server, cssLoader.server, jsLoader.server],
+        rules: [
+          fileLoader.server,
+          cssLoader.server.scss,
+          cssLoader.server.scssModules,
+          jsLoader.server
+        ]
     },
     output: {
         filename: 'server.js',
@@ -30,7 +34,6 @@ const config: Configuration = {
           '@': path.resolve(SRC_DIR)
         },
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
-        // plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
 
     devtool: 'source-map',
