@@ -96,7 +96,7 @@ export default class RPSCanvas {
       const x = (width - totalWidth) / 2 + index * (CARD_WIDTH + CARD_INDENT);
       const y = (height - CARD_HEIGHT) / 2;
       ctx.drawImage(
-        isRevert ? shirtImage : types[card.type],
+        !isRevert ? shirtImage : types[card.type],
         x,
         y,
         CARD_WIDTH,
