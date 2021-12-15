@@ -1,12 +1,13 @@
 import { hydrate } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { configureStore, getInitialState } from '@/store';
+import { configureStore } from '@/store';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import App from './components/App';
 import './styles/index.scss';
 
-const store = configureStore(getInitialState());
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState);
 
 hydrate(
   <Router>

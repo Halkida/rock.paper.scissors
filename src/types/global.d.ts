@@ -1,3 +1,5 @@
+import { IState } from './State';
+
 interface Document {
   mozCancelFullScreen?: () => Promise<void>;
   msExitFullscreen?: () => Promise<void>;
@@ -14,3 +16,7 @@ interface HTMLElement {
 }
 
 type Nullable<T> = T | null;
+
+interface Window {
+    __INITIAL_STATE__: IState;
+}
