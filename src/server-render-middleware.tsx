@@ -7,6 +7,7 @@ import { configureStore, getInitialState } from '@/store';
 
 export default (req: Request, res: Response) => {
   const store = configureStore(getInitialState());
+  const reduxState = store.getState();
 
   const jsx = (
     <StaticRouter location={req.url}>
@@ -17,10 +18,10 @@ export default (req: Request, res: Response) => {
   );
   const reactHtml = renderToString(jsx);
 
-  res.send(getHtml(reactHtml));
+  res.send(getHtml(reactHtml, reduxState));
 };
 
-function getHtml(reactHtml: string) {
+function getHtml(reactHtml: string, reduxState = {}) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -33,6 +34,9 @@ function getHtml(reactHtml: string) {
   </head>
   <body>
       <div id="root">${reactHtml}</div>
+      <script>
+          window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
+      </script>
       <script src="/main.js"></script>
   </body>
   </html>
