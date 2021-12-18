@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export const useFullScreen = () => {
+export const useFullScreenAPI = () => {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   const requestFullScreen = useCallback((element: HTMLElement) => {

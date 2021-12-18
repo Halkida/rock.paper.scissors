@@ -1,1 +1,1 @@
-export { useFullScreen } from './useFullSccreen';
+export { useFullScreenAPI } from './useFullSccreenAPI';
