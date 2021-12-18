@@ -2,11 +2,12 @@ import { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import { selectUser } from '@/store/user/selectors';
-import { IUser } from '@/types';
+import { IUser, Notification } from '@/types';
 import { GameStats } from '@/RPS';
 import { Button } from '@/components/Button';
 import Star from '@/icons/Star';
 import IconStarSolid from '@/icons/StarSolid';
+import { useNotificationAPI } from '@/hooks';
 import styles from'./Finish.module.scss';
 
 type OwnProps = {
@@ -22,6 +23,12 @@ export const GameFinish: FC<OwnProps> = ({
   const isWinner = gameStats?.winnerId === user.id;
   const roundsCount = gameStats?.history.length;
   const resultTitle = isWinner ? 'Вы победили' : 'Вы проиграли';
+
+  const title = isWinner ? 'Успех!' : 'Попробуй еще!';
+  const body = isWinner ? 'У тебя получилось' : 'Когда-нибудь получится!';
+  const notificationOptions: Notification = { title, body };
+  const { notify } = useNotificationAPI();
+  notify(notificationOptions);
 
   const handleGameComplete = useCallback(() => onGameComplete(), [onGameComplete]);
 
