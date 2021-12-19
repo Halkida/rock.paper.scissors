@@ -1,16 +1,21 @@
-import { SRC_DIR } from '../env';
+import { SRC_DIR, DIST_DIR } from '../env';
 
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
-
 export default {
   client: {
     scssModules: {
       test: sassModuleRegex,
       use: [
-        { loader: 'style-loader' },
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: DIST_DIR,
+          },
+        },
         {
           loader: 'css-loader',
           options: {
@@ -27,7 +32,12 @@ export default {
     scss: {
       test: sassRegex,
       use: [
-        { loader: 'style-loader' },
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: DIST_DIR,
+          },
+        },
         {
           loader: 'css-loader',
           options: {
