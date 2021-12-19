@@ -6,6 +6,7 @@ import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config: Configuration = {
   entry: path.join(SRC_DIR, 'client.tsx'),
     module: {
@@ -28,6 +29,23 @@ const config: Configuration = {
         },
         extensions: ['.tsx', '.ts', '.js', '.json'],
     },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: "main",
+            type: "css/mini-extract",
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css'
+      }),
+    ],
     devtool: 'source-map',
 };
 
