@@ -13,7 +13,6 @@ export const useNotificationAPI = () => {
   const notify = useCallback((options: Notification) => {
     if (permisstion === 'granted') {
       const {title, body, ...NotificationOptions} = options;
-      console.log(NotificationOptions);
 
       const notification = new Notification(title, {
         body,
