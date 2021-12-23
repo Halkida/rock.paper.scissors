@@ -3,6 +3,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 import { Request, Response } from 'express';
 import { App } from '@/components/App/App';
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { configureStore, getInitialState } from '@/store';
 
 export default (req: Request, res: Response) => {
@@ -11,9 +12,11 @@ export default (req: Request, res: Response) => {
 
   const jsx = (
     <StaticRouter location={req.url}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ErrorBoundary>
     </StaticRouter>
   );
   const reactHtml = renderToString(jsx);
