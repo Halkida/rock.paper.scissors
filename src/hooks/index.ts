@@ -1,1 +1,2 @@
-export { useFullScreen } from './useFullSccreen';
+export { useFullScreenAPI } from './useFullSccreenAPI';
+export { useNotificationAPI } from './useNotificationAPI';
