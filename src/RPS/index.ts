@@ -132,7 +132,6 @@ class RPS {
     this.dealСardsForGamers();
     this.roundsCount = 0;
     this.eventBus.emit(RPS.events.start);
-    this.computersInitSteps();
   }
 
   public finish() {
@@ -143,6 +142,7 @@ class RPS {
   public makeAStep(userId: number, cardType: Cards) {
     const gamer = this.gamers.find(({ id }) => id === userId);
     gamer?.makeAStep(cardType);
+    this.computersInitSteps();
     this.eventBus.emit(RPS.events.madeAStep, this.gamers);
 
     if (!this.isAllMadeAStep) {
@@ -164,8 +164,6 @@ class RPS {
 
     if (this.isFinish) {
       this.finish();
-    } else {
-      this.computersInitSteps();
     }
   }
 

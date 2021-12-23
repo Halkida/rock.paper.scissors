@@ -11,6 +11,7 @@ type OwnProps = {
   isReverse?: boolean,
   gamer: Gamer,
   className?: string,
+  disabled?: boolean,
   onCardClick: (id: number, card: Cards) => void,
 };
 
@@ -19,6 +20,7 @@ export const GamerWithCards: FC<OwnProps> = ({
   isReverse = false,
   gamer,
   className,
+  disabled = false,
   onCardClick,
 }) => {
   const handleCardClick = useCallback(
@@ -54,7 +56,7 @@ export const GamerWithCards: FC<OwnProps> = ({
                   key={card}
                   type={card}
                   isMine={isMine}
-                  disabled={isDisabled}
+                  disabled={isDisabled || disabled}
                   count={gamer.cards[card]}
                   className={styles.card}
                   onClick={handleCardClick(gamer.id, card)}
