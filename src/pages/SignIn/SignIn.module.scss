@@ -7,3 +7,29 @@
   justify-content: center;
   height: 100%;
 }
+
+.oAuths {
+  display: flex;
+  margin-top: 2rem;
+
+  &_title {
+    color: $color-silver;
+    font-size: 0.875rem;
+  }
+
+  &_list {
+    display: flex;
+    margin-left: .5rem;
+  }
+
+  &_button {
+    height: 1.5em;
+    width: 1.5em;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}

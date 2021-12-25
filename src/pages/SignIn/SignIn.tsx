@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import yandexIcon from '@/assets/yandex-icon.png';
 import { Input } from '@/components/Input';
 import { Form, useForm } from '@/components/Form';
 import { Notification } from '@/components/Notification';
@@ -68,6 +69,22 @@ export const SignIn: FC = function SignInPage() {
         ) }
       />
       <Link className="link" to="/sign-up" >Зарегистрироваться</Link>
+      <div className={styles.oAuths}>
+        <div className={styles.oAuths_title}>
+          Войти с помощью:
+        </div>
+        <ul className={styles.oAuths_list}>
+          <li className={styles.oAuths_item}>
+            <button
+              type="button"
+              className={styles.oAuths_button}
+              style={{
+                backgroundImage: `url(${yandexIcon})`,
+              }}
+            />
+          </li>
+        </ul>
+      </div>
     </main>
   );
 };
