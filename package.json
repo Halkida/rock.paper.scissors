@@ -6,9 +6,10 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "NODE_ENV=production NODE_PATH=. npm run clean && webpack --mode production --config webpack/client.config.ts",
     "start:webpack": "webpack --mode=development --watch",
     "start:server": "nodemon index.js --watch dist/server.js",
+    "start": "NODE_ENV=development npm-run-all --print-label --parallel start:*",
     "eslint": "eslint . --ext .tsx",
     "test": "jest"
   },
