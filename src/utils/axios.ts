@@ -5,7 +5,7 @@ import axios, {
 } from 'axios';
 
 const baseConfig: AxiosRequestConfig = {
-  timeout: 1000,
+  timeout: 3000,
   withCredentials: true,
 };
 
