@@ -6,6 +6,7 @@ import { Form, useForm } from '@/components/Form';
 import { Notification } from '@/components/Notification';
 import authServise from '@/services/auth';
 import { PATTERNS } from '@/utils/formValidation';
+import oAuthService from '@/services/oAuth';
 import styles from'./SignIn.module.scss';
 
 const validationConfig = {
@@ -42,6 +43,15 @@ export const SignIn: FC = function SignInPage() {
 
   const { handleChange, handleSubmit, errors} = useForm<SignInForm>({validationConfig, onSubmit});
   const { login: loginError, password: passwordError } = (errors as any);
+
+  const handleYandexClick = async () => {
+    try {
+      const data = await oAuthService.getServiceId();
+      document.location.href = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${data.service_id}&redirect_uri=${window.location.origin}`;
+    } catch (error) {
+      setNotification(error.message);
+    }
+  };
 
   return (
     <main className={ styles.signin }>
@@ -81,6 +91,7 @@ export const SignIn: FC = function SignInPage() {
               style={{
                 backgroundImage: `url(${yandexIcon})`,
               }}
+              onClick={handleYandexClick}
             />
           </li>
         </ul>
