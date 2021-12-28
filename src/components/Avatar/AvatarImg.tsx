@@ -12,8 +12,6 @@ type OwnProps = {
 
 export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onClick, size = 'medium' }) => {
   const elementAvatar = useRef<HTMLButtonElement>(null);
-  const base64Src = !!avatarSrc?.match('base64');
-  const scr = base64Src ? avatarSrc : `https://ya-praktikum.tech/api/v2/resources${avatarSrc}`;
 
   return (
     <>
@@ -28,7 +26,7 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
         onClick={onClick}
       >
         <img
-          src={scr}
+          src={avatarSrc}
           alt="avatar"
           className={styles.avatar__image}
         />
@@ -41,7 +39,7 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
         ])}
       >
         <img
-          src={scr}
+          src={avatarSrc}
           alt="avatar"
           className={styles.avatar__image}
         />

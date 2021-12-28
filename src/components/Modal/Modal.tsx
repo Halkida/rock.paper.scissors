@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { createPortal } from 'react-dom';
+import { FC, ReactNode } from 'react';
+import cx from 'classnames';
 import { useClickOutside } from '@/hooks';
 import { Button } from '@/components/Button';
 import styles from'./Modal.module.scss';
@@ -7,43 +7,46 @@ import styles from'./Modal.module.scss';
 export interface ModalProps {
   isShown: boolean;
   hide: () => void;
-  modalContent: JSX.Element;
+  children: ReactNode | string;
   headerText?: string;
 }
 
 export const Modal: FC<ModalProps> = ({
   isShown,
   hide,
-  modalContent,
+  children,
   headerText,
 }) => {
   const { ref } = useClickOutside(false, hide);
 
   const modal = (
-    <>
-      <div className={styles.modal__backdrop} />
+    <div className={cx([
+      styles.modal,
+      { [styles['modal--show']]: isShown },
+    ])}>
+      <div className={ styles.modal__backdrop } />
       <div
         ref={ref}
-        className={styles.modal__wrapper}
+        className={ styles.modal__wrapper }
       >
-        <div className={styles.modal__styledModal}>
-          <div className={styles.modal__header}>
-            { headerText && <p className={styles.modal__headerText}>
+        <div className={ styles.modal__styledModal }>
+          <div className={ styles.modal__header }>
+            { headerText && <p className={ styles.modal__headerText }>
               {headerText}
             </p> }
             <Button
-              className={styles.modal_buttonClose}
-              onClick={hide}
+              className={ styles.modal_buttonClose }
+              onClick={ hide }
             >
               <span className="visuallyHidden">Закрыть</span>
             </Button>
           </div>
           <div className="modal__content">
-            {modalContent}
+            { children }
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
-  return isShown ? createPortal(modal, document.body) : null;
+  return modal;
 };

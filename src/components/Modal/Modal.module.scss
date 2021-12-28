@@ -1,3 +1,11 @@
+.modal {
+  display: none;
+}
+
+.modal--show {
+  display: block;
+}
+
 .modal__wrapper {
   position: fixed;
   top: 50%;

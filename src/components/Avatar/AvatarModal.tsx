@@ -1,4 +1,4 @@
-import { FC, useState, useRef, FormEvent, ChangeEvent } from 'react';
+import { FC, useState, useCallback, useRef, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import styles from'./AvatarModal.module.scss';
@@ -27,7 +27,7 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
     return !!file?.type.match('image.*');
   };
 
-  const onInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     const files: Nullable<FileList> = evt.target.files;
     if (!files?.[0]) {
       return;
@@ -41,9 +41,9 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
           setNewSrc(e.target?.result as string);
       };
       reader.readAsDataURL(files?.[0]);
-  };
+  }, []);
 
-  const onSubmit = (event: FormEvent) => {
+  const onSubmit = useCallback((event: FormEvent) => {
     event.preventDefault();
     const file = elementInputFile.current?.files?.[0];
     if (!file) {
@@ -66,7 +66,7 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
         }
         getNotification(error.message);
       });
-  };
+  }, []);
 
   const clearInputAvatar = () => {
     if (elementInputFile && elementInputFile?.current) {
@@ -80,14 +80,14 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
     toggle();
   }
 
-  const content = <div className={styles.avatarModal}>
+  const content = <div className={ styles.avatarModal }>
     <AvatarImg
-      avatarSrc={newSrc || avatarSrc}
-      size={avatarSize}
+      avatarSrc={ newSrc || avatarSrc }
+      size={ avatarSize }
     />
     <Form
       className={ styles.avatarModal__form }
-      onSubmit={onSubmit}
+      onSubmit={ onSubmit }
       renderFields={ () => (
         <>
         <label
@@ -99,9 +99,9 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
         >
           Выберите файл
         <input
-          ref={elementInputFile}
+          ref={ elementInputFile }
           type="file"
-          onChange={onInputChange}
+          onChange={ onInputChange }
           id="avatar"
           className="visuallyHidden"
         />
@@ -115,15 +115,15 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
             <Button
               viewType="success"
               type="submit"
-                className={styles.avatarModal__buttonSubmit}
+                className={ styles.avatarModal__buttonSubmit }
               >
                 Сохранить
               </Button>
               <Button
                 viewType="danger"
                 type="button"
-                onClick={onCancelModal}
-                className={styles.avatarModal__buttonCancel}
+                onClick={ onCancelModal }
+                className={ styles.avatarModal__buttonCancel }
               >
                 Отменить
               </Button>
@@ -133,6 +133,8 @@ export const AvatarModal: FC<AvatarModalProps> = ({ isShown, toggle, avatarSrc, 
     />
   </div>;
   return (
-    <Modal isShown={isShown} hide={onCancelModal} modalContent={content} />
+    <Modal isShown={ isShown } hide={ onCancelModal }>
+      { content }
+    </Modal>
   );
 };
