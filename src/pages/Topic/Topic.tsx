@@ -36,8 +36,8 @@ export const Topic: FC = () => {
           <>
             <h1 className={styles.topic_title}>{topic.title}</h1>
             <div className={styles.topic_author}>
-              <span>{topic.author.nickName}</span>
-              <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар' />
+              <span>{topic.author.display_name}</span>
+              { topic.author.avatar && <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар' /> }
             </div>
             <div className={styles.topic_description}>{topic.description}</div>
             <div className={styles.comments}>

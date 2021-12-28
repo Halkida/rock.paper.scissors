@@ -2,11 +2,12 @@ const moсkTopicList = [{
   id: 1,
   author: {
     id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Хорошее Имя',
-    secondName: 'Хорошая Фамилия',
+    first_name: 'Хорошее Имя',
+    second_name: 'Хорошая Фамилия',
     phone: '+79999999999',
-    nickName: 'good_boy',
+    display_name: 'good_boy',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не менее хороший тайтл',
@@ -14,12 +15,13 @@ const moсkTopicList = [{
 }, {
   id: 2,
   author: {
-    id: 2,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Обычное имя',
-    secondName: 'Обычная фамилия',
+    first_name: 'Обычное имя',
+    second_name: 'Обычная фамилия',
     phone: '+79999999999',
-    nickName: 'common_user',
+    display_name: 'common_user',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Обычный тайтл, стоящий внимания',
@@ -27,12 +29,13 @@ const moсkTopicList = [{
 }, {
   id: 3,
   author: {
-    id: 3,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Как же он хорош!',
@@ -40,12 +43,13 @@ const moсkTopicList = [{
 }, {
   id: 4,
   author: {
-    id: 4,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -53,12 +57,13 @@ const moсkTopicList = [{
 }, {
   id: 5,
   author: {
-    id: 5,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -66,12 +71,13 @@ const moсkTopicList = [{
 }, {
   id: 6,
   author: {
-    id: 6,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -79,12 +85,13 @@ const moсkTopicList = [{
 }, {
   id: 7,
   author: {
-    id: 7,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -92,12 +99,13 @@ const moсkTopicList = [{
 }, {
   id: 8,
   author: {
-    id: 8,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -105,12 +113,13 @@ const moсkTopicList = [{
 }, {
   id: 9,
   author: {
-    id: 9,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -118,12 +127,13 @@ const moсkTopicList = [{
 }, {
   id: 10,
   author: {
-    id: 10,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -131,12 +141,13 @@ const moсkTopicList = [{
 }, {
   id: 11,
   author: {
-    id: 11,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -144,12 +155,13 @@ const moсkTopicList = [{
 }, {
   id: 12,
   author: {
-    id: 12,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -157,12 +169,13 @@ const moсkTopicList = [{
 }, {
   id: 13,
   author: {
-    id: 13,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -170,12 +183,13 @@ const moсkTopicList = [{
 }, {
   id: 14,
   author: {
-    id: 14,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',
@@ -183,12 +197,13 @@ const moсkTopicList = [{
 }, {
   id: 15,
   author: {
-    id: 15,
+    id: 1,
+    login: 'asdas',
     email: 'dummy@email.com',
-    firstName: 'Иван',
-    secondName: 'Иванов',
+    first_name: 'Иван',
+    second_name: 'Иванов',
     phone: '+79999999999',
-    nickName: 'John',
+    display_name: 'John',
     avatar: 'https://picsum.photos/400/500'
   },
   title: 'Не стоит внимяния',

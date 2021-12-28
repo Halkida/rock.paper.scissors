@@ -24,6 +24,7 @@ export const GamePlay: FC<OwnProps> = ({
   const canvas = useRef<HTMLCanvasElement>(null);
   const user: IUser = useSelector(selectUser) as IUser;
   const [gamers, setGamers] = useState<Gamer[]>([
+    new Gamer({ id: user.id as number }),
     new Gamer({
       id: mocks.computerGamer.id,
       type: withComputer ? 'computer' : 'person',

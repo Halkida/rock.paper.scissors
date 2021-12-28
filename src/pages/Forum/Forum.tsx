@@ -35,7 +35,7 @@ export const Forum: FC = () => {
             { topicList.map((topic: TopicListItem) => {
               return (
                 <tr key={topic.id}>
-                  <td>{topic.author.nickName}</td>
+                  <td>{topic.author.display_name}</td>
                   <td><Link className='link' to="/forum/1" >{topic.title}</Link></td>
                   <td>{topic.commentsCount}</td>
                 </tr>

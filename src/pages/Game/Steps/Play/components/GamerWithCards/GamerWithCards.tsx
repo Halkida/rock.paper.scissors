@@ -39,8 +39,8 @@ export const GamerWithCards: FC<OwnProps> = ({
       ])}
     >
       <GamerView
-        avatar={gamer.info?.avatar}
-        fullName={gamer.info?.nickName}
+        avatar={gamer.info?.avatar || undefined}
+        fullName={gamer.info?.login}
         className={styles.gamerView}
         isReverse={isReverse}
         score={gamer.score}

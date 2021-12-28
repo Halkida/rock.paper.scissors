@@ -16,6 +16,14 @@
     }
   }
 
+  &_success {
+    background-color: $color-success;
+  }
+
+  &_danger {
+    background-color: $color-red;
+  }
+
   &_small {
     padding: 4px 8px;
   }
