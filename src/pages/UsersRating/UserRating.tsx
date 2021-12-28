@@ -1,90 +1,31 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import UserItem from './components/UserItem';
 import styles from './UserRating.module.scss';
+import leaderboardService from "@/services/leaderboard";
 
-type User = {
-  id: number;
-  index: number;
-  name: string;
+type PlayerData = {
+  index?: number;
+  login: string;
   score: number;
 };
 
-const data: User[] = [
-  {
-    id: 1,
-    index: 1,
-    name: 'Ваня Иванов',
-    score: 100,
-  },
-  {
-    id: 2,
-    index: 2,
-    name: 'Ваня Пупкин',
-    score: 70,
-  },
-  {
-    id: 3,
-    index: 3,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-  {
-    id: 4,
-    index: 4,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-  {
-    id: 5,
-    index: 5,
-    name: 'Ваня Иванов',
-    score: 100,
-  },
-  {
-    id: 6,
-    index: 7,
-    name: 'Ваня Пупкин',
-    score: 70,
-  },
-  {
-    id: 8,
-    index: 8,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-  {
-    id: 9,
-    index: 9,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-  {
-    id: 10,
-    index: 10,
-    name: 'Ваня Иванов',
-    score: 100,
-  },
-  {
-    id: 11,
-    index: 11,
-    name: 'Ваня Пупкин',
-    score: 70,
-  },
-  {
-    id: 12,
-    index: 12,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-  {
-    id: 13,
-    index: 13,
-    name: 'Ваня Пупкин',
-    score: 50,
-  },
-];
+type responseData = {
+  data: PlayerData
+}
 
 const UserRating: FC = function UserRating() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    leaderboardService.getLeaderboard()
+      .then((response) => {
+        const players = response.map((item: responseData, index: number) => {
+          return {...item.data, index}
+        });
+        setData(players);
+      });
+  }, []);
+
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>
@@ -92,16 +33,15 @@ const UserRating: FC = function UserRating() {
       </h1>
       <div className={styles.container}>
         <div className={styles.list}>
-          {data.map(({
+          {data.length > 0 && data.map(({
             index,
-            id,
-            name,
+            login,
             score,
           }) => (
             <UserItem
-              key={id}
+              key={`${index}_${login}`}
               index={index}
-              name={name}
+              name={login}
               score={score}
               className={styles.userItem}
             />
