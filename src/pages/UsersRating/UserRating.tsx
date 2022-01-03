@@ -36,12 +36,13 @@ const UserRating: FC = function UserRating() {
           {data.length > 0 && data.map(({
             index,
             login,
+            name,
             score,
           }) => (
             <UserItem
               key={`${index}_${login}`}
               index={index}
-              name={login}
+              name={name}
               score={score}
               className={styles.userItem}
             />
