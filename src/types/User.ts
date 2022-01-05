@@ -1,9 +1,10 @@
 export interface IUser {
   email: string;
-  firstName: string,
-  secondName: string,
+  first_name: string,
+  second_name: string,
   phone: string,
-  nickName: string,
-  avatar: string,
+  login: string,
+  display_name: string | null,
+  avatar?: string | null
   id: number
 }

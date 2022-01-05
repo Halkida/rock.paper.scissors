@@ -5,8 +5,9 @@ import styles from'./Input.module.scss';
 type OwnProps = {
   isValid?: boolean;
   errorText?: string;
-  type?: 'number' | 'text' | 'password',
+  type?: 'number' | 'text' | 'password' | 'file',
   onChange?: (value: string) => void
+  value?: string | undefined
 };
 
 type ReactInputAttributes = InputHTMLAttributes<HTMLInputElement>;
@@ -38,8 +39,12 @@ export const Input: Props = function Input(
 
   return (
     <>
-      <input onChange={ changeHandler }
-      type={type} className={className} { ...InputHTMLAttributes } />
+      <input
+        onChange={ changeHandler }
+        type={type}
+        value={value}
+        className={className}
+        { ...InputHTMLAttributes } />
       {
         !isValid && errorText &&
         <span className={styles['error-text']} >{ errorText }</span>

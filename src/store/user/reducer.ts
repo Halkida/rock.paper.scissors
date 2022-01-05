@@ -19,8 +19,8 @@ export function userReducer(
     case actions.SUCCESS:
       return {
         ...state,
+        user: {...user, avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null},
         status: 'success',
-        user,
       };
     case actions.FAILED:
       return {
@@ -30,7 +30,7 @@ export function userReducer(
     case actions.SET_USER:
       return {
         ...state,
-        user
+        user: {...user, avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null},
       };
     default:
       return state;

@@ -11,13 +11,13 @@ type OwnProps = {
 type Props = FC<OwnProps>;
 
 export const Comment: Props = ({ author, content }) => {
-  const { nickName, avatar } = author;
+  const { display_name, avatar } = author;
 
   return (
     <div className={styles.comment}>
       <div className={styles.comment_author}>
-        <span>{nickName}</span>
-        <Image src={avatar} width='60px' height='60px' alt='Аватар' />
+        <span>{display_name}</span>
+        { avatar && <Image src={avatar} width='60px' height='60px' alt='Аватар' /> }
       </div>
       <div className={styles.comment_content}>{content}</div>
     </div>

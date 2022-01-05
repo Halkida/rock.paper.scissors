@@ -13,7 +13,7 @@ type Validation = {
 
 type Options<T> = {
   validationConfig?: Partial<Record<keyof T, Validation>>;
-  initialValues?: Partial<T>;
+  initialValues?: Partial<T> | null;
   onSubmit?: (data: Record<string, unknown>) => void;
 }
 
@@ -61,10 +61,15 @@ export const useForm = <T extends Record<keyof T, any> = Record<string, unknown>
     }
   };
 
+  const clearErrors = () => {
+    setErrors({});
+  };
+
   return {
     data,
     handleChange,
     handleSubmit,
-    errors
+    errors,
+    clearErrors,
   };
 };
