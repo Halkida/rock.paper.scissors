@@ -11,7 +11,7 @@ services:
     env_file:
       ./.env
     networks:
-      - rps-network
+      - rps
   postgres:
     image: postgres:14-alpine3.15
     ports:
@@ -20,10 +20,10 @@ services:
       - ./postgresdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: newPassword
+      POSTGRES_PASSWORD: admin
       POSTGRES_DB: RPS
     networks:
-      - rps-network
+      - rps
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:6.3
@@ -39,11 +39,11 @@ services:
     depends_on:
       - postgres
     networks:
-      - rps-network
+      - rps
 
 volumes:
   pgadmin-data:
 
 networks:
-  rps-network:
+  rps:
     driver: bridge
