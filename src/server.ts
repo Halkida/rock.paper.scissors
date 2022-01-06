@@ -1,8 +1,11 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
+import dotenv from 'dotenv';
 import renderApp from './serverRenderApp';
+import { dbConnect } from "@/initSequilize";
 
+dotenv.config();
 const app = express();
 
 app.use(compression())
@@ -11,4 +14,13 @@ app.use(compression())
 
 app.get('/*', renderApp);
 
-export { app };
+export function startApp() {
+  dbConnect()
+    .then(() => {
+      const port = process.env.PORT || 3000;
+
+      app.listen(port, () => {
+        console.log(`Application is started on localhost:${port}`);
+      });
+    })
+}
