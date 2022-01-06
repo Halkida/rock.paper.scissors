@@ -1,11 +1,11 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 
 const sequelizeOptions: SequelizeOptions = {
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'admin',
-  database: 'RPS',
+  host: process.env.POSTGRES_HOST,
+  port: Number(process.env.POSTGRES_PORT),
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
   dialect: 'postgres'
 };
 

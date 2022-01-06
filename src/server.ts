@@ -1,11 +1,9 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
-import dotenv from 'dotenv';
 import renderApp from './serverRenderApp';
 import { dbConnect } from "@/initSequilize";
 
-dotenv.config();
 const app = express();
 
 app.use(compression())
