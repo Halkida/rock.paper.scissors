@@ -7,10 +7,9 @@ const withOAuthCheck = <P extends object>(Component: React.ComponentType<P>): FC
   function WithOAuthCheck(props: P) {
     const [isFetching, setIsFetching] = useState(true);
     const [searchParams] = useSearchParams();
-
+    const code = searchParams.get('code');
 
     useEffect(() => {
-      const code = searchParams.get('code');
       const sendCode = async () => {
         if (code) {
           try {
@@ -22,9 +21,9 @@ const withOAuthCheck = <P extends object>(Component: React.ComponentType<P>): FC
         setIsFetching(false);
       };
       sendCode();
-    }, []);
+    }, [code]);
 
-    return isFetching ?
+    return (code && isFetching) ?
       <Spinner /> :
       <Component {...props} />;
   }
