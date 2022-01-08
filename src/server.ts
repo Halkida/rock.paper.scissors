@@ -1,16 +1,15 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
-import renderApp from './serverRenderApp';
-import { dbConnect } from "@/initSequilize";
+import router from './server/router/router';
+import { dbConnect } from "@/server/initSequilize";
 
 const app = express();
 
 app.use(compression())
-    .use(express.static(path.resolve(__dirname, '../dist')))
-    .use(express.static(path.resolve(__dirname, '../static')));
-
-app.get('/*', renderApp);
+  .use(express.static(path.resolve(__dirname, '../dist')))
+  .use(express.static(path.resolve(__dirname, '../static')))
+  .use(router);
 
 export function startApp() {
   dbConnect()

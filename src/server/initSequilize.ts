@@ -1,6 +1,6 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
-import { UserTheme } from "@/models/UserTheme";
-import { SiteTheme } from "@/models/SiteTheme";
+import { UserTheme } from "@/server/models/UserTheme";
+import { SiteTheme } from "@/server/models/SiteTheme";
 
 const sequelizeOptions: SequelizeOptions = {
   host: process.env.POSTGRES_HOST,
