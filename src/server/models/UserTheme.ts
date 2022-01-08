@@ -23,8 +23,11 @@ export class UserTheme extends Model<UserTheme> {
   id: number;
 
   @ForeignKey(() => SiteTheme)
+  @Unique
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column({
+    field: 'theme_id'
+  })
   themeId: number;
 
   @Unique
@@ -33,6 +36,5 @@ export class UserTheme extends Model<UserTheme> {
     type: DataType.INTEGER,
     field: 'owner_id'
   })
-  ownerId: string;
-
+  ownerId: number;
 }
