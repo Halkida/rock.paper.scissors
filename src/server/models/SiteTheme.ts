@@ -18,6 +18,7 @@ import {
 export class SiteTheme extends Model<SiteTheme> {
   @AutoIncrement
   @PrimaryKey
+  @Unique
   @Column(DataType.INTEGER)
   id: number;
 
