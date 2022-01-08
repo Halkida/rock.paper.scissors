@@ -1,0 +1,1 @@
+export { themeService as ThemeService } from './ThemeService';
