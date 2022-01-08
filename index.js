@@ -1,4 +1,4 @@
 require('dotenv').config();
-const { startApp } = require('./server/index.ts');
+const { startApp } = require('./dist/server.js');
 
 startApp();
