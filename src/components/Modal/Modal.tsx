@@ -48,5 +48,5 @@ export const Modal: FC<ModalProps> = ({
       </div>
     </div>
   );
-  return modal;
+  return isShown ? modal : null;
 };

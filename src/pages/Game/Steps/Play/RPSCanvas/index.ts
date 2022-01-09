@@ -60,7 +60,6 @@ export default class RPSCanvas {
     this.clear();
     ctx.font = 'bold 30px Helvetica, Arial, sans-serif';
     ctx.fillStyle = styles.colorPrimary;
-    console.log(styles);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('ВЫБЕРИТЕ КАРТУ', width / 2, height / 2);
