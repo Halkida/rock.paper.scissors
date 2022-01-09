@@ -16,9 +16,24 @@ sequelize.addModels([UserTheme, SiteTheme]);
 export async function dbConnect() {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({alter: true});
+    await prepareDB();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
+}
+
+async function prepareDB() {
+  await sequelize.sync();
+  await SiteTheme.findOrCreate({
+    where: {
+      theme: 'dark',
+      description: 'default theeme'
+    }
+  });
+  await SiteTheme.findOrCreate({
+    where: {
+      theme: 'light'
+    }
+  })
 }
