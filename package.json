@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "clean": "rimraf dist",
+    "dev": "NODE_ENV=development npm-run-all --print-label --parallel start:*",
+    "build": "NODE_ENV=production NODE_PATH=. npm-run-all --sequential clean build:*",
+    "build:client": "webpack --mode production --config webpack/client.config.ts",
+    "build:server": "webpack --mode production --config webpack/server.config.ts",
     "start:webpack": "webpack --mode=development --watch",
     "start:server": "nodemon index.js --watch dist/server.js",
-    "start": "NODE_ENV=development npm-run-all --print-label --parallel start:*",
+    "start": "node ./index.js",
     "eslint": "eslint . --ext .tsx",
     "test": "jest"
   },
