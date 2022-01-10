@@ -6,10 +6,9 @@ import {
   PrimaryKey,
   DataType,
   AllowNull,
-  ForeignKey,
-  Unique
+  Unique,
+  Default
 } from 'sequelize-typescript';
-import { SiteTheme } from './SiteTheme'
 
 @Table({
   timestamps: false,
@@ -22,13 +21,11 @@ export class UserTheme extends Model<UserTheme> {
   @Column(DataType.INTEGER)
   id: number;
 
-  @ForeignKey(() => SiteTheme)
+  @Default('dark')
   @Unique
   @AllowNull(false)
-  @Column({
-    field: 'theme_id'
-  })
-  themeId: number;
+  @Column(DataType.STRING)
+  theme: string;
 
   @Unique
   @AllowNull(false)

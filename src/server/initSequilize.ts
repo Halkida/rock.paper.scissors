@@ -1,5 +1,5 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
-import { UserTheme, SiteTheme } from "@/server/models";
+import { UserTheme } from "@/server/models";
 
 const sequelizeOptions: SequelizeOptions = {
   host: process.env.POSTGRES_HOST,
@@ -11,29 +11,14 @@ const sequelizeOptions: SequelizeOptions = {
 };
 
 export const sequelize = new Sequelize(sequelizeOptions);
-sequelize.addModels([UserTheme, SiteTheme]);
+sequelize.addModels([UserTheme]);
 
 export async function dbConnect() {
   try {
     await sequelize.authenticate();
-    await prepareDB();
+    await sequelize.sync();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-}
-
-async function prepareDB() {
-  await sequelize.sync();
-  await SiteTheme.findOrCreate({
-    where: {
-      theme: 'dark',
-      description: 'default theeme'
-    }
-  });
-  await SiteTheme.findOrCreate({
-    where: {
-      theme: 'light'
-    }
-  })
 }
