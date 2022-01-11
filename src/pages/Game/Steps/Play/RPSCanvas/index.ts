@@ -66,7 +66,6 @@ export default class RPSCanvas {
   }
 
   public async drawCards(cards: Card[], isRevert = false) {
-    console.log('drawCards', isRevert);
     this.clear();
 
     const { ctx, width, height } = this;

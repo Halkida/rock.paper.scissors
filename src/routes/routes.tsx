@@ -3,7 +3,7 @@ import Home from '@/pages/Home';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 import Game from '@/pages/Game';
-import LeaderBoard from '@/pages/LeaderBoard';
+import UserRating from "@/pages/UsersRating";
 import Profile from '@/pages/Profile';
 import Forum from '@/pages/Forum';
 import NoMatch from '@/pages/NoMatch';
@@ -30,7 +30,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: urls.USER_RATING,
-    element: <LeaderBoard />,
+    element: <UserRating />,
   },
   {
     path: urls.PROFILE,

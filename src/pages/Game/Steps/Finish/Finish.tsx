@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import { selectUser } from '@/store/user/selectors';
@@ -8,6 +8,7 @@ import { Button } from '@/components/Button';
 import Star from '@/icons/Star';
 import IconStarSolid from '@/icons/StarSolid';
 import { useNotificationAPI } from '@/hooks';
+import leaderboardService from "@/services/leaderboard";
 import styles from'./Finish.module.scss';
 
 type OwnProps = {
@@ -31,6 +32,28 @@ export const GameFinish: FC<OwnProps> = ({
   notify(notificationOptions);
 
   const handleGameComplete = useCallback(() => onGameComplete(), [onGameComplete]);
+
+  useEffect(() => {
+    if (isWinner) {
+      let score = 0;
+      gameStats?.history.forEach((round) => {
+        if (round.winnerId === user.id) {
+          score++;
+        }
+      });
+
+      const userData = {
+        data: {
+          login: user.login,
+          name: `${user.first_name} ${user.second_name}`,
+          score
+        },
+        ratingFieldName: 'score',
+        teamName: 'chalkida'
+      }
+      leaderboardService.addUser(userData);
+    }
+  }, []);
 
   return (
     <main className={styles.page}>
