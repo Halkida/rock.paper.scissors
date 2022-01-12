@@ -6,7 +6,7 @@ export class ThemeAPI {
     const { body } = req;
 
     try {
-      const updatedTheme = await ThemeService.update(body);
+      await ThemeService.update(body);
       res.json({
         message: 'User theme saved'
       });
