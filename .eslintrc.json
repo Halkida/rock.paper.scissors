@@ -15,6 +15,7 @@
     "rules": {
         "@typescript-eslint/no-empty-function": ["off"],
         "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
         "react/jsx-curly-brace-presence": ["error", { "props": "never", "children": "never" }],
         "no-empty-function": "off",
         "no-duplicate-case": "error",
