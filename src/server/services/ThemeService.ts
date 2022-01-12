@@ -1,7 +1,7 @@
-import { BaseRESTService } from "@/server/services/BaseRESTService";
-import { UserTheme } from "@/server/models";
+import { BaseRESTService } from '@/server/services/BaseRESTService';
+import { UserTheme } from '@/server/models';
 
-const DEFAULT_THEME = 'dark'
+const DEFAULT_THEME = 'dark';
 
 interface UpdateRequest {
   ownerId: number;
@@ -28,7 +28,7 @@ class ThemeService implements BaseRESTService {
     if(foundTheme === null) {
       return this.create(data);
     } else {
-      return foundTheme.update({theme: data.theme})
+      return foundTheme.update({theme: data.theme});
 
     }
   }

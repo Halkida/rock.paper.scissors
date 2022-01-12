@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ThemeService } from "@/server/services";
+import { ThemeService } from '@/server/services';
 
 export class ThemeAPI {
   public static update = async (req: Request, res: Response) => {
@@ -12,7 +12,7 @@ export class ThemeAPI {
       });
     } catch(e) {
       res.status(400);
-      res.json({error: e.message})
+      res.json({error: e.message});
     }
   }
 
@@ -26,7 +26,7 @@ export class ThemeAPI {
       res.json({theme: theme});
     } catch(e) {
       res.status(400);
-      res.json({error: e.message})
+      res.json({error: e.message});
     }
   }
 }
