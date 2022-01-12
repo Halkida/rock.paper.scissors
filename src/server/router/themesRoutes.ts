@@ -5,10 +5,8 @@ export const themesRoutes = (router: Router) => {
   const themesRouter: Router = Router();
 
   themesRouter
-    .post('/', ThemeAPI.addUserTheme)
-    .post('/update', ThemeAPI.update)
-    .get('/', ThemeAPI.get)
-    .get('/all', ThemeAPI.getAll);
+    .post('/', ThemeAPI.update)
+    .get('/', ThemeAPI.get);
 
   router.use('/theme', themesRouter);
 };

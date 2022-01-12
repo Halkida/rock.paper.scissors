@@ -1,6 +1,7 @@
 import { BaseRESTService } from "@/server/services/BaseRESTService";
 import { UserTheme } from "@/server/models";
 
+const DEFAULT_THEME = 'dark'
 
 interface UpdateRequest {
   ownerId: number;
@@ -25,7 +26,6 @@ class ThemeService implements BaseRESTService {
     const foundTheme = await this.find(data.ownerId);
 
     if(foundTheme === null) {
-      //create new record
       return this.create(data);
     } else {
       return foundTheme.update({theme: data.theme})
@@ -34,14 +34,18 @@ class ThemeService implements BaseRESTService {
   }
 
   public request = async (ownerId: number) => {
-    return UserTheme.findOrCreate({
-      where: {
-        ownerId: ownerId
-      }
-    });
+    const foundRecord = await this.find(ownerId);
+
+    if (foundRecord === null) {
+      // @ts-ignore
+      return UserTheme.build({ownerId: ownerId, theme: DEFAULT_THEME});
+    } else {
+      return foundRecord;
+    }
   }
 
   public create = async (data: CreateRequest) => {
+    // @ts-ignore
     return UserTheme.create(data);
   }
 }
