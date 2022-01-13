@@ -17,6 +17,7 @@
         "@typescript-eslint/ban-ts-ignore": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "react/jsx-curly-brace-presence": ["error", { "props": "never", "children": "never" }],
+        "react/prop-types": "off",
         "no-empty-function": "off",
         "no-duplicate-case": "error",
         "no-extra-semi": "error",
