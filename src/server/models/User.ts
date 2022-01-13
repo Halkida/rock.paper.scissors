@@ -12,14 +12,14 @@ import {
 type UserAttributes = {
   id: number;
   login: string;
-  avatar: string;
+  avatar?: string;
 }
 type UserCreationAttributes = Omit<UserAttributes, 'id'>;
 
 @Table({
   timestamps: false,
   paranoid: true,
-  tableName: 'user'
+  tableName: 'rps_user'
 })
 export class User extends Model<UserAttributes, UserCreationAttributes> {
   @AutoIncrement
