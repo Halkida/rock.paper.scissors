@@ -1,9 +1,9 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
-import bodyParser from "body-parser";
+import bodyParser from 'body-parser';
 import router from './server/router/router';
-import { dbConnect } from "@/server/initSequilize";
+import { dbConnect } from '@/server/initSequilize';
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -23,5 +23,5 @@ export function startApp() {
       app.listen(port, () => {
         console.log(`Application is started on localhost:${port}`);
       });
-    })
+    });
 }

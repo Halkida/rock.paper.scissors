@@ -7,9 +7,7 @@ export class ThemeAPI {
 
     try {
       await ThemeService.update(body);
-      res.json({
-        message: 'User theme saved'
-      });
+      res.json({ message: 'User theme saved' });
     } catch(e) {
       res.status(400);
       res.json({error: e.message});
@@ -26,7 +24,7 @@ export class ThemeAPI {
       res.json({theme: theme});
     } catch(e) {
       res.status(400);
-      res.json({error: e.message});
+      res.json({ error: e.message });
     }
   }
 }
