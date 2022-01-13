@@ -10,12 +10,19 @@ import {
   Default
 } from 'sequelize-typescript';
 
+type UserThemeAttributes = {
+  id: number;
+  theme: string;
+  ownerId: number;
+}
+type UserThemeCreationAttributes = Omit<UserThemeAttributes, 'id'>;
+
 @Table({
   timestamps: false,
   paranoid: true,
   tableName: 'user_theme'
 })
-export class UserTheme extends Model<UserTheme> {
+export class UserTheme extends Model<UserThemeAttributes, UserThemeCreationAttributes> {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)

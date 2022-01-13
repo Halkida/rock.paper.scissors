@@ -37,7 +37,6 @@ class ThemeService implements BaseRESTService {
     const foundRecord = await this.find(ownerId);
 
     if (foundRecord === null) {
-      // @ts-ignore
       return UserTheme.build({ownerId: ownerId, theme: DEFAULT_THEME});
     } else {
       return foundRecord;
@@ -45,7 +44,6 @@ class ThemeService implements BaseRESTService {
   }
 
   public create = async (data: CreateRequest) => {
-    // @ts-ignore
     return UserTheme.create(data);
   }
 }
