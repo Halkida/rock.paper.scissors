@@ -2,7 +2,7 @@ import path from 'path';
 import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-import router from './server/router/router';
+import router from '@/server/router/router';
 import { dbConnect } from '@/server/initSequilize';
 
 const app = express();
