@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import rPSImage from '@/assets/rps.png';
 import urls from '@/utils/urls';
 import { Button } from '@/components/Button';
+import Header from '@/components/Header';
 import { selectIsUserAuthorized } from '@/store/user/selectors';
 import styles from './Home.module.scss';
 
@@ -11,6 +12,11 @@ export const Home: FC = () => {
 
   return (
     <div className={styles.page}>
+      <Header>
+        <div>
+          Главная
+        </div>
+      </Header>
       <h1 className={styles.title}>Камень. Ножницы. Бумага.</h1>
       <div className={styles.imageWrapper}>
         <img
