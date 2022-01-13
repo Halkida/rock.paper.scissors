@@ -1,5 +1,5 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
-import { UserTheme } from '@/server/models';
+import { UserTheme, User } from '@/server/models';
 
 const sequelizeOptions: SequelizeOptions = {
   host: process.env.POSTGRES_HOST,
@@ -11,7 +11,7 @@ const sequelizeOptions: SequelizeOptions = {
 };
 
 export const sequelize = new Sequelize(sequelizeOptions);
-sequelize.addModels([UserTheme]);
+sequelize.addModels([User, UserTheme]);
 
 export async function dbConnect() {
   try {
