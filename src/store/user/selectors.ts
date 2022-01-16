@@ -7,3 +7,4 @@ export const selectIsUserAuthorized = createSelector(
   selectUser,
   (user) => Boolean(user),
 );
+export const selectUserTheme = (state: IState) => state.user.theme;
