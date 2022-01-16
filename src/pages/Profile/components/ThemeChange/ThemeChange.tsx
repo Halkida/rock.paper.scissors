@@ -1,11 +1,12 @@
 import { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserTheme } from '@/store/user/selectors';
 import { postTheme } from '@/store/user/actions';
 import { Themes } from '@/constants/themes';
 import SliderCheckbox from '@/components/SliderCheckbox';
 
 export const ThemeChange: FC = () => {
-  const theme = 'dark';
+  const theme = useSelector(selectUserTheme);
   const dispatch = useDispatch();
   const handleSliderCheckboxChange = useCallback((value: boolean) => {
     const theme = value ? Themes.dark : Themes.light;
