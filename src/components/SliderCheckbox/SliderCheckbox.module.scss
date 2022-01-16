@@ -1,0 +1,41 @@
+@import '@/styles/variables.scss';
+
+$slider-height: 16px;
+
+.label {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.indicator {
+  display: inline-block;
+  width: $slider-height * 2;
+  height: $slider-height;
+  border-radius: .5rem;
+  background-color: rgba($color-tulip-tree, .4);
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: $slider-height;
+    width: $slider-height;
+    left: 0;
+    top: 0;
+    background-color: $color-tulip-tree;
+    border-radius: 50%;
+  }
+}
+
+.input {
+  &:checked {
+    .indicator {
+      &:before {
+        transform: translateX($slider-height);
+      }
+    }
+  }
+}
