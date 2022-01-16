@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC, InputHTMLAttributes, ReactNode } from 'react';
+import { ChangeEvent, ChangeEventHandler, FC, ReactNode } from 'react';
 import cx from 'classnames';
 import styles from './SliderCheckbox.module.scss';
 
