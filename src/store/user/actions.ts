@@ -42,13 +42,13 @@ export function setUserTheme(theme: Themes): IUserAction {
 
 export const postTheme = (theme: Themes) => async (dispatch: Dispatch, getState: () => IState) => {
   const state = getState();
+  dispatch(setUserTheme(theme));
   try {
     const ownerId = state.user?.user?.id;
     if (!ownerId) {
       return;
     }
     await ThemeService.postTheme({ ownerId, theme });
-    dispatch(setUserTheme(theme));
   } catch (error) {
     console.error(error);
   }
