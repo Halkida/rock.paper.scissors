@@ -9,9 +9,9 @@ const baseConfig: AxiosRequestConfig = {
   withCredentials: true,
 };
 
-type GetAxiosInstance = (baseURL: string) => AxiosInstance;
+type GetAxiosInstance = (baseURL?: string) => AxiosInstance;
 
-const getAxiosInstance: GetAxiosInstance = (baseURL) => (
+const getAxiosInstance: GetAxiosInstance = (baseURL = '/') => (
   axios.create({
     ...baseConfig,
     baseURL,
