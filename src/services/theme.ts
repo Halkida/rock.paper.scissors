@@ -33,6 +33,7 @@ class ThemeApi {
   }
 
   postTheme(data: PostTheme): Promise<void> {
+    console.log(data);
     return new Promise((resolve) => {
       setTimeout(() => { resolve(); }, 1000);
     });

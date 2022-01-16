@@ -1,14 +1,16 @@
+import { Themes } from '@/constants/themes';
 import { UserState } from '@/types';
 import { actions, IUserAction } from './actions';
 
 const defaultState: UserState = {
   status: 'pending',
   user: null,
+  theme: null,
 };
 
 export function userReducer(
   state: UserState = defaultState,
-  { type, payload }: IUserAction,
+  { type, payload = {} }: IUserAction,
 ): UserState {
   const { user, theme } = payload;
   switch (type) {
@@ -20,7 +22,9 @@ export function userReducer(
     case actions.SUCCESS:
       return {
         ...state,
-        user: {...user, avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null},
+        user: user ?
+          {...user, avatar: user?.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null} :
+          null,
         status: 'success',
       };
     case actions.FAILED:
@@ -31,12 +35,14 @@ export function userReducer(
     case actions.SET_USER:
       return {
         ...state,
-        user: {...user, avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null},
+        user: user ?
+          {...user, avatar: user?.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null} :
+          null,
       };
     case actions.SET_USER_THEME:
         return {
           ...state,
-          theme,
+          theme: theme || Themes.dark,
         };
     default:
       return state;
