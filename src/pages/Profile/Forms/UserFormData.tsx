@@ -10,6 +10,7 @@ import { PATTERNS } from '@/utils/formValidation';
 import styles from'./UserFormData.module.scss';
 import { loadSuccess, loadPending } from '@/store/user/actions';
 import { selectUser } from '@/store/user/selectors';
+import ThemeChange from '../components/ThemeChange';
 
 const validationConfig = {
   email: {
@@ -189,6 +190,8 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
                   <Input key={field.name} {...field} />
                 </p>) }
             </div>
+            <ThemeChange />
+
             { isEdit &&
               <div className={styles.userFormData__buttonsWrapper}>
                 <Button
