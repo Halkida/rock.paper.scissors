@@ -27,12 +27,13 @@ $slider-height: 16px;
     top: 0;
     background-color: $color-tulip-tree;
     border-radius: 50%;
+    transition: transform ease 0.1s;
   }
 }
 
 .input {
   &:checked {
-    .indicator {
+    + .indicator {
       &:before {
         transform: translateX($slider-height);
       }
