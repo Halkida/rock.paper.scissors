@@ -8,8 +8,9 @@ const defaultState: UserState = {
 
 export function userReducer(
   state: UserState = defaultState,
-  { type, user }: IUserAction,
+  { type, payload }: IUserAction,
 ): UserState {
+  const { user, theme } = payload;
   switch (type) {
     case actions.PENDING:
       return {
@@ -32,6 +33,11 @@ export function userReducer(
         ...state,
         user: {...user, avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null},
       };
+    case actions.SET_USER_THEME:
+        return {
+          ...state,
+          theme,
+        };
     default:
       return state;
   }
