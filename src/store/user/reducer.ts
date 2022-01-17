@@ -1,11 +1,11 @@
-import { Themes } from '@/constants/themes';
+import { THEMES } from '@/constants/themes';
 import { UserState } from '@/types';
 import { actions, IUserAction } from './actions';
 
 const defaultState: UserState = {
   status: 'pending',
   user: null,
-  theme: null,
+  theme: THEMES.dark,
 };
 
 export function userReducer(
@@ -42,7 +42,7 @@ export function userReducer(
     case actions.SET_USER_THEME:
         return {
           ...state,
-          theme: theme || Themes.dark,
+          theme: theme || THEMES.dark,
         };
     default:
       return state;

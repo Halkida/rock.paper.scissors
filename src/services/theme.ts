@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { Themes } from '@/constants/themes';
+import { THEMES } from '@/constants/themes';
 import getAxiosInstance from '@/utils/axios';
 
 export type GetTheme = {
@@ -7,7 +7,7 @@ export type GetTheme = {
 };
 
 export type ThemeParams = {
-  theme: Themes,
+  theme: THEMES,
 };
 
 export type PostTheme = GetTheme & ThemeParams;
@@ -22,7 +22,7 @@ class ThemeApi {
   getTheme(params: GetTheme): Promise<ThemeParams> {
     console.log(params);
     return Promise.resolve({
-      theme: Themes.dark,
+      theme: THEMES.dark,
     });
     // return this.http
     //   .get<GetTheme>(

@@ -3,12 +3,12 @@ import AuthService from '@/services/auth';
 import ThemeService from '@/services/theme';
 import { IUser, IState } from '@/types';
 import { BaseActionType } from '@/types/redux';
-import { Themes } from '@/constants/themes';
+import { THEMES } from '@/constants/themes';
 
 export interface IUserAction extends BaseActionType<actions> {
   payload: {
     user?: IUser;
-    theme?: Themes,
+    theme?: THEMES,
   },
 }
 
@@ -36,11 +36,11 @@ export function setUser(user: IUser): IUserAction {
   return { type: actions.SET_USER, payload: { user } };
 }
 
-export function setUserTheme(theme: Themes): IUserAction {
+export function setUserTheme(theme: THEMES): IUserAction {
   return { type: actions.SET_USER_THEME, payload: { theme } };
 }
 
-export const postTheme = (theme: Themes) => async (dispatch: Dispatch, getState: () => IState) => {
+export const postTheme = (theme: THEMES) => async (dispatch: Dispatch, getState: () => IState) => {
   const state = getState();
   dispatch(setUserTheme(theme));
   try {
