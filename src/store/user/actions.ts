@@ -70,7 +70,7 @@ export const fetchUser = () => async (dispatch: Dispatch) => {
   try {
     dispatch(loadPending());
     const data = await AuthService.getUser();
-    await fetchTheme(data.id);
+    dispatch(fetchTheme(data.id) as any);
     dispatch(loadSuccess(data));
   } catch (error) {
     dispatch(loadFailed());
