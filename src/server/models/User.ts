@@ -9,7 +9,7 @@ import {
   Unique
 } from 'sequelize-typescript';
 
-type UserAttributes = {
+export type UserAttributes = {
   id: number;
   login: string;
   avatar?: string;
