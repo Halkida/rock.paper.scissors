@@ -20,27 +20,19 @@ class ThemeApi {
   }
 
   getTheme(params: GetTheme): Promise<ThemeParams> {
-    console.log(params);
-    return Promise.resolve({
-      theme: THEMES.dark,
-    });
-    // return this.http
-    //   .get<GetTheme>(
-    //       '/theme',
-    //       { params },
-    //     )
-    //   .then((response) => response.data);
+    return this.http
+      .get<ThemeParams>(
+          '/theme',
+          { params },
+        )
+      .then((response) => response.data);
   }
 
   postTheme(data: PostTheme): Promise<void> {
-    console.log(data);
-    return new Promise((resolve) => {
-      setTimeout(() => { resolve(); }, 1000);
-    });
-    // return this.http.post(
-    //   '/theme',
-    //   data,
-    // );
+    return this.http.post(
+      '/theme',
+      data,
+    );
   }
 
 }
