@@ -1,0 +1,64 @@
+@import '@/styles/variables.scss';
+
+.topic {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  background-color: rgba($color-white, .04);
+
+  &_head {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: .625rem;
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .9375rem;
+  }
+
+  &_title {
+    margin-bottom: .5rem;
+    font-size: $font-medium;
+    color: $color-white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &_content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: $font-small;
+  }
+
+  &_footer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .avatar {
+    margin-right: .5rem;
+  }
+
+  .login {
+    font-size: $font-small;
+  }
+}
+
+.comments {
+  display: flex;
+  flex-direction: row;
+
+  &_icon {
+    margin-right: .5rem;
+  }
+}
