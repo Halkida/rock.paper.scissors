@@ -20,6 +20,7 @@ export type CommentAttributes = {
   updateAt: string,
   replyTo: number,
   topicId: number,
+  tags: string[],
 }
 
 type CommentCreationAttributes = Omit<CommentAttributes, 'id'>;
@@ -71,4 +72,8 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
     field: 'id',
   })
   TopicId: number;
+
+  @AllowNull(false)
+  @Column(DataType.ARRAY(DataType.STRING))
+  tags: string[];
 }
