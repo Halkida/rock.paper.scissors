@@ -9,12 +9,12 @@ import {
   Unique,
   ForeignKey,
 } from 'sequelize-typescript';
-import { UserAttributes, User } from './User';
+import { User } from './User';
 import { Topic } from './Topic';
 
 export type CommentAttributes = {
   id: number,
-  author: UserAttributes,
+  authorId: number,
   content: string,
   createAt: string,
   updateAt: string,

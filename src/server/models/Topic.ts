@@ -9,18 +9,18 @@ import {
   Unique,
   ForeignKey,
 } from 'sequelize-typescript';
-import { UserAttributes, User } from './User';
-import { CommentAttributes, Comment } from './Comment';
+import { User } from './User';
+import { Comment } from './Comment';
 
 
 type TopicAttributes = {
   id: number,
   title: string,
-  authorId: UserAttributes,
+  authorId: number,
   content: string,
   createAt: string,
   updateAt: string,
-  commentsIds: CommentAttributes[],
+  commentsIds: number[],
 }
 type TopicCreationAttributes = Omit<TopicAttributes, 'id'>;
 
