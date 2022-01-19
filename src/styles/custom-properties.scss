@@ -1,0 +1,11 @@
+@import '@/styles/variables.scss';
+
+.dark {
+  --color-background: #{$color-background-dark};
+  color: $color-white; 
+}
+
+.light {
+  --color-background: #{$color-background-light};
+  color: $color-shark; 
+}
