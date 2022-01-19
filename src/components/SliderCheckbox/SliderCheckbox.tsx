@@ -7,6 +7,7 @@ type OwnProps = {
   value: string | number,
   disabled?: boolean,
   children?: ReactNode | string,
+  className?: string,
   onChange: (value: boolean) => void,
 };
 
@@ -15,6 +16,7 @@ export const SliderCheckbox: FC<OwnProps> = ({
   value,
   disabled = false,
   children,
+  className,
   onChange,
   ...props
 }) => {
@@ -25,7 +27,7 @@ export const SliderCheckbox: FC<OwnProps> = ({
 
   return (
     <label
-      className={styles.label}
+      className={cx([styles.label, className])}
     >
       <input
         {...props}
