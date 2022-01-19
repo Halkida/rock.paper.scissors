@@ -4,6 +4,7 @@ import { selectUserTheme } from '@/store/user/selectors';
 import { postTheme } from '@/store/user/actions';
 import { THEMES, THEMES_TITLES } from '@/constants/themes';
 import SliderCheckbox from '@/components/SliderCheckbox';
+import styles from './ThemeChange.module.scss';
 
 export const ThemeChange: FC = () => {
   const theme = useSelector(selectUserTheme);
@@ -14,11 +15,10 @@ export const ThemeChange: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       Цветовая тема:
       {' '}
       {THEMES_TITLES[theme]}
-      {' '}
       <SliderCheckbox
         value="theme"
         checked={theme === THEMES.dark}
