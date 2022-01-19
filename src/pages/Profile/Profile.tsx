@@ -34,7 +34,7 @@ export const Profile: FC = () => {
     setIsEditData(false);
     setIsEditPassword(false);
     setIsEditAvatar(!isEditAvatar);
-    toggle()
+    toggle();
   };
 
   const user: Nullable<IUser> = useSelector(selectUser) as IUser;
