@@ -49,14 +49,6 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
   @Column(DataType.STRING)
   content: string;
 
-  @AllowNull(false)
-  @Column(DataType.DATE)
-  createAt: string;
-
-  @AllowNull(false)
-  @Column(DataType.DATE)
-  updateAt: string;
-
   @ForeignKey(() => Comment)
   @AllowNull(false)
   @Column({

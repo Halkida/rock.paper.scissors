@@ -51,14 +51,6 @@ export class Topic extends Model<TopicAttributes, TopicCreationAttributes> {
   @Column(DataType.STRING)
   content: string;
 
-  @AllowNull(false)
-  @Column(DataType.DATE)
-  createAt: string;
-
-  @AllowNull(false)
-  @Column(DataType.DATE)
-  updateAt: string;
-
   @ForeignKey(() => Comment)
   @AllowNull(false)
   @Column({
