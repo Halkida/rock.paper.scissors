@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from '@/components/Image';
 import Share from '@/icons/Share';
 import styles from './TopicItem.module.scss';
 
@@ -22,7 +23,7 @@ export const TopicItem: FC<topicProps> = ({
   return (
     <div className={styles.topic}>
       <div className={styles.topic_head}>
-        <div className={styles.avatar}>{authorInfo.avatar}</div>
+        <Image src={authorInfo.avatar} className={styles.avatar} isRound={true} />
         <div className={styles.login}>{authorInfo.login}</div>
       </div>
       <div className={styles.topic_body}>
