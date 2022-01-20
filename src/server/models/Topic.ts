@@ -41,10 +41,7 @@ export class Topic extends Model<TopicAttributes, TopicCreationAttributes> {
 
   @ForeignKey(() => User)
   @AllowNull(false)
-  @Column({
-    type: DataType.INTEGER,
-    field: 'owner_id'
-  })
+  @Column(DataType.INTEGER)
   authorId: number;
 
   @AllowNull(false)
@@ -53,9 +50,6 @@ export class Topic extends Model<TopicAttributes, TopicCreationAttributes> {
 
   @ForeignKey(() => Comment)
   @AllowNull(false)
-  @Column({
-    type: DataType.ARRAY(DataType.STRING),
-    field: 'id',
-  })
+  @Column(DataType.ARRAY(DataType.STRING))
   commentsIds: string[];
 }

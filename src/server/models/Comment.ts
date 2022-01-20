@@ -39,10 +39,7 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => User)
   @AllowNull(false)
-  @Column({
-    type: DataType.INTEGER,
-    field: 'owner_id'
-  })
+  @Column(DataType.INTEGER)
   authorId: number;
 
   @AllowNull(false)
@@ -51,19 +48,13 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => Comment)
   @AllowNull(false)
-  @Column({
-    type: DataType.INTEGER,
-    field: 'id',
-  })
+  @Column(DataType.INTEGER)
   replyTo: number;
 
   @ForeignKey(() => Topic)
   @AllowNull(false)
-  @Column({
-    type: DataType.INTEGER,
-    field: 'id',
-  })
-  TopicId: number;
+  @Column(DataType.INTEGER)
+  topicId: number;
 
   @AllowNull(false)
   @Column(DataType.ARRAY(DataType.STRING))
