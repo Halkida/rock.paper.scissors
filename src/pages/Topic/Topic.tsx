@@ -1,7 +1,21 @@
 import { FC, useState, useEffect } from 'react';
 import { TopicItem } from '@/components/TopicItem';
-import styles from'./Topic.module.scss';
 import rpsImage from '@/assets/rps.png';
+import { Comment } from './components/Comment';
+import styles from'./Topic.module.scss';
+
+const comment = {
+  author: {
+    id: 0,
+    email: 'test@mail.ru',
+    first_name: 'Вася',
+    second_name: 'Пупкин',
+    phone: '',
+    login: '',
+    display_name: 'vasya',
+  },
+  content: 'author display_name',
+};
 
 interface Comment {
   id: number;
@@ -57,7 +71,15 @@ export const Topic: FC = () => {
         }
       </div>
       <div className={styles.comments}>
-        <span className={styles.comments_head}>Комментарии</span>
+        <h2
+          className={styles.comments_head}
+        >
+          Комментарии
+        </h2>
+        <Comment
+          author={comment.author}
+          content={comment.content}
+        />
       </div>
     </main>
   );

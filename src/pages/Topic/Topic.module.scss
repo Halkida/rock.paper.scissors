@@ -28,13 +28,19 @@
 }
 
 .comments {
-  display: flex;
   width: 80%;
-
   background-color: rgba($color-white, .04);
 
   &_head {
     font-size: $font-medium;
     color: $color-tulip-tree;
+    margin: 0 0 1.5em;
+    padding: 1.25rem 1.25rem 1rem;
+    width: 100%;
+    border-bottom: thin solid rgba($color-silver, 0.5);
+  }
+
+  &_body {
+    padding: 1.25rem;
   }
 }
