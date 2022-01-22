@@ -10,10 +10,8 @@ import {
   ForeignKey,
 } from 'sequelize-typescript';
 import { User } from './User';
-import { Comment } from './Comment';
 
-
-type TopicAttributes = {
+export type TopicAttributes = {
   id: number,
   title: string,
   authorId: number,
@@ -22,13 +20,23 @@ type TopicAttributes = {
   updateAt: string,
   commentsIds: number[],
 }
-type TopicCreationAttributes = Omit<TopicAttributes, 'id'>;
+export type TopicCreateAttributes = {
+  title: string,
+  content: string,
+  authorId: number,
+};
+
+export type TopicUpdateAttributes = {
+  id: number
+  title: string,
+  content: string,
+};
 
 @Table({
   timestamps: true,
   tableName: 'rps_topic'
 })
-export class Topic extends Model<TopicAttributes, TopicCreationAttributes> {
+export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
   @AutoIncrement
   @Unique
   @PrimaryKey
@@ -47,9 +55,4 @@ export class Topic extends Model<TopicAttributes, TopicCreationAttributes> {
   @AllowNull(false)
   @Column(DataType.STRING)
   content: string;
-
-  @ForeignKey(() => Comment)
-  @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.STRING))
-  commentsIds: string[];
 }
