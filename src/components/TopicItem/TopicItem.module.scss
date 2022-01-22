@@ -26,8 +26,10 @@
     color: $color-white;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+    &__link {
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -35,9 +37,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     font-size: $font-small;
+
+    &__short {
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      font-size: $font-small;
+    }
   }
 
   &_footer {
