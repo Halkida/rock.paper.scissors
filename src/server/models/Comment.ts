@@ -18,12 +18,12 @@ export type CommentAttributes = {
   content: string,
   createAt: string,
   updateAt: string,
-  replyTo: number,
+  replyTo?: number,
   topicId: number,
-  tags: string[],
+  tags?: string[],
 }
 
-type CommentCreationAttributes = Omit<CommentAttributes, 'id'>;
+type CommentCreationAttributes = Omit<CommentAttributes, 'id' | 'createAt' | 'updateAt'>;
 
 @Table({
   timestamps: true,
@@ -47,7 +47,7 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
   content: string;
 
   @ForeignKey(() => Comment)
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.INTEGER)
   replyTo: number;
 
@@ -56,7 +56,7 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
   @Column(DataType.INTEGER)
   topicId: number;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.ARRAY(DataType.STRING))
   tags: string[];
 }
