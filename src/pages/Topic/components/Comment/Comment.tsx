@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Image } from '@/components/Image';
+import { AvatarImg } from '@/components/Avatar/AvatarImg';
 import { IUser } from '@/types';
 import styles from './Comment.module.scss';
 
@@ -15,11 +15,21 @@ export const Comment: Props = ({ author, content }) => {
 
   return (
     <div className={styles.comment}>
-      <div className={styles.comment_author}>
-        <span>{display_name}</span>
-        { avatar && <Image src={avatar} width='60px' height='60px' alt='Аватар' /> }
+      <div className={styles.author}>
+        <AvatarImg
+          avatarSrc={avatar}
+          className={styles.author_avatar}
+          size="xsmall"
+        />
+        <div
+          className={styles.author_name}
+        >
+          {display_name}
+        </div>
       </div>
-      <div className={styles.comment_content}>{content}</div>
+      <div className={styles.comment_content}>
+        {content}
+      </div>
     </div>
   );
 };
