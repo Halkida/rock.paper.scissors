@@ -6,6 +6,14 @@
   border-radius: $default-border-radius;
   cursor: pointer;
 
+  &_dark {
+    color: $color-shark;
+  }
+
+  &_light {
+    color: $color-white;
+  }
+
   &_default {
     border: none;
 
@@ -54,14 +62,6 @@
     border: none;
     background-color: inherit;
     color: $color-tulip-tree;
-  }
-
-  &_dark {
-    color: $color-shark;
-  }
-
-  &_light {
-    color: $color-white;
   }
 
   &:link {
