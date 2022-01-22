@@ -1,11 +1,14 @@
 import { FC, SyntheticEvent } from 'react';
+import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import { Cards } from '@/RPS/constants';
 import shirtCard from '@/assets/shirt-card.png';
 import rockCard from '@/assets/rock-card.png';
 import paperCard from '@/assets/paper-card.png';
 import scissorsCard from '@/assets/scissors-card.png';
+import { selectUserTheme } from '@/store/user/selectors';
 import styles from './Card.module.scss';
+import { THEMES } from '@/constants/themes';
 
 const cardImage: Record<Cards, string> = {
   [Cards.paper]: paperCard,
@@ -32,6 +35,8 @@ export const Card: FC<OwnProps> = ({
 }) => {
   const shirtUp = !isMine;
 
+  const theme = useSelector(selectUserTheme);
+
   return (
     <div className={cx(styles.wrapper, className)}>
       <button
@@ -50,7 +55,13 @@ export const Card: FC<OwnProps> = ({
       />
       {isMine && (
         <div
-          className={styles.count}
+          className={cx([
+            styles.count,
+            {
+              [styles.dark]: theme === THEMES.dark,
+              [styles.light]: theme === THEMES.light,
+            }
+          ])}
         >
           {count}
         </div>
