@@ -15,6 +15,11 @@
   position: relative;
 }
 
+  &.xsmall {
+    width: 30px;
+    height: 30px;
+  }
+
 .avatar__small {
   width: 60px;
   height: 60px;

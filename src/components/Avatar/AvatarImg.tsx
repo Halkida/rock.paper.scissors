@@ -3,14 +3,22 @@ import cx from 'classnames';
 import styles from'./Avatar.module.scss';
 
 type OwnProps = {
+  className: string,
   avatarSrc: string | undefined;
   isEditable?: boolean;
   onClick?: (event: MouseEvent) => void
   initials?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xsmall';
 };
 
-export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onClick, size = 'medium' }) => {
+export const AvatarImg: FC<OwnProps> = ({
+  className = '',
+  avatarSrc,
+  initials,
+  isEditable,
+  size = 'medium',
+  onClick,
+}) => {
   const elementAvatar = useRef<HTMLButtonElement>(null);
 
   return (
@@ -25,18 +33,12 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
         ref={ elementAvatar }
         onClick={onClick}
       >
-        {avatarSrc ?
-          (
-            <img
-              src={avatarSrc}
-              alt="avatar"
-              className={styles.avatar__image}
-            />
-          ) : (
-            <span className={styles.avatar__default}>
-              { initials }
-            </span>
-          )}
+        <img
+          src={avatarSrc}
+          alt="avatar"
+          className={styles.avatar__image}
+        />
+        { !avatarSrc && <span className={styles.avatar__default}>{ initials }</span>}
       </button>
       : <div
         className={cx([
