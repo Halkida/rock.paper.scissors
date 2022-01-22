@@ -1,22 +1,24 @@
 import { FC, useState, useEffect } from 'react';
-import { Image } from '@/components/Image';
-import { Comment } from './components/Comment';
-import { IUser } from '@/types';
-import mockTopicData from './mockTopicData';
+import { TopicItem } from '@/components/TopicItem';
 import styles from'./Topic.module.scss';
+import rpsImage from '@/assets/rps.png';
 
 interface Comment {
   id: number;
-  author: IUser;
+  author: string;
   content: string;
+  replyTo?: number;
 }
 
 interface Topic {
-  id: number
-  description: string;
-  author: IUser;
+  id: number;
+  authorInfo: {
+    avatar: string,
+    login: string
+  };
   title: string;
-  commentsCount: number;
+  content: string;
+  commentsCount?: number;
   comments: Comment[];
 }
 
@@ -26,34 +28,36 @@ export const Topic: FC = () => {
   const [topic, setTopic] = useState<Nullable<Topic>>(null);
 
   useEffect(() => {
-    setTopic(mockTopicData);
+    setTopic({
+      id: 1,
+      authorInfo: {
+        avatar: '...',
+        login: 'SUPER_LOGIN'
+      },
+      title: 'Камень ножницы бумага лучшая игра',
+      content: 'Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей',
+      commentsCount: 300,
+      comments: []
+    });
   }, []);
 
   return (
     <main className={styles.page}>
+      <div className={styles.head}>
+        <div className={styles.head_logo}>
+          <img
+            className={styles.logo}
+            src={rpsImage}
+          />
+        </div>
+      </div>
       <div className={styles.topic}>
         { topic &&
-          <>
-            <h1 className={styles.topic_title}>{topic.title}</h1>
-            <div className={styles.topic_author}>
-              <span>{topic.author.display_name}</span>
-              { topic.author.avatar && <Image src={topic.author.avatar} width='80px' height='80px' alt='Аватар' /> }
-            </div>
-            <div className={styles.topic_description}>{topic.description}</div>
-            <div className={styles.comments}>
-              <ul>
-                { topic.comments.map((comment: Comment) => {
-                  return (
-                    <li key={comment.id}>
-                      <Comment author={comment.author} content={comment.content} />
-                    </li>
-                  );
-                }) }
-              </ul>
-            </div>
-
-          </>
+          <TopicItem {...topic} />
         }
+      </div>
+      <div className={styles.comments}>
+        <span className={styles.comments_head}>Комментарии</span>
       </div>
     </main>
   );
