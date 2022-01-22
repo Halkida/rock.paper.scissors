@@ -1,4 +1,18 @@
 @import '@/styles/variables.scss';
+.header {
+  padding: 1rem;
+
+  &_link {
+    display: block;
+    width: 8rem;
+  }
+
+  &_logo {
+    display: block;
+    width: 100%;
+  }
+}
+
 .content {
   position: relative;
   display: flex;
@@ -42,8 +56,4 @@
 .profilePage__formsWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.profilePage__buttonChange {
-  color: var(--color-background);
 }
