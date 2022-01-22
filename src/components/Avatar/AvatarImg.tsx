@@ -15,7 +15,7 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
 
   return (
     <>
-      {isEditable ? 
+      {isEditable ?
       <button
         type="button"
         className={cx([
@@ -25,12 +25,18 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
         ref={ elementAvatar }
         onClick={onClick}
       >
-        <img
-          src={avatarSrc}
-          alt="avatar"
-          className={styles.avatar__image}
-        />
-        { !avatarSrc && <span className={styles.avatar__default}>{ initials }</span>}
+        {avatarSrc ?
+          (
+            <img
+              src={avatarSrc}
+              alt="avatar"
+              className={styles.avatar__image}
+            />
+          ) : (
+            <span className={styles.avatar__default}>
+              { initials }
+            </span>
+          )}
       </button>
       : <div
         className={cx([
