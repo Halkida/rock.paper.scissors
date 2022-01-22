@@ -26,7 +26,7 @@ export class TopicAPI {
     const { body } = req;
 
     try {
-      topicService.create((body));
+      await topicService.create((body));
       res.json({ message: 'Topic created' });
     } catch (e) {
       res.status(400);
@@ -46,7 +46,7 @@ export class TopicAPI {
     }
   };
 
-  public static getAll = async (req: Request, res: Response) => {
+  public static getAll = async (_: Request, res: Response) => {
     try {
       const topics = await topicService.findAll();
 
