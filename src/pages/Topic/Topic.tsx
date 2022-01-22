@@ -14,7 +14,7 @@ const comment = {
     login: '',
     display_name: 'vasya',
   },
-  content: 'author display_name',
+  content: 'rgnaekjgnakw n akjgnwekngewkvk nkarn karnknekawnv aekj gviekn kv awiekdnv kszjvn awi k ika wekdnb akew dk',
 };
 
 interface Comment {
