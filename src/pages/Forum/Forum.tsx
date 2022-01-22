@@ -51,7 +51,7 @@ export const Forum: FC = () => {
         </div>
       </div>
       <div className={styles.forum}>
-        {topicList.map((topic) => <TopicItem key={topic.id} {...topic} />)}
+        {topicList.map((topic) => <TopicItem key={topic.id} {...topic} isPreview={true} />)}
       </div>
       <CreateTopicModal
         isShown={isShown}
