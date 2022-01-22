@@ -1,6 +1,9 @@
 import { ReactNode, FC, ButtonHTMLAttributes } from 'react';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { THEMES } from '@/constants/themes';
+import { selectUserTheme } from '@/store/user/selectors';
 import styles from'./Button.module.scss';
 
 type OwnProps = {
@@ -26,13 +29,17 @@ export const Button: Props = function(
     ...ButtonHTMLAttributes }
   ) {
 
+  const theme = useSelector(selectUserTheme);
+
   const buttonClassNames = cx({
     [className]: true,
     ['button']: true,
     [`button_${viewType}`]: viewType,
     [`button_${view}`]: view,
     [`button_${size}`]: size,
-    ['button_link']: href.length
+    ['button_link']: href.length,
+    ['button_dark']: theme === THEMES.dark,
+    ['button_light']: theme === THEMES.light,
   });
 
   if (href.length > 0) {
