@@ -10,8 +10,6 @@ import {
   ForeignKey,
 } from 'sequelize-typescript';
 import { User } from './User';
-import { Comment } from './Comment';
-
 
 export type TopicAttributes = {
   id: number,
@@ -57,9 +55,4 @@ export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
   @AllowNull(false)
   @Column(DataType.STRING)
   content: string;
-
-  @ForeignKey(() => Comment)
-  @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.STRING))
-  commentsIds: string[];
 }
