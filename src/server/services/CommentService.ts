@@ -12,6 +12,16 @@ class CommentService implements BaseRESTService {
   public create = (data: CreateRequest) => {
     return Comment.create(data);
   }
+
+  public request = (topicId: number) => {
+    return Comment.findAll({
+      where: {
+        topicId
+      },
+      order: ['createdAt'],
+      raw : true
+    });
+}
 }
 
 export const commentService = new CommentService();

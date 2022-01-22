@@ -13,4 +13,18 @@ export class CommentAPI {
       res.json({ error: e.message });
     }
   }
+
+  public static get = async (req: Request, res: Response) => {
+    const { query } = req;
+
+    try {
+      const { topicId } = query;
+      const foundComments = await CommentService.request(Number(topicId));
+
+      res.json({ comments: foundComments });
+    } catch(e) {
+      res.status(404);
+      res.json({ error: e.message });
+    }
+  }
 }
