@@ -1,13 +1,19 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { Modal } from '@/components/Modal';
 import { Form, useForm, FieldError } from '@/components/Form';
 import { Input } from '@/components/Input';
 import { TextArea } from '@/components/TextArea';
+import { selectUser } from '@/store/user/selectors';
+import topicService, { PostTopic } from '@/services/topic';
+import { IUser } from '@/types';
+import { TopicListItem } from '../Forum';
 import styles from './CreateTopicModal.module.scss';
 
 type CreateTopicModalProps = {
   isShown: boolean;
   toggle: () => void;
+  addNewTopic: (topic: TopicListItem) => void;
 }
 
 type CreateTopicForm = {
@@ -34,9 +40,39 @@ const validationConfig = {
   }
 };
 
-export const CreateTopicModal: FC<CreateTopicModalProps> = ({ isShown, toggle }) => {
-  const onSubmit = (data: Record<string, unknown>) => {
-    console.log(data);
+type SubmitTopic = {
+  title: string,
+  content: string
+}
+
+export const CreateTopicModal: FC<CreateTopicModalProps> = ({ isShown, toggle, addNewTopic }) => {
+  const user = useSelector(selectUser) as IUser;
+
+  const onSubmit = async (data: SubmitTopic) => {
+    const { title, content } = data;
+    const topicData: PostTopic = {
+      authorId: user.id,
+      title,
+      content
+    };
+    try {
+      const { data } = await topicService.postTopic(topicData);
+      const { topic } = data;
+      const normilizedTopic = {
+        id: topic.id,
+        title: topic.title,
+        content: topic.content,
+        commentsCount: 0,
+        authorInfo: {
+          avatar: user.avatar as (string | null),
+          login: user.login
+        }
+      };
+
+      addNewTopic(normilizedTopic);
+    } catch(e) {
+      console.log(e);
+    }
   };
 
   const { handleChange, handleSubmit, errors} = useForm<CreateTopicForm>({validationConfig, onSubmit});
