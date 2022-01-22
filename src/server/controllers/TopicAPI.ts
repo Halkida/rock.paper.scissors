@@ -13,9 +13,7 @@ export class TopicAPI {
         throw new Error('Topic not found');
       }
 
-      console.log(topic.toJSON());
       res.json(topic.toJSON());
-
     } catch(e) {
       res.status(404);
       res.json({ error: e.message });
@@ -26,8 +24,8 @@ export class TopicAPI {
     const { body } = req;
 
     try {
-      await topicService.create((body));
-      res.json({ message: 'Topic created' });
+      const topic = await topicService.create((body));
+      res.json({ message: 'Topic created', topic });
     } catch (e) {
       res.status(400);
       res.json({ error: e.message });
@@ -48,11 +46,9 @@ export class TopicAPI {
 
   public static getAll = async (_: Request, res: Response) => {
     try {
-      const topics = await topicService.findAll();
+      const [results] = await topicService.findAll();
 
-      console.log(JSON.stringify(topics));
-      res.json(JSON.stringify(topics));
-
+      res.json(results);
     } catch(e) {
       res.status(404);
       res.json({ error: e.message });
