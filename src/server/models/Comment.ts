@@ -53,7 +53,10 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => Topic)
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'topic_id'
+  })
   topicId: number;
 
   @AllowNull(true)

@@ -34,6 +34,7 @@ export type TopicUpdateAttributes = {
 
 @Table({
   timestamps: true,
+  underscored: true,
   tableName: 'rps_topic'
 })
 export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
@@ -49,7 +50,10 @@ export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
 
   @ForeignKey(() => User)
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'author_id'
+  })
   authorId: number;
 
   @AllowNull(false)
