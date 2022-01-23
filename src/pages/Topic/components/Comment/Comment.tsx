@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { AvatarImg } from '@/components/Avatar/AvatarImg';
+import { Button } from '@/components/Button';
 import { IUser } from '@/types';
 import styles from './Comment.module.scss';
 
@@ -29,6 +30,14 @@ export const Comment: Props = ({ author, content }) => {
       </div>
       <div className={styles.comment_content}>
         {content}
+      </div>
+      <div className={styles.actions}>
+        <Button
+          view="text"
+          className={styles.answer}
+        >
+          Ответить
+        </Button>
       </div>
     </div>
   );
