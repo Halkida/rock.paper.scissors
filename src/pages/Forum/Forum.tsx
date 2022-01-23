@@ -34,7 +34,7 @@ export const Forum: FC = () => {
             content: item.content,
             commentsCount: item.comments_count,
             authorInfo: {
-              avatar: item.avatar,
+              avatar: item.avatar ? item.avatar : '',
               login: item.login
             }
           };
