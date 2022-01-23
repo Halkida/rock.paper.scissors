@@ -10,7 +10,8 @@ export class UserAPI {
       const user = await UserService.request(Number(id));
 
       if(user === null) {
-        throw new Error('User not found');
+        res.json(null);
+        return;
       }
 
       console.log(user.toJSON());

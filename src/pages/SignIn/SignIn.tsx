@@ -33,12 +33,15 @@ export const SignIn: FC = function SignInPage() {
   const navigate = useNavigate();
   const [notification, setNotification] = useState('');
 
-  const onSubmit = (data: Record<string, unknown>) => {
-    authServise.signIn(data)
-      .then(() => navigate('/profile'))
-      .catch((error: Error) => {
-        setNotification(error.message);
-      });
+  const onSubmit = async (data: Record<string, unknown>) => {
+    try {
+      await authServise.signIn(data);
+      const { id, login, avatar } = await authServise.getUser();
+      await authServise.storeUser({id, login, avatar});
+      navigate('/profile');
+    } catch(error) {
+      setNotification(error.message);
+    }
   };
 
   const { handleChange, handleSubmit, errors} = useForm<SignInForm>({validationConfig, onSubmit});
