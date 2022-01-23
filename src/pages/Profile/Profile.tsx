@@ -1,4 +1,4 @@
-import React, { FC, useState, MouseEvent } from 'react';
+import { FC, useState, MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
@@ -44,7 +44,7 @@ export const Profile: FC = () => {
   const avatarSrc = user?.avatar || undefined;
 
   return (
-    <React.Fragment>
+    <div className={styles.page}>
       <header
         className={styles.header}
       >
@@ -106,6 +106,6 @@ export const Profile: FC = () => {
           avatarSrc={user.avatar || undefined}
         />
       </main>
-    </React.Fragment>
+    </div>
   );
 };
