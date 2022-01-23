@@ -3,7 +3,7 @@ import cx from 'classnames';
 import styles from'./Avatar.module.scss';
 
 type OwnProps = {
-  className: string,
+  className?: string,
   avatarSrc: string | undefined;
   isEditable?: boolean;
   onClick?: (event: MouseEvent) => void
