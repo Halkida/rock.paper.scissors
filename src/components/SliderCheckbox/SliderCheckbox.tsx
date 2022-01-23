@@ -1,4 +1,10 @@
-import { ChangeEvent, ChangeEventHandler, FC, ReactNode } from 'react';
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  FC,
+  ReactNode,
+  useCallback,
+} from 'react';
 import cx from 'classnames';
 import styles from './SliderCheckbox.module.scss';
 
@@ -20,10 +26,13 @@ export const SliderCheckbox: FC<OwnProps> = ({
   onChange,
   ...props
 }) => {
-  const handleInputChange: ChangeEventHandler = (e: ChangeEvent) => {
-    const target = e.target as HTMLInputElement;
-    onChange(target.checked);
-  };
+  const handleInputChange: ChangeEventHandler = useCallback(
+    (e: ChangeEvent) => {
+      const target = e.target as HTMLInputElement;
+      onChange(target.checked);
+    },
+    [onChange]
+  );
 
   return (
     <label
