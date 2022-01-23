@@ -70,6 +70,7 @@ export const CreateTopicModal: FC<CreateTopicModalProps> = ({ isShown, toggle, a
       };
 
       addNewTopic(normilizedTopic);
+      toggle();
     } catch(e) {
       console.log(e);
     }
