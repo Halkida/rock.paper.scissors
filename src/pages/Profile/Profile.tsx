@@ -1,7 +1,8 @@
 import { FC, useState, MouseEvent } from 'react';
-import styles from'./Profile.module.scss';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import cx from 'classnames';
+import logoSrc from '@/assets/rps.png';
 import { IUser } from '@/types';
 import { selectUser } from '@/store/user/selectors';
 import { useModal } from '@/components/Modal';
@@ -10,6 +11,7 @@ import UserFormData from '@/pages/Profile/Forms/UserFormData';
 import UserFormPassword from '@/pages/Profile/Forms/UserFormPassword';
 import { AvatarImg, AvatarModal } from '@/components/Avatar';
 import { Notification } from '@/components/Notification';
+import styles from'./Profile.module.scss';
 
 export const Profile: FC = () => {
   const [isEditData, setIsEditData] = useState(false);
@@ -34,7 +36,7 @@ export const Profile: FC = () => {
     setIsEditData(false);
     setIsEditPassword(false);
     setIsEditAvatar(!isEditAvatar);
-    toggle()
+    toggle();
   };
 
   const user: Nullable<IUser> = useSelector(selectUser) as IUser;
@@ -42,53 +44,68 @@ export const Profile: FC = () => {
   const avatarSrc = user?.avatar || undefined;
 
   return (
-    <main className={styles.content}>
-    { notification && <Notification>{notification}</Notification> }
-      <AvatarImg
-        avatarSrc={avatarSrc}
-        initials={defaultAvatarText}
-        isEditable
-        onClick={changeAvatar}
-        size="large"
-      />
-      <div className={ cx([
-        styles.profilePage__formsWrapper,
-        { [styles.profilePage__formsWrapperIsEditPassword]: isEditPassword },
-        { [styles.profilePage__formsWrapperIsEditData]: isEditData },
-    ])}>
-        <UserFormData
-          isEdit={isEditData}
-          isEditPassword={isEditPassword}
-          onEdit={changeData}
-          getNotification={setNotification}
-        />
-        <UserFormPassword
-          isEdit={isEditPassword}
-          onEdit={changePassword}
-          getNotification={setNotification}
-        />
-      </div>
-      <div className={ styles.profilePage__buttonsWrapper }>
-        <Button
-          type="button"
-          onClick={changeData}
-          className={styles.profilePage__buttonChange}
+    <div className={styles.page}>
+      <header
+        className={styles.header}
+      >
+        <Link
+          to='/'
+          className={styles.header_link}
         >
-          Изменить данные
-        </Button>
-        <Button
-          type="button"
-          onClick={changePassword}
-          className={styles.profilePage__buttonChange}
-        >
-          Изменить пароль
-        </Button>
-      </div>
-      <AvatarModal
-        isShown={isShown}
-        toggle={toggle}
-        avatarSrc={user.avatar || undefined}
-      />
-    </main>
+          <img
+            src={logoSrc}
+            className={styles.header_logo}
+          />
+        </Link>
+      </header>
+      <main className={styles.content}>
+      { notification && <Notification>{notification}</Notification> }
+        <AvatarImg
+          avatarSrc={avatarSrc}
+          initials={defaultAvatarText}
+          isEditable
+          onClick={changeAvatar}
+          size="large"
+        />
+        <div className={ cx([
+          styles.profilePage__formsWrapper,
+          { [styles.profilePage__formsWrapperIsEditPassword]: isEditPassword },
+          { [styles.profilePage__formsWrapperIsEditData]: isEditData },
+      ])}>
+          <UserFormData
+            isEdit={isEditData}
+            isEditPassword={isEditPassword}
+            onEdit={changeData}
+            getNotification={setNotification}
+          />
+          <UserFormPassword
+            isEdit={isEditPassword}
+            onEdit={changePassword}
+            getNotification={setNotification}
+          />
+        </div>
+        <div className={ styles.profilePage__buttonsWrapper }>
+          <Button
+            type="button"
+            onClick={changeData}
+            className={styles.profilePage__buttonChange}
+          >
+            Изменить данные
+          </Button>
+          <Button
+            type="button"
+            onClick={changePassword}
+            className={styles.profilePage__buttonChange}
+          >
+            Изменить пароль
+          </Button>
+        </div>
+        <AvatarModal
+          isShown={isShown}
+          toggle={toggle}
+          avatarSrc={user.avatar || undefined}
+        />
+      </main>
+    </div>
   );
 };

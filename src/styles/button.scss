@@ -3,9 +3,16 @@
 .button {
   font-size: $font-medium;
   background-color: $color-tulip-tree;
-  color: $color-white;
   border-radius: $default-border-radius;
   cursor: pointer;
+
+  &_dark {
+    color: $color-shark;
+  }
+
+  &_light {
+    color: $color-white;
+  }
 
   &_default {
     border: none;

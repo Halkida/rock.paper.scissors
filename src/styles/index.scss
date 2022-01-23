@@ -1,5 +1,6 @@
 @import '@/styles/variables.scss';
 @import '@/styles/button.scss';
+@import '@/styles/custom-properties.scss';
 
 html, body {
   height: 100%;
@@ -7,7 +8,6 @@ html, body {
 
 body {
   margin: 0;
-  background-color: $color-background;
   font-family: Helvetica, Arial, sans-serif;
   color: $color-white;
 }

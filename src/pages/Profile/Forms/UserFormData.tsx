@@ -10,6 +10,7 @@ import { PATTERNS } from '@/utils/formValidation';
 import styles from'./UserFormData.module.scss';
 import { loadSuccess, loadPending } from '@/store/user/actions';
 import { selectUser } from '@/store/user/selectors';
+import ThemeChange from '../components/ThemeChange';
 
 const validationConfig = {
   email: {
@@ -124,7 +125,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
       isValid: !emailError,
       id: 'email',
       errorText: emailError,
-      value: inputsData?.email,
+      value: inputsData?.email || '',
     },
     {
       onChange: useCallback(onInputChange('login'), []),
@@ -134,7 +135,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
       isValid: !loginError,
       errorText: loginError,
       id: 'login',
-      value: inputsData?.login,
+      value: inputsData?.login || '',
     },
     {
       onChange: useCallback(onInputChange('first_name'), []),
@@ -144,7 +145,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
       isValid: !nameError,
       errorText: nameError,
       id: 'first_name',
-      value: inputsData?.first_name,
+      value: inputsData?.first_name || '',
     },
     {
       onChange: useCallback(onInputChange('second_name'), []),
@@ -154,7 +155,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
       isValid: !secondNameError,
       errorText: secondNameError,
       id: 'second_name',
-      value: inputsData?.second_name,
+      value: inputsData?.second_name || '',
     },
     {
       onChange: useCallback(onInputChange('phone'), []),
@@ -164,7 +165,7 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
       isValid: !phoneError,
       errorText: phoneError,
       id: 'phone',
-      value: inputsData?.phone,
+      value: inputsData?.phone || '',
     },
   ];
 
@@ -189,6 +190,8 @@ const userFormData: FC<OwnProps> = ({ isEdit, isEditPassword, onEdit, getNotific
                   <Input key={field.name} {...field} />
                 </p>) }
             </div>
+            <ThemeChange />
+
             { isEdit &&
               <div className={styles.userFormData__buttonsWrapper}>
                 <Button

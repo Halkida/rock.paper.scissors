@@ -28,7 +28,6 @@
 
   .input_name {
     text-align: right;
-    color: $color-silver;
     pointer-events: none;
     border: none;
   }
@@ -54,7 +53,6 @@
   .userFormData__buttonSubmit,
   .userFormData__buttonCancel  {
     display: block;
-    color: $color-background;
   }
 }
 

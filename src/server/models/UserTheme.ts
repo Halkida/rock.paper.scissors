@@ -6,7 +6,6 @@ import {
   PrimaryKey,
   DataType,
   AllowNull,
-  Unique,
   Default,
   ForeignKey
 } from 'sequelize-typescript';
@@ -31,13 +30,11 @@ export class UserTheme extends Model<UserThemeAttributes, UserThemeCreationAttri
   id: number;
 
   @Default('dark')
-  @Unique
   @AllowNull(false)
   @Column(DataType.STRING)
   theme: string;
 
   @ForeignKey(() => User)
-  @Unique
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,

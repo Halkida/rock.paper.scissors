@@ -12,6 +12,7 @@
   background: $color-white;
   border: none;
   padding: 0;
+  position: relative;
 }
 
 .avatar__small {
@@ -36,7 +37,7 @@
 }
 
 .avatar__default {
-  color: $color-background;
+  color: var(--color-background);
   font-size: 60px;
   text-transform: uppercase;
   position: absolute;
