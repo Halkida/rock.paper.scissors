@@ -36,3 +36,22 @@
     text-decoration: underline;
   }
 }
+
+.replyTo {
+  font-size: .75rem;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &_author {
+    padding: 0;
+    margin-left: 1em;
+    font: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

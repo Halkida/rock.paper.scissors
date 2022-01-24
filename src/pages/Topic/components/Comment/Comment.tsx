@@ -2,16 +2,26 @@ import { FC } from 'react';
 import { AvatarImg } from '@/components/Avatar/AvatarImg';
 import { Button } from '@/components/Button';
 import { IUser } from '@/types';
+import { IComment } from '@/types/Forum';
 import styles from './Comment.module.scss';
 
 type OwnProps = {
   author: IUser;
   content: string;
+  replyTo?: IComment;
 }
 
 type Props = FC<OwnProps>;
 
-export const Comment: Props = ({ author, content }) => {
+export const Comment: Props = ({
+  author,
+  content,
+  replyTo = {
+    author: {
+      display_name: 'vasya',
+    }
+  },
+}) => {
   const { display_name, avatar } = author;
 
   return (
@@ -28,6 +38,23 @@ export const Comment: Props = ({ author, content }) => {
           {display_name}
         </div>
       </div>
+      {replyTo && (
+        <div
+          className={styles.replyTo}
+        >
+          <div
+            className={styles.replyTo_title}
+          >
+            Ответ на комментарий от
+          </div>
+          <Button
+            view="text"
+            className={styles.replyTo_author}
+          >
+            {display_name}
+          </Button>
+        </div>
+      )}
       <div className={styles.comment_content}>
         {content}
       </div>
