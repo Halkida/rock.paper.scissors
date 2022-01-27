@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: flex-start;
   height: 100%;
+  padding-bottom: 2rem;
 }
 
 .head {
@@ -37,10 +38,16 @@
     margin: 0;
     padding: 1.25rem 1.25rem 1rem;
     width: 100%;
-    border-bottom: thin solid rgba($color-silver, 0.5);
+    border-bottom: thin solid rgba($color-tulip-tree, 0.5);
   }
 
   &_body {
     padding: 1.25rem;
+  }
+
+  &_list {
+    & > * + * {
+      border-top: thin solid rgba($color-white, 0.2);
+    }
   }
 }

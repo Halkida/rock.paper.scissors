@@ -81,10 +81,16 @@ export const Topic: FC = () => {
         >
           Комментарии
         </h2>
-        <Comment
-          author={comment.author}
-          content={comment.content}
-        />
+        <div className={styles.comments_list}>
+          <Comment
+            author={comment.author}
+            content={comment.content}
+            />
+          <Comment
+            author={comment.author}
+            content={comment.content}
+          />
+        </div>
       </div>
     </main>
   );
