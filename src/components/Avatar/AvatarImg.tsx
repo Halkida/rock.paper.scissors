@@ -28,30 +28,42 @@ export const AvatarImg: FC<OwnProps> = ({
         type="button"
         className={cx([
           styles.avatar,
-          { [styles[`avatar__${size}`]]: size },
+          styles[size],
+          className,
         ])}
         ref={ elementAvatar }
         onClick={onClick}
       >
+      {avatarSrc ? (
         <img
           src={avatarSrc}
           alt="avatar"
           className={styles.avatar__image}
         />
-        { !avatarSrc && <span className={styles.avatar__default}>{ initials }</span>}
+      ) : (
+        <span className={styles.avatar__default}>
+          { initials }
+        </span>
+      )}
       </button>
       : <div
         className={cx([
           styles.avatar,
-          { [styles[`avatar__wrapper__${size}`]]: size },
+          styles[size],
+          className,
         ])}
       >
-        <img
-          src={avatarSrc}
-          alt="avatar"
-          className={styles.avatar__image}
-        />
-        { !avatarSrc && <span className={styles.avatar__default}>{ initials }</span>}
+        {avatarSrc ? (
+          <img
+            src={avatarSrc}
+            alt="avatar"
+            className={styles.avatar__image}
+          />
+        ) : (
+          <span className={styles.avatar__default}>
+          { initials }
+        </span>
+        )}
       </div>}
     </>
   );

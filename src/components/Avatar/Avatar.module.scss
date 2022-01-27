@@ -13,26 +13,26 @@
   border: none;
   padding: 0;
   position: relative;
-}
 
   &.xsmall {
     width: 30px;
     height: 30px;
   }
 
-.avatar__small {
-  width: 60px;
-  height: 60px;
-}
+  &.small {
+    width: 60px;
+    height: 60px;
+  }
 
-.avatar__medium {
-  width: 120px;
-  height: 120px;
-}
+  &.medium {
+    width: 120px;
+    height: 120px;
+  }
 
-.avatar__large {
-  width: 200px;
-  height: 200px;
+  &.large {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .avatar__image {
