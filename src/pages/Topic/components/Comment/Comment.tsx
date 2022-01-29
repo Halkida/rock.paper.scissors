@@ -16,11 +16,7 @@ type Props = FC<OwnProps>;
 export const Comment: Props = ({
   author,
   content,
-  replyTo = {
-    author: {
-      display_name: 'vasya',
-    }
-  },
+  replyTo,
 }) => {
   const { display_name, avatar } = author;
 
