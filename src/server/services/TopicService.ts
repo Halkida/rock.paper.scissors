@@ -46,7 +46,7 @@ class TopicService implements BaseRESTService {
     return sequelize.query(`
       SELECT t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR, COUNT(m.ID) AS COMMENTS_COUNT
       FROM RPS_TOPIC t
-            JOIN RPS_USER u ON u.ID = t.AUTHOR_ID
+            LEFT JOIN RPS_USER u ON u.ID = t.AUTHOR_ID
             LEFT JOIN RPS_COMMENT m ON m.TOPIC_ID = t.ID
       GROUP BY t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR
       ORDER BY t.created_at
