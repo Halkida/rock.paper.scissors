@@ -8,3 +8,5 @@ export interface IComment {
   updateAt: string;
   replyTo: IComment;
 }
+
+export type CommentCreation = Omit<IComment, 'id' | 'createAt' | 'updateAt'>;
