@@ -10,7 +10,7 @@ import styles from'./Forum.module.scss';
 export interface TopicListItem {
   id: number;
   authorInfo: {
-    avatar: string | null,
+    avatar: string,
     login: string
   };
   title: string;
@@ -67,7 +67,13 @@ export const Forum: FC = () => {
         </div>
       </div>
       <div className={styles.forum}>
-        {topicList.map((topic) => <TopicItem key={topic.id} {...topic} isPreview={true} />)}
+        {topicList.map((topic) => (
+          <TopicItem
+            key={topic.id}
+            {...topic}
+            isPreview={true}
+          />
+        ))}
       </div>
       <CreateTopicModal
         isShown={isShown}

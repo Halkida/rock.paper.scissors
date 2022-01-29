@@ -4,7 +4,7 @@ import styles from'./Avatar.module.scss';
 
 type OwnProps = {
   className?: string,
-  avatarSrc: string | undefined;
+  avatarSrc?: string | null;
   isEditable?: boolean;
   onClick?: (event: MouseEvent) => void
   initials?: string;

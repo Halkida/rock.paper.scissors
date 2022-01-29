@@ -64,7 +64,7 @@ export const CreateTopicModal: FC<CreateTopicModalProps> = ({ isShown, toggle, a
         content: topic.content,
         commentsCount: 0,
         authorInfo: {
-          avatar: user.avatar as (string | null),
+          avatar: user.avatar as string,
           login: user.login
         }
       };
