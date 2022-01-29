@@ -1,23 +1,14 @@
 import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { TopicItem } from '@/components/TopicItem';
 import rpsImage from '@/assets/rps.png';
-import { Comment } from './components/Comment';
+import commentService from '@/services/comment';
 import topicService from '@/services/topic';
+import { IComment } from '@/types/Forum';
+import { useService } from '@/hooks';
+import { TopicItem } from '@/components/TopicItem';
+import Spinner from '@/components/Spinner';
+import { Comment } from './components/Comment';
 import styles from'./Topic.module.scss';
-
-const comment = {
-  author: {
-    id: 0,
-    email: 'test@mail.ru',
-    first_name: 'Вася',
-    second_name: 'Пупкин',
-    phone: '',
-    login: '',
-    display_name: 'vasya',
-  },
-  content: 'rgnaekjgnakw n akjgnwekngewkvk nkarn karnknekawnv aekj gviekn kv awiekdnv kszjvn awi k ika wekdnb akew dk',
-};
 
 interface Comment {
   id: number;
@@ -41,6 +32,15 @@ export const Topic: FC = () => {
   const [topic, setTopic] = useState<Topic>();
   const { id: topicId = 0 } = useParams();
 
+  const {
+    fetch: fetchComment,
+    isFetching: isFetchingComment,
+    data: comments,
+  } = useService({
+    service: commentService.getList,
+    initialData: [],
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const topic = await topicService.getTopic(Number(topicId));
@@ -56,6 +56,8 @@ export const Topic: FC = () => {
       };
       setTopic(normilizedTopic);
     };
+
+    fetchComment({ topicId });
 
     fetchData();
   }, []);
@@ -82,14 +84,16 @@ export const Topic: FC = () => {
           Комментарии
         </h2>
         <div className={styles.comments_list}>
-          <Comment
-            author={comment.author}
-            content={comment.content}
-            />
-          <Comment
-            author={comment.author}
-            content={comment.content}
-          />
+          {isFetchingComment ?
+            <Spinner /> :
+            (comments as IComment[]).map((comment) => (
+              <Comment
+                key={comment.id}
+                author={comment.author}
+                content={comment.content}
+              />
+            ))
+          }
         </div>
       </div>
     </main>
