@@ -13,11 +13,11 @@ class CommentApi {
     this.http = getAxiosInstance('/comment');
   }
 
-  getList(params: GetListParams): Promise<IComment> {
+  getList = (params: GetListParams): Promise<IComment[]> => {
     return this.http
       .get('/', { params })
       .then(response => response.data);
-  }
+  };
 
   create(data: CommentCreation) {
     return this.http
