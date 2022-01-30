@@ -1,0 +1,15 @@
+@import '@/styles/variables.scss';
+
+.footer {
+  margin-top: 1rem;
+}
+
+.textarea {
+  background-color: var(--color-background);
+  height: 100px;
+  transition: height ease 0.3s;
+
+  &:focus {
+    border-color: $color-white;
+  }
+}
