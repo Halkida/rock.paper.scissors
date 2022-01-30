@@ -6,7 +6,8 @@ type OwnProps = {
   isValid?: boolean;
   errorText?: string;
   onChange?: (value: string) => void
-  value?: string | undefined
+  value?: string | undefined,
+  className?: string,
 };
 
 type ReactTextAreaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement>;
@@ -18,6 +19,7 @@ export const TextArea: Props = (
     errorText = '',
     onChange,
     value,
+    className = '',
     ...TextareaHTMLAttributes }
   ) => {
 
@@ -35,7 +37,8 @@ export const TextArea: Props = (
         value={value}
         className={cx([{
           [styles.textarea]: true,
-          [styles.textarea_invalid]: !isValid
+          [styles.textarea_invalid]: !isValid,
+          [className]: true,
         }])}
         { ...TextareaHTMLAttributes } />
       {
