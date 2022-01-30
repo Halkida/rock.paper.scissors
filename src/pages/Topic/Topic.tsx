@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import rpsImage from '@/assets/rps.png';
 import commentService from '@/services/comment';
@@ -7,6 +7,7 @@ import { IComment } from '@/types/Forum';
 import { useService } from '@/hooks';
 import { TopicItem } from '@/components/TopicItem';
 import Spinner from '@/components/Spinner';
+import { CommentCreate } from './components/CommentCreate';
 import { Comment } from './components/Comment';
 import styles from'./Topic.module.scss';
 
@@ -83,18 +84,27 @@ export const Topic: FC = () => {
         >
           Комментарии
         </h2>
-        <div className={styles.comments_list}>
-          {isFetchingComment ?
-            <Spinner /> :
-            (comments as IComment[]).map((comment) => (
-              <Comment
-                key={comment.id}
-                author={comment.author}
-                content={comment.content}
-              />
-            ))
-          }
-        </div>
+        {isFetchingComment ? (
+          <Spinner
+            className={styles.comments_spinner}
+            type="block"
+          />
+        ) : (
+            <React.Fragment>
+              <div className={styles.comments_list}>
+                {(comments as IComment[]).map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    author={comment.author}
+                    content={comment.content}
+                  />
+                ))}
+              </div>
+              <div className={styles.comments_create}>
+                <CommentCreate />
+              </div>
+            </React.Fragment>
+          )}
       </div>
     </main>
   );

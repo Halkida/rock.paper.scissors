@@ -50,4 +50,12 @@
       border-top: thin solid rgba($color-white, 0.2);
     }
   }
+
+  &_create {
+    padding: 1.25rem;
+  }
+
+  &_spinner {
+    padding: 1.25rem;
+  }
 }
