@@ -5,20 +5,26 @@ import styles from './Spinner.module.scss';
 type OwnProps = {
   type?: 'overlayed' | 'inline' | 'block',
   className?: string,
+  isRevert?: boolean,
 };
 
 export const Spinner: FC<OwnProps> = ({
   type = 'overlayed',
   className = '',
+  isRevert = false,
 }) => {
   return (
     <div
-      className={cx([styles.overlay, className])}
+      className={cx([
+        styles.overlay,
+        className,
+        styles[type],
+      ])}
     >
       <div
         className={cx([
           styles.spinner,
-          styles[type],
+          { [styles.revert]: isRevert },
         ])}
       >
         <div className={cx([styles.blob, styles.top])} />
