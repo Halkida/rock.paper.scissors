@@ -9,4 +9,9 @@ export interface IComment {
   replyTo: IComment;
 }
 
-export type CommentCreation = Omit<IComment, 'id' | 'createAt' | 'updateAt'>;
+export type CommentCreation = {
+  content: string;
+  authorId: number;
+  replyTo?: number;
+  topicId: number;
+};
