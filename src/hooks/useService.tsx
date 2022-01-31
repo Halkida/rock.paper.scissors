@@ -7,7 +7,7 @@ type serviceParams = {
 };
 
 type useServiceParams = {
-  initialData: any,
+  initialData?: any,
   autoCancel?: boolean,
   service: ({
     params,
