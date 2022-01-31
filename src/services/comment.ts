@@ -6,6 +6,10 @@ export type GetListParams = {
   params: { topicId: number },
 };
 
+type CommentCreationQuery = {
+  params: CommentCreation,
+};
+
 class CommentApi {
   http: AxiosInstance;
 
@@ -19,11 +23,11 @@ class CommentApi {
       .then(response => response.data);
   };
 
-  create(data: CommentCreation) {
+  create = ({ params }: CommentCreationQuery) => {
     return this.http
-      .post('/', data)
+      .post('/', params)
       .then((response) => response.data);
-  }
+  };
 }
 
 export default new CommentApi();
