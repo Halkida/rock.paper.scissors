@@ -1,7 +1,13 @@
 import { FC, useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useService } from '@/hooks';
+import { selectUser } from '@/store/user/selectors';
 import { TextArea } from '@/components/TextArea';
-import styles from './CommentCreate.module.scss';
 import { Button } from '@/components/Button';
+import Spinner from '@/components/Spinner';
+import commentService from '@/services/comment';
+import styles from './CommentCreate.module.scss';
 
 type answerForComment = {
   commentId: number,
@@ -20,7 +26,15 @@ type Props = FC<OwnProps>;
 export const CommentCreate: Props = ({
   replyTo,
 }) => {
+  const { id: topicId } = useParams();
+  const user = useSelector(selectUser);
   const [value, setValue] = useState();
+  const {
+    isFetching,
+    fetch,
+  } = useService({
+    service: commentService.create,
+  });
 
   const handleTextAreaChange = useCallback((value) => {
     setValue(value);
@@ -28,6 +42,12 @@ export const CommentCreate: Props = ({
 
   const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
+    fetch({
+      content: value,
+      authorId: user?.id,
+      replyTo: replyTo?.commentId,
+      topicId: Number(topicId),
+    });
   }, [setValue]);
 
   return (
@@ -60,8 +80,14 @@ export const CommentCreate: Props = ({
       <div className={styles.footer}>
         <Button
           type="submit"
+          disabled={isFetching}
         >
-          Отправить
+          {isFetching ? (
+            <Spinner
+              type="inline"
+              isRevert
+            />
+          ) : ('Отправить')}
         </Button>
       </div>
     </form>
