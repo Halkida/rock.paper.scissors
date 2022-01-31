@@ -5,7 +5,7 @@ EXPOSE 3000
 
 WORKDIR /app
 COPY . /app
+COPY utils/wait-for.sh wait-for.sh
+RUN chmod +x wait-for.sh
 RUN npm install
 RUN npm run build
-
-CMD ["npm", "start"]
