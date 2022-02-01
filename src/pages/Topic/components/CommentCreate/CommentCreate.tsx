@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import IconTimesSolid from '@/icons/TimesSolid';
 import { useService } from '@/hooks';
 import { selectUser } from '@/store/user/selectors';
 import { TextArea } from '@/components/TextArea';
@@ -19,12 +20,16 @@ type answerForComment = {
 
 type OwnProps = {
   replyTo?: answerForComment,
+  onResetReply: () => void,
+  onRepliedAuthorClick: () => void,
 }
 
 type Props = FC<OwnProps>;
 
 export const CommentCreate: Props = ({
   replyTo,
+  onResetReply,
+  onRepliedAuthorClick,
 }) => {
   const { id: topicId } = useParams();
   const user = useSelector(selectUser);
@@ -50,6 +55,14 @@ export const CommentCreate: Props = ({
     });
   }, [setValue]);
 
+  const handleResetReplyClick = useCallback(() => {
+    onResetReply();
+  }, [onResetReply]);
+
+  const handleRepliedAuthorClick = useCallback(() => {
+    onRepliedAuthorClick();
+  }, [onRepliedAuthorClick]);
+
   return (
     <form
       className={styles.commentCreate}
@@ -59,16 +72,21 @@ export const CommentCreate: Props = ({
         <div
           className={styles.replyTo}
         >
-          <div
-            className={styles.replyTo_title}
-          >
-            Ответ на комментарий от
-          </div>
+          Ответ на комментарий от
+          {' '}
           <Button
             view="text"
             className={styles.replyTo_author}
+            onClick={handleRepliedAuthorClick}
           >
             {replyTo.author.name}
+          </Button>
+          <Button
+            view="text"
+            className={styles.replyTo_reset}
+            onClick={handleResetReplyClick}
+          >
+            <IconTimesSolid className={styles.replyTo_resetIcon} />
           </Button>
         </div>
       )}

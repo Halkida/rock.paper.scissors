@@ -13,3 +13,30 @@
     border-color: $color-white;
   }
 }
+
+.replyTo {
+  font-size: .9em;
+  margin-bottom: 0.5rem;
+
+  &_author {
+    padding: 0;
+    font-size: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &_reset {
+    padding: 0;
+    margin-left: 1rem;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  &_resetIcon {
+    vertical-align: middle;
+  }
+}
