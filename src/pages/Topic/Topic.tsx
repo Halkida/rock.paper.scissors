@@ -42,6 +42,14 @@ export const Topic: FC = () => {
     setReplyTo(null);
   }, []);
 
+  const handleRepliedAuthorClick = useCallback(() => {
+    console.log('handleRepliedAuthorClick');
+  }, []);
+
+  const handleAuthorClick = useCallback((id) => {
+    console.log(id);
+  }, []);
+
   const {
     fetch: fetchComment,
     isFetching: isFetchingComment,
@@ -104,9 +112,11 @@ export const Topic: FC = () => {
                 {(comments as IComment[]).map((comment) => (
                   <Comment
                     key={comment.id}
+                    id={comment.id}
                     author={comment.author}
                     content={comment.content}
                     onAnswer={handleCommentAnswer}
+                    onAuthorClick={handleAuthorClick}
                   />
                 ))}
               </div>
@@ -114,6 +124,7 @@ export const Topic: FC = () => {
                 <CommentCreate
                   replyTo={replyTo}
                   onResetReply={handleResetReply}
+                  onRepliedAuthorClick={handleRepliedAuthorClick}
                 />
               </div>
             </React.Fragment>

@@ -39,7 +39,7 @@ export const Comment: Props = ({
   }, [onAnswer, id, author]);
 
   const handleAuthorClick = useCallback(() => {
-    onAuthorClick();
+    onAuthorClick(id);
   }, [onAuthorClick]);
 
   return (
