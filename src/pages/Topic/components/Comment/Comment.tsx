@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { AvatarImg } from '@/components/Avatar/AvatarImg';
 import { Button } from '@/components/Button';
 import { IUser } from '@/types';
@@ -6,19 +6,41 @@ import { IComment } from '@/types/Forum';
 import styles from './Comment.module.scss';
 
 type OwnProps = {
+  id: number,
   author: IUser;
   content: string;
   replyTo?: IComment;
+  onAnswer: (params: {
+    commentId: number,
+    authorId: number,
+    authorName: string,
+  }) => void;
+  onAuthorClick: (commentId: number) => void;
 }
 
 type Props = FC<OwnProps>;
 
 export const Comment: Props = ({
+  id,
   author,
   content,
   replyTo,
+  onAnswer,
+  onAuthorClick,
 }) => {
   const { display_name, avatar } = author;
+
+  const handleAnswerClick = useCallback(() => {
+    onAnswer({
+      commentId: id,
+      authorId: author.id,
+      authorName: display_name || author.first_name,
+    });
+  }, [onAnswer, id, author]);
+
+  const handleAuthorClick = useCallback(() => {
+    onAuthorClick();
+  }, [onAuthorClick]);
 
   return (
     <div className={styles.comment}>
@@ -46,6 +68,7 @@ export const Comment: Props = ({
           <Button
             view="text"
             className={styles.replyTo_author}
+            onClick={handleAuthorClick}
           >
             {display_name}
           </Button>
@@ -58,6 +81,7 @@ export const Comment: Props = ({
         <Button
           view="text"
           className={styles.answer}
+          onClick={handleAnswerClick}
         >
           Ответить
         </Button>

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import rpsImage from '@/assets/rps.png';
 import commentService from '@/services/comment';
@@ -32,6 +32,15 @@ interface Topic {
 export const Topic: FC = () => {
   const [topic, setTopic] = useState<Topic>();
   const { id: topicId = 0 } = useParams();
+  const [ replyTo, setReplyTo ] = useState(null);
+
+  const handleCommentAnswer = useCallback((value) => {
+    setReplyTo(value);
+  }, []);
+
+  const handleResetReply = useCallback(() => {
+    setReplyTo(null);
+  }, []);
 
   const {
     fetch: fetchComment,
@@ -97,11 +106,15 @@ export const Topic: FC = () => {
                     key={comment.id}
                     author={comment.author}
                     content={comment.content}
+                    onAnswer={handleCommentAnswer}
                   />
                 ))}
               </div>
               <div className={styles.comments_create}>
-                <CommentCreate />
+                <CommentCreate
+                  replyTo={replyTo}
+                  onResetReply={handleResetReply}
+                />
               </div>
             </React.Fragment>
           )}

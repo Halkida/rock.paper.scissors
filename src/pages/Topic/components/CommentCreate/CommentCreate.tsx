@@ -12,14 +12,12 @@ import styles from './CommentCreate.module.scss';
 
 type answerForComment = {
   commentId: number,
-  author: {
-    id: number,
-    name: string,
-  },
+  authorId: number,
+  authorName: string,
 };
 
 type OwnProps = {
-  replyTo?: answerForComment,
+  replyTo: answerForComment | null,
   onResetReply: () => void,
   onRepliedAuthorClick: () => void,
 }
@@ -79,7 +77,7 @@ export const CommentCreate: Props = ({
             className={styles.replyTo_author}
             onClick={handleRepliedAuthorClick}
           >
-            {replyTo.author.name}
+            {replyTo.authorName}
           </Button>
           <Button
             view="text"
