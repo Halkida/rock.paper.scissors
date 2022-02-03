@@ -16,10 +16,12 @@ const csp = helmet.contentSecurityPolicy({
   },
 });
 const xssFilter = helmet.xssFilter();
+const hidePoweredBy = helmet.hidePoweredBy();
 
 app.use(compression())
   .use(csp)
   .use(xssFilter)
+  .use(hidePoweredBy)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))
