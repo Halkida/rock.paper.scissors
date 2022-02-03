@@ -2,14 +2,22 @@ import path from 'path';
 import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
 import router from '@/server/router/router';
 import { dbConnect } from '@/server/initSequilize';
 
 const app = express();
 const jsonParser = bodyParser.json();
 
+const csp = helmet.contentSecurityPolicy({
+  directives: {
+    'default-src': ['self', 'http://localhost:3000', 'ya-praktikum.tech'],
+    'img-src': ['self', 'http://localhost:3000', 'ya-praktikum.tech', 'data:']
+  },
+});
 
 app.use(compression())
+  .use(csp)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))
