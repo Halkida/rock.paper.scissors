@@ -15,9 +15,11 @@ const csp = helmet.contentSecurityPolicy({
     'img-src': ['self', 'http://localhost:3000', 'ya-praktikum.tech', 'data:']
   },
 });
+const xssFilter = helmet.xssFilter();
 
 app.use(compression())
   .use(csp)
+  .use(xssFilter)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))
