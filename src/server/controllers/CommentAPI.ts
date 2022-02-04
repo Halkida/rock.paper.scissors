@@ -6,7 +6,7 @@ export class CommentAPI {
     const { body } = req;
 
     try {
-      CommentService.create(body);
+      await CommentService.create(body);
       res.json({ message: 'Comment created' });
     } catch (e) {
       res.status(400);
