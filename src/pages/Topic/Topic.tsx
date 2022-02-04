@@ -34,6 +34,15 @@ export const Topic: FC = () => {
   const { id: topicId = 0 } = useParams();
   const [ replyTo, setReplyTo ] = useState(null);
 
+  const {
+    fetch: fetchComment,
+    isFetching: isFetchingComment,
+    data: comments,
+  } = useService({
+    service: commentService.getList,
+    initialData: [],
+  });
+
   const handleCommentAnswer = useCallback((value) => {
     setReplyTo(value);
   }, []);
@@ -50,14 +59,9 @@ export const Topic: FC = () => {
     console.log(id);
   }, []);
 
-  const {
-    fetch: fetchComment,
-    isFetching: isFetchingComment,
-    data: comments,
-  } = useService({
-    service: commentService.getList,
-    initialData: [],
-  });
+  const handleCommentCreated = useCallback(() => {
+    fetchComment({ topicId });
+  }, [fetchComment, topicId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,6 +129,7 @@ export const Topic: FC = () => {
                   replyTo={replyTo}
                   onResetReply={handleResetReply}
                   onRepliedAuthorClick={handleRepliedAuthorClick}
+                  onCommentCreated={handleCommentCreated}
                 />
               </div>
             </React.Fragment>
