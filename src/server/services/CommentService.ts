@@ -16,7 +16,7 @@ class CommentService implements BaseRESTService {
 
   public request = (topicId: number) => {
     return sequelize.query(`
-      SELECT c.ID, c.AUTHOR_ID, c.CONTENT, c.REPLY_TO, c.TAGS, u.LOGIN, u.AVATAR, u.LOGIN
+      SELECT c.ID, c.AUTHOR_ID, c.CONTENT, c.REPLY_TO, u.AVATAR, u.LOGIN
       FROM RPS_COMMENT c
             LEFT JOIN RPS_USER u ON u.ID = c.AUTHOR_ID
       WHERE c.TOPIC_ID = ?
