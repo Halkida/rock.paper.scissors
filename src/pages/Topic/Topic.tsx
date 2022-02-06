@@ -33,6 +33,7 @@ export const Topic: FC = () => {
   const [topic, setTopic] = useState<Topic>();
   const { id: topicId = 0 } = useParams();
   const [ replyTo, setReplyTo ] = useState(null);
+  const [isFirstCommentRender, setIsFirstCommentRender]  = useState(true);
 
   const {
     fetch: fetchComment,
@@ -60,6 +61,7 @@ export const Topic: FC = () => {
   }, []);
 
   const handleCommentCreated = useCallback(() => {
+    setIsFirstCommentRender(false);
     fetchComment({ topicId });
   }, [fetchComment, topicId]);
 
@@ -105,7 +107,7 @@ export const Topic: FC = () => {
         >
           Комментарии
         </h2>
-        {isFetchingComment ? (
+        {(isFetchingComment && isFirstCommentRender) ? (
           <Spinner
             className={styles.comments_spinner}
             type="block"
@@ -117,7 +119,9 @@ export const Topic: FC = () => {
                   <Comment
                     key={comment.id}
                     id={comment.id}
-                    author={comment.author}
+                    login={comment.login}
+                    authorId={comment.author_id}
+                    avatar={comment.avatar}
                     content={comment.content}
                     onAnswer={handleCommentAnswer}
                     onRepliedClick={handleCommentRepliedClick}
