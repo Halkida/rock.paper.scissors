@@ -7,9 +7,7 @@ import {
   DataType,
   AllowNull,
   Default,
-  ForeignKey
 } from 'sequelize-typescript';
-import { User } from './User';
 
 type UserThemeAttributes = {
   id: number;
@@ -34,7 +32,6 @@ export class UserTheme extends Model<UserThemeAttributes, UserThemeCreationAttri
   @Column(DataType.STRING)
   theme: string;
 
-  @ForeignKey(() => User)
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
