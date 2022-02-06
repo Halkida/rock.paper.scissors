@@ -2,14 +2,18 @@
 @import '@/styles/button.scss';
 @import '@/styles/custom-properties.scss';
 
-html, body {
-  min-height: 100vh;
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
+  overflow: auto;
   font-family: Helvetica, Arial, sans-serif;
   color: $color-white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 * {
@@ -17,7 +21,7 @@ body {
 }
 
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 #fullscreen::backdrop {
