@@ -19,9 +19,11 @@ export class CommentAPI {
 
     try {
       const { topicId } = query;
-      const foundComments = await CommentService.request(Number(topicId));
 
-      res.json({ comments: foundComments });
+      const [results] = await CommentService.request(Number(topicId));
+      const response = results;
+
+      res.json({ comments: response });
     } catch(e) {
       res.status(404);
       res.json({ error: e.message });

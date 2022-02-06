@@ -26,6 +26,7 @@ type CommentCreationAttributes = Omit<CommentAttributes, 'id' | 'createAt' | 'up
 
 @Table({
   timestamps: true,
+  underscored: true,
   tableName: 'rps_comment'
 })
 
@@ -50,7 +51,10 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => Comment)
   @AllowNull(true)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'reply_to'
+  })
   replyTo: number;
 
   @ForeignKey(() => Topic)

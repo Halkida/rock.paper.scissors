@@ -1,5 +1,6 @@
 import { BaseRESTService } from '@/server/services/BaseRESTService';
 import { Comment } from '@/server/models';
+import { sequelize } from '../initSequilize';
 
 interface CreateRequest {
   authorId: number;
@@ -14,13 +15,13 @@ class CommentService implements BaseRESTService {
   }
 
   public request = (topicId: number) => {
-    return Comment.findAll({
-      where: {
-        topicId
-      },
-      order: ['createdAt'],
-      raw : true
-    });
+    return sequelize.query(`
+      SELECT 	c.ID, c.AUTHOR_ID, c.CONTENT, c.REPLY_TO, c.TAGS, u.LOGIN, u.AVATAR
+      FROM 	RPS_COMMENT c
+            LEFT JOIN RPS_USER u ON u.ID = c.AUTHOR_ID
+      WHERE 	c.TOPIC_ID = ?
+      ORDER BY c.created_at
+    `, { replacements: [topicId] });
 }
 }
 
