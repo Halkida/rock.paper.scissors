@@ -64,8 +64,4 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
     field: 'topic_id'
   })
   topicId: number;
-
-  @AllowNull(true)
-  @Column(DataType.ARRAY(DataType.STRING))
-  tags: string[];
 }
