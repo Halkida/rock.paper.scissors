@@ -1,9 +1,9 @@
-import { IUser } from './';
-
 export interface IComment {
   id: number;
   content: string;
-  author: IUser;
+  author_id: number;
+  login: string;
+  avatar: string | null;
   createAt: string;
   updateAt: string;
   replyTo: IComment;
