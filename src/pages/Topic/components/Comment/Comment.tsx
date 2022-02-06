@@ -15,7 +15,7 @@ type OwnProps = {
     authorId: number,
     authorName: string,
   }) => void;
-  onAuthorClick: (commentId: number) => void;
+  onRepliedClick: (commentId: number) => void;
 }
 
 type Props = FC<OwnProps>;
@@ -26,7 +26,7 @@ export const Comment: Props = ({
   content,
   replyTo,
   onAnswer,
-  onAuthorClick,
+  onRepliedClick,
 }) => {
   const { display_name, avatar } = author;
 
@@ -38,9 +38,9 @@ export const Comment: Props = ({
     });
   }, [onAnswer, id, author]);
 
-  const handleAuthorClick = useCallback(() => {
-    onAuthorClick(id);
-  }, [onAuthorClick]);
+  const handleRepliedClick = useCallback(() => {
+    onRepliedClick(id);
+  }, [onRepliedClick]);
 
   return (
     <div className={styles.comment}>
@@ -68,7 +68,7 @@ export const Comment: Props = ({
           <Button
             view="text"
             className={styles.replyTo_author}
-            onClick={handleAuthorClick}
+            onClick={handleRepliedClick}
           >
             {display_name}
           </Button>

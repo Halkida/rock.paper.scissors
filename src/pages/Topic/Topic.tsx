@@ -55,8 +55,8 @@ export const Topic: FC = () => {
     console.log('handleRepliedAuthorClick');
   }, []);
 
-  const handleAuthorClick = useCallback((id) => {
-    console.log(id);
+  const handleCommentRepliedClick = useCallback((commentId) => {
+    console.log(commentId);
   }, []);
 
   const handleCommentCreated = useCallback(() => {
@@ -120,7 +120,7 @@ export const Topic: FC = () => {
                     author={comment.author}
                     content={comment.content}
                     onAnswer={handleCommentAnswer}
-                    onAuthorClick={handleAuthorClick}
+                    onRepliedClick={handleCommentRepliedClick}
                   />
                 ))}
               </div>
