@@ -1,13 +1,14 @@
 import { FC, useCallback } from 'react';
 import { AvatarImg } from '@/components/Avatar/AvatarImg';
 import { Button } from '@/components/Button';
-import { IUser } from '@/types';
 import { IComment } from '@/types/Forum';
 import styles from './Comment.module.scss';
 
 type OwnProps = {
   id: number,
-  author: IUser;
+  authorId: number,
+  login: string;
+  avatar: string | null;
   content: string;
   replyTo?: IComment;
   onAnswer: (params: {
@@ -15,32 +16,32 @@ type OwnProps = {
     authorId: number,
     authorName: string,
   }) => void;
-  onAuthorClick: (commentId: number) => void;
+  onRepliedClick: (commentId: number) => void;
 }
 
 type Props = FC<OwnProps>;
 
 export const Comment: Props = ({
   id,
-  author,
+  authorId,
+  login,
+  avatar,
   content,
   replyTo,
   onAnswer,
-  onAuthorClick,
+  onRepliedClick,
 }) => {
-  const { display_name, avatar } = author;
-
   const handleAnswerClick = useCallback(() => {
     onAnswer({
       commentId: id,
-      authorId: author.id,
-      authorName: display_name || author.first_name,
+      authorId,
+      authorName: login,
     });
-  }, [onAnswer, id, author]);
+  }, [onAnswer, id, authorId, login]);
 
-  const handleAuthorClick = useCallback(() => {
-    onAuthorClick(id);
-  }, [onAuthorClick]);
+  const handleRepliedClick = useCallback(() => {
+    onRepliedClick(id);
+  }, [onRepliedClick]);
 
   return (
     <div className={styles.comment}>
@@ -53,7 +54,7 @@ export const Comment: Props = ({
         <div
           className={styles.author_name}
         >
-          {display_name}
+          {login}
         </div>
       </div>
       {replyTo && (
@@ -68,9 +69,9 @@ export const Comment: Props = ({
           <Button
             view="text"
             className={styles.replyTo_author}
-            onClick={handleAuthorClick}
+            onClick={handleRepliedClick}
           >
-            {display_name}
+            {login}
           </Button>
         </div>
       )}

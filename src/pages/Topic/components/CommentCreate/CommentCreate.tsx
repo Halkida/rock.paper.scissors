@@ -20,6 +20,7 @@ type OwnProps = {
   replyTo: answerForComment | null,
   onResetReply: () => void,
   onRepliedAuthorClick: () => void,
+  onCommentCreated: () => void,
 }
 
 type Props = FC<OwnProps>;
@@ -28,10 +29,11 @@ export const CommentCreate: Props = ({
   replyTo,
   onResetReply,
   onRepliedAuthorClick,
+  onCommentCreated,
 }) => {
   const { id: topicId } = useParams();
   const user = useSelector(selectUser);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<string>('');
   const {
     isFetching,
     fetch,
@@ -43,15 +45,17 @@ export const CommentCreate: Props = ({
     setValue(value);
   }, [setValue]);
 
-  const handleFormSubmit = useCallback((e) => {
+  const handleFormSubmit = useCallback(async (e) => {
     e.preventDefault();
-    fetch({
+    await fetch({
       content: value,
       authorId: user?.id,
       replyTo: replyTo?.commentId,
       topicId: Number(topicId),
     });
-  }, [setValue]);
+    setValue('');
+    onCommentCreated();
+  }, [value, replyTo, topicId]);
 
   const handleResetReplyClick = useCallback(() => {
     onResetReply();

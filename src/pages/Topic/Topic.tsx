@@ -33,6 +33,16 @@ export const Topic: FC = () => {
   const [topic, setTopic] = useState<Topic>();
   const { id: topicId = 0 } = useParams();
   const [ replyTo, setReplyTo ] = useState(null);
+  const [isFirstCommentRender, setIsFirstCommentRender]  = useState(true);
+
+  const {
+    fetch: fetchComment,
+    isFetching: isFetchingComment,
+    data: comments,
+  } = useService({
+    service: commentService.getList,
+    initialData: [],
+  });
 
   const handleCommentAnswer = useCallback((value) => {
     setReplyTo(value);
@@ -46,18 +56,14 @@ export const Topic: FC = () => {
     console.log('handleRepliedAuthorClick');
   }, []);
 
-  const handleAuthorClick = useCallback((id) => {
-    console.log(id);
+  const handleCommentRepliedClick = useCallback((commentId) => {
+    console.log(commentId);
   }, []);
 
-  const {
-    fetch: fetchComment,
-    isFetching: isFetchingComment,
-    data: comments,
-  } = useService({
-    service: commentService.getList,
-    initialData: [],
-  });
+  const handleCommentCreated = useCallback(() => {
+    setIsFirstCommentRender(false);
+    fetchComment({ topicId });
+  }, [fetchComment, topicId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,7 +107,7 @@ export const Topic: FC = () => {
         >
           Комментарии
         </h2>
-        {isFetchingComment ? (
+        {(isFetchingComment && isFirstCommentRender) ? (
           <Spinner
             className={styles.comments_spinner}
             type="block"
@@ -113,10 +119,12 @@ export const Topic: FC = () => {
                   <Comment
                     key={comment.id}
                     id={comment.id}
-                    author={comment.author}
+                    login={comment.login}
+                    authorId={comment.author_id}
+                    avatar={comment.avatar}
                     content={comment.content}
                     onAnswer={handleCommentAnswer}
-                    onAuthorClick={handleAuthorClick}
+                    onRepliedClick={handleCommentRepliedClick}
                   />
                 ))}
               </div>
@@ -125,6 +133,7 @@ export const Topic: FC = () => {
                   replyTo={replyTo}
                   onResetReply={handleResetReply}
                   onRepliedAuthorClick={handleRepliedAuthorClick}
+                  onCommentCreated={handleCommentCreated}
                 />
               </div>
             </React.Fragment>
