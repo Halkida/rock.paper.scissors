@@ -122,6 +122,7 @@ export const Topic: FC = () => {
                     login={comment.login}
                     authorId={comment.author_id}
                     avatar={comment.avatar}
+                    replyTo={comment.reply_to}
                     content={comment.content}
                     onAnswer={handleCommentAnswer}
                     onRepliedClick={handleCommentRepliedClick}

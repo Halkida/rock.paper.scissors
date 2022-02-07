@@ -57,7 +57,7 @@ export const Comment: Props = ({
           {login}
         </div>
       </div>
-      {replyTo && (
+      {replyTo?.id && (
         <div
           className={styles.replyTo}
         >
@@ -71,7 +71,7 @@ export const Comment: Props = ({
             className={styles.replyTo_author}
             onClick={handleRepliedClick}
           >
-            {login}
+            {replyTo?.login}
           </Button>
         </div>
       )}

@@ -6,7 +6,7 @@ export interface IComment {
   avatar: string | null;
   createAt: string;
   updateAt: string;
-  replyTo: IComment;
+  reply_to: IComment;
 }
 
 export type CommentCreation = {
