@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
-      - run: echo "SECTRETS    ${{ secrets.SSH_KEY }} STAGING_SSH_KEY."
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+#      - run: echo "SECTRETS    ${{ secrets.SSH_KEY }} STAGING_SSH_KEY."
 #        run: |
 #          mkdir -p ~/.ssh/
 #          echo "$SSH_KEY" > ~/.ssh/staging.key
