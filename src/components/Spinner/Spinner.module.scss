@@ -1,23 +1,31 @@
 @import '@/styles/variables';
 
+.overlay {
+  display: flex;
+  padding: calc(var(--size) * 0.3125);
+  --size: 16px;
+}
+
 .spinner {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
+  position: relative;
+  width: 1em;
+  height: 1em;
+  font-size: calc(var(--size) * 1.875);
+  color: $color-tulip-tree;
+
+  &.revert {
+    color: var(--color-background);
+  }
+
   .blob {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid $color-tulip-tree;
+    border: calc(var(--size) * 0.125) solid currentColor;
     
-    width: 10px;
-    height: 10px;
+    width: calc(var(--size) * 0.625);
+    height: calc(var(--size) * 0.625);
     border-radius: 50%;
     
     &.top {
@@ -35,10 +43,34 @@
   }
   
   .moveBlob {
-    background: $color-tulip-tree;
+    background: currentColor;
     top: 0;
     
     animation: blob-spinner-mover 1s infinite ease-in;
+  }
+}
+
+.overlayed {
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.block {
+  .spinner {
+    margin: auto;
+  }
+}
+
+.inline {
+  display: inline-block;
+  --size: 8px;
+
+  .spinner {
+    font-size: calc(var(--size) * 1.25);
   }
 }
 

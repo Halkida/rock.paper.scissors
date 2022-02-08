@@ -2,32 +2,12 @@ import { Request, Response } from 'express';
 import { topicService } from '@/server/services';
 
 export class TopicAPI {
-  public static get = async (req: Request, res: Response) => {
-    const { params } = req;
-
-    try {
-      const { id } = params;
-      const topic = await topicService.request(Number(id));
-
-      if(!topic) {
-        throw new Error('Topic not found');
-      }
-
-      console.log(topic.toJSON());
-      res.json(topic.toJSON());
-
-    } catch(e) {
-      res.status(404);
-      res.json({ error: e.message });
-    }
-  };
-
   public static create = async (req: Request, res: Response) => {
     const { body } = req;
 
     try {
-      await topicService.create((body));
-      res.json({ message: 'Topic created' });
+      const topic = await topicService.create((body));
+      res.json({ message: 'Topic created', topic });
     } catch (e) {
       res.status(400);
       res.json({ error: e.message });
@@ -46,13 +26,20 @@ export class TopicAPI {
     }
   };
 
-  public static getAll = async (_: Request, res: Response) => {
+  public static get = async (req: Request, res: Response) => {
+    const { query } = req;
+    const { id } = query;
+    let response;
     try {
-      const topics = await topicService.findAll();
+      if (id) {
+        const [results] = await topicService.request(Number(id));
+        response = results[0];
+      } else {
+        const [results] = await topicService.findAll();
+        response = results;
+      }
 
-      console.log(JSON.stringify(topics));
-      res.json(JSON.stringify(topics));
-
+      res.json(response);
     } catch(e) {
       res.status(404);
       res.json({ error: e.message });

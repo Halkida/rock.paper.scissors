@@ -1,12 +1,57 @@
 @import '@/styles/variables.scss';
 
 .comment {
+  padding: 1.25rem;
+
+  &_content {
+    font-size: 14px;
+  }
+}
+
+.author {
   display: flex;
+  align-items: center;
+  margin-right: 30px;
+  margin-bottom: 16px;
+
+  &_avatar {
+    margin-right: 10px;
+  }
+
+  &_name {
+    font-size: 12px;
+    font-weight: lighter;
+  }
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.answer {
+  padding: 0;
+  font-size: 13px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.replyTo {
+  font-size: .75rem;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 
   &_author {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 30px;
+    padding: 0;
+    margin-left: 1em;
+    font: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
