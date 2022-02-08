@@ -4,4 +4,4 @@ jobs:
   CD:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "SSH_KEY ${{ secrets.SSH_KEY }}."
