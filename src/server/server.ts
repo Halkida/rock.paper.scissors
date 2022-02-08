@@ -11,8 +11,8 @@ const jsonParser = bodyParser.json();
 
 const csp = helmet.contentSecurityPolicy({
   directives: {
-    'default-src': ['self', 'http://localhost:3000', 'ya-praktikum.tech'],
-    'img-src': ['self', 'http://localhost:3000', 'ya-praktikum.tech', 'data:']
+    'default-src': ['self', 'ya-praktikum.tech'],
+    'img-src': ['self', 'ya-praktikum.tech', 'data:']
   },
 });
 const xssFilter = helmet.xssFilter();
