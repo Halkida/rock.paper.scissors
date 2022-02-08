@@ -14,7 +14,7 @@ const store = configureStore(initialState);
 if (PRODUCTION) {
   startServiceWorker();
 }
-
+        
 hydrate(
   <Router>
     <ErrorBoundary>

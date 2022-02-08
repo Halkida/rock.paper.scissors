@@ -5,8 +5,7 @@ export const topicRoutes = (router: Router) => {
   const topicRouter: Router = Router();
 
   topicRouter
-    .get('/', TopicAPI.getAll)
-    .get('/:id', TopicAPI.get)
+    .get('/', TopicAPI.get)
     .post('/create', TopicAPI.create)
     .post('/update', TopicAPI.update);
 

@@ -3,14 +3,22 @@ import cx from 'classnames';
 import styles from'./Avatar.module.scss';
 
 type OwnProps = {
-  avatarSrc: string | undefined;
+  className?: string,
+  avatarSrc?: string | null;
   isEditable?: boolean;
   onClick?: (event: MouseEvent) => void
   initials?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xsmall';
 };
 
-export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onClick, size = 'medium' }) => {
+export const AvatarImg: FC<OwnProps> = ({
+  className = '',
+  avatarSrc,
+  initials,
+  isEditable,
+  size = 'medium',
+  onClick,
+}) => {
   const elementAvatar = useRef<HTMLButtonElement>(null);
 
   return (
@@ -20,36 +28,42 @@ export const AvatarImg: FC<OwnProps> = ({ avatarSrc, initials, isEditable, onCli
         type="button"
         className={cx([
           styles.avatar,
-          { [styles[`avatar__${size}`]]: size },
+          styles[size],
+          className,
         ])}
         ref={ elementAvatar }
         onClick={onClick}
       >
-        {avatarSrc ?
-          (
-            <img
-              src={avatarSrc}
-              alt="avatar"
-              className={styles.avatar__image}
-            />
-          ) : (
-            <span className={styles.avatar__default}>
-              { initials }
-            </span>
-          )}
-      </button>
-      : <div
-        className={cx([
-          styles.avatar,
-          { [styles[`avatar__wrapper__${size}`]]: size },
-        ])}
-      >
+      {avatarSrc ? (
         <img
           src={avatarSrc}
           alt="avatar"
           className={styles.avatar__image}
         />
-        { !avatarSrc && <span className={styles.avatar__default}>{ initials }</span>}
+      ) : (
+        <span className={styles.avatar__default}>
+          { initials }
+        </span>
+      )}
+      </button>
+      : <div
+        className={cx([
+          styles.avatar,
+          styles[size],
+          className,
+        ])}
+      >
+        {avatarSrc ? (
+          <img
+            src={avatarSrc}
+            alt="avatar"
+            className={styles.avatar__image}
+          />
+        ) : (
+          <span className={styles.avatar__default}>
+          { initials }
+        </span>
+        )}
       </div>}
     </>
   );
