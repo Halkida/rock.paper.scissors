@@ -25,8 +25,11 @@ jobs:
       - name: Update project
         run: ssh staging 'cd rock.paper.scissors && git fetch && git reset --hard origin/main'
 
+      - name: Stop project
+        run: ssh staging 'docker-compose stop'
+
       - name: Build project
-        run: ssh staging 'docker-compose stop && docker-compose build rps'
+        run: ssh staging 'docker-compose build rps'
 
       - name: Start project
         if: ${{ always() }}
