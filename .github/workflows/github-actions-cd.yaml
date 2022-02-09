@@ -26,7 +26,7 @@ jobs:
         run: ssh staging 'cd rock.paper.scissors && git fetch && git reset --hard origin/main'
 
       - name: Stop project
-        run: ssh staging 'cd rock.paper.scissors && docker-compose stop && docker-compose down rps'
+        run: ssh staging 'cd rock.paper.scissors && docker-compose stop'
 
       - name: Build project
         run: ssh staging 'cd rock.paper.scissors && docker-compose build rps'
