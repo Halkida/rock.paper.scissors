@@ -1,5 +1,8 @@
 name: Delivery
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   CD:
     runs-on: ubuntu-latest
