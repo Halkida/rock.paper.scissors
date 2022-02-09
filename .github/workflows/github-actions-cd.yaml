@@ -22,5 +22,12 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Try ssh commang
-        run: ssh staging 'ls'
+      - name: Update project
+        run: ssh staging 'cd rock.paper.scissors && git fetch && git reset --hard origin/main'
+
+      - name: Build project
+        run: ssh staging 'docker-compose stop && doecker-compose build rps'
+
+      - name: Start project
+        if: ${{ always() }}
+        run: ssh staging 'docker-compose up nginx'
