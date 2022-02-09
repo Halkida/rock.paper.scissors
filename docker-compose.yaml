@@ -14,9 +14,9 @@ services:
     networks:
       - rps
     restart: always
-  webserver:
+  nginx:
     image: nginx:mainline-alpine
-    container_name: webserver
+    container_name: nginx
     restart: unless-stopped
     ports:
       - "80:80"
