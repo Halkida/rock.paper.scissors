@@ -1,8 +1,9 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, useEffect, useRef } from 'react';
+import { GameStats } from '@/RPS';
+import { RPSAudio } from '@/modules/audio';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
-import { GameStats } from '@/RPS';
 import styles from './Game.module.scss';
 
 enum Steps {
@@ -30,9 +31,19 @@ export const Game: FC = () => {
     [setStep],
   );
   const handleGameComplete = useCallback(() => setStep(Steps.start), []);
+  const audioElement = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (audioElement.current) {
+      new RPSAudio({
+        parent: audioElement.current,
+      });
+    }
+  }, [audioElement]);
 
   return (
     <main className={styles.page}>
+      <div ref={audioElement} />
       {(step === Steps.start) && (
         <Start
           onGameStart={handleGameStart}
