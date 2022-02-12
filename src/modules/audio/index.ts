@@ -1,4 +1,4 @@
-const URL = '/audio/theme.mp3';
+const URL = '/static/audio/theme.mp3';
 
 type RPSAudioOptions = {
   parent: HTMLDivElement,
