@@ -9,9 +9,11 @@ class AuthApi {
     this.http = getAxiosInstance('https://ya-praktikum.tech/api/v2/auth');
   }
 
-  getUser(): Promise<IUser> {
-    return this.http.get<IUser>('/user')
-      .then((response) => response.data);
+  getUser(options?: Record<string, unknown>): Promise<IUser> {
+    return this.http.get<IUser>('/user', { ...options })
+      .then((response) => {
+        return response.data;
+      });
   }
 
   signIn(data: Record<string, unknown>): Promise<unknown> {
