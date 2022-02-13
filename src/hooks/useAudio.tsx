@@ -4,10 +4,12 @@ const URL = '/static/audio/theme.mp3';
 
 type RPSAudioOptions = {
   parent: Nullable<HTMLDivElement>,
+  isLoop?: boolean,
 };
 
 export const useAudio = ({
   parent,
+  isLoop = false,
 }: RPSAudioOptions) => {
   const audioElement = useRef<HTMLAudioElement>(new Audio(URL));
   const [canPlay, setCanPlay] = useState<boolean>(false);
@@ -15,6 +17,7 @@ export const useAudio = ({
 
   useEffect(() => {
     if (audioElement.current && parent) {
+      audioElement.current.loop = isLoop;
       parent.appendChild(audioElement.current);
       audioElement.current?.addEventListener('canplaythrough', () => {
         setCanPlay(true);
