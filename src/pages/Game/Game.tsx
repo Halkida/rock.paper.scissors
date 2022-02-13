@@ -1,6 +1,9 @@
-import { FC, useState, useCallback, useEffect, useRef } from 'react';
+import { FC, useState, useCallback, useRef } from 'react';
+import IconPlay from '@/icons/play';
+import IconPause from '@/icons/pause';
+import { Button } from '@/components/Button';
+import { useAudio } from '@/hooks';
 import { GameStats } from '@/RPS';
-import { RPSAudio } from '@/modules/audio';
 import Start, { OnGameStartParams } from './Steps/Start';
 import Play from './Steps/Play';
 import Finish from './Steps/Finish';
@@ -13,6 +16,16 @@ enum Steps {
 }
 
 export const Game: FC = () => {
+  const audioWrapper = useRef<HTMLDivElement>(null);
+
+  const {
+    isPlaying,
+    play,
+    pause,
+  } = useAudio({
+    parent: audioWrapper?.current,
+    isLoop: true,
+  });
   const [step, setStep] = useState<Steps>(Steps.start);
   const [gameWithComputer, setGameWithComputer] = useState<boolean>();
   const [gameStats, setGameStats] = useState<Nullable<GameStats>>(null);
@@ -20,6 +33,7 @@ export const Game: FC = () => {
     ({ withComputer }: OnGameStartParams) => {
       setStep(Steps.play);
       setGameWithComputer(withComputer);
+      play();
     },
     [setStep, setGameWithComputer, Steps]
   );
@@ -30,20 +44,18 @@ export const Game: FC = () => {
     },
     [setStep],
   );
-  const handleGameComplete = useCallback(() => setStep(Steps.start), []);
-  const audioElement = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (audioElement.current) {
-      new RPSAudio({
-        parent: audioElement.current,
-      });
+  const handleSoundClick = useCallback(() => {
+    if (isPlaying) {
+      pause();
+    } else {
+      play();
     }
-  }, [audioElement]);
+  }, [pause, play, isPlaying]);
+  const handleGameComplete = useCallback(() => setStep(Steps.start), []);
 
   return (
     <main className={styles.page}>
-      <div ref={audioElement} />
+      <div ref={audioWrapper} />
       {(step === Steps.start) && (
         <Start
           onGameStart={handleGameStart}
@@ -58,6 +70,13 @@ export const Game: FC = () => {
       {(step === Steps.finish) && (
         <Finish gameStats={gameStats} onGameComplete={handleGameComplete} />
       )}
+      <Button
+        view="outline"
+        className={styles.soundButton}
+        onClick={handleSoundClick}
+      >
+        {!isPlaying ? <IconPlay /> : <IconPause />}
+      </Button>
     </main>
   );
 };
