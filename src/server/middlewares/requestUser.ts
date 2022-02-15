@@ -1,18 +1,15 @@
-import {Request, Response, NextFunction} from 'express';
-import authApi from '@/services/auth.ts';
+import {Request, NextFunction} from 'express';
+import authApi from '@/services/auth';
+import { ExpressResponse } from '@/types';
 
-export const requestUserMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  const cookies = req.cookies;
+export const requestUserMiddleware = async (req: Request, res: ExpressResponse, next: NextFunction) => {
   try {
-    const user = await authApi.getUser({
-      headers: { cookie: cookies },
+    res.user = await authApi.getUser({
+      headers: { cookie: req.headers.cookie },
     });
-    res.user = user;
-    console.log(user);
-    next();
   } catch (e: unknown) {
-    console.log('|||||||||||||||||||||||||||||||||||||||');
-    console.log(e.config);
+    console.log(e);
+  } finally {
     next();
   }
 };
