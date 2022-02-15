@@ -2,7 +2,6 @@ import {
   Model,
   Table,
   Column,
-  AutoIncrement,
   PrimaryKey,
   DataType,
   AllowNull,
@@ -22,7 +21,6 @@ type UserCreationAttributes = Omit<UserAttributes, 'id'>;
   tableName: 'rps_user'
 })
 export class User extends Model<UserAttributes, UserCreationAttributes> {
-  @AutoIncrement
   @Unique
   @PrimaryKey
   @Column(DataType.INTEGER)

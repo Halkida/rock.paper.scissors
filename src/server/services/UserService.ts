@@ -2,6 +2,7 @@ import { BaseRESTService } from '@/server/services/BaseRESTService';
 import { User } from '@/server/models';
 
 interface CreateRequest {
+  id: number;
   login: string;
   avatar?: string;
 }
