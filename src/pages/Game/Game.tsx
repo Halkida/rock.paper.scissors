@@ -1,6 +1,6 @@
 import { FC, useState, useCallback, useRef } from 'react';
-import IconPlay from '@/icons/play';
-import IconPause from '@/icons/pause';
+import IconPlay from '@/icons/Play';
+import IconPause from '@/icons/Pause';
 import { Button } from '@/components/Button';
 import { useAudio } from '@/hooks';
 import { GameStats } from '@/RPS';
