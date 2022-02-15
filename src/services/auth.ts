@@ -47,17 +47,6 @@ class AuthApi {
         }
       });
   }
-
-  async storeUser(data: Record<string, unknown>) {
-    const http = getAxiosInstance('/');
-    const {data: user} = await http.get(`user?id=${data.id}`);
-
-    if (user === null) {
-      return http.post('user/create', data);
-    } else {
-      return http.post('user/update', data);
-    }
-  }
 }
 
 export default new AuthApi();
