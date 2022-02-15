@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
 import cookieParser from 'cookie-parser';
 import router from '@/server/router/router';
 import { dbConnect } from '@/server/initSequilize';
-import { requestUserMiddleware } from './middlewares/requestUser';
+import { requestUserMiddleware, storeUserMiddleware } from '@/server/middlewares';
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -15,6 +15,7 @@ const jsonParser = bodyParser.json();
 app.use(compression())
   .use(cookieParser())
   .use(requestUserMiddleware)
+  .use(storeUserMiddleware)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))
