@@ -1,12 +1,13 @@
 import * as path from 'path';
 import { Configuration } from 'webpack';
 
-import {  DIST_DIR, SRC_DIR } from './env';
+import { IS_DEV,  DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 const config: Configuration = {
   entry: path.join(SRC_DIR, 'client.tsx'),
     module: {
@@ -45,6 +46,9 @@ const config: Configuration = {
       new MiniCssExtractPlugin({
         filename: '[name].css'
       }),
+      new webpack.DefinePlugin({
+        PRODUCTION: !IS_DEV,
+      })
     ],
     devtool: 'source-map',
 };
