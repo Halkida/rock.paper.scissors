@@ -19,13 +19,22 @@ services:
     container_name: nginx
     restart: unless-stopped
     ports:
-      - "80:80"
+      - '80:80'
+      - '443:443'
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - rps
     networks:
       - rps
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email inham130@gmail.com -d chalkida-rps-9.ya-praktikum.tech --agree-tos
   postgres:
     image: postgres:14-alpine3.15
     ports:
