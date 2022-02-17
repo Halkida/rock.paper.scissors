@@ -20,13 +20,13 @@ export type CommentAttributes = {
   updateAt: string,
   replyTo?: number,
   topicId: number,
-  tags?: string[],
 }
 
 type CommentCreationAttributes = Omit<CommentAttributes, 'id' | 'createAt' | 'updateAt'>;
 
 @Table({
   timestamps: true,
+  underscored: true,
   tableName: 'rps_comment'
 })
 
@@ -39,7 +39,10 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => User)
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'author_id'
+  })
   authorId: number;
 
   @AllowNull(false)
@@ -48,15 +51,17 @@ export class Comment extends Model<CommentAttributes, CommentCreationAttributes>
 
   @ForeignKey(() => Comment)
   @AllowNull(true)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'reply_to'
+  })
   replyTo: number;
 
   @ForeignKey(() => Topic)
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'topic_id'
+  })
   topicId: number;
-
-  @AllowNull(true)
-  @Column(DataType.ARRAY(DataType.STRING))
-  tags: string[];
 }

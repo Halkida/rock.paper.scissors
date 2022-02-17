@@ -9,6 +9,7 @@ export interface ModalProps {
   hide: () => void;
   children: ReactNode | string;
   headerText?: string;
+  className?: string;
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -16,6 +17,7 @@ export const Modal: FC<ModalProps> = ({
   hide,
   children,
   headerText,
+  className = ''
 }) => {
   const { ref } = useClickOutside(false, hide);
 
@@ -29,7 +31,10 @@ export const Modal: FC<ModalProps> = ({
         ref={ref}
         className={ styles.modal__wrapper }
       >
-        <div className={ styles.modal__styledModal }>
+        <div className={cx([
+          styles.modal__styledModal,
+          className
+        ])}>
           <div className={ styles.modal__header }>
             { headerText && <p className={ styles.modal__headerText }>
               {headerText}

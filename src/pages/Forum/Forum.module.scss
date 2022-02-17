@@ -8,20 +8,23 @@
   height: 100%;
 }
 
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 80%;
+  height: 8rem;
+  padding: 1.3125rem 0;
+  border-bottom: 6px solid $color-tulip-tree;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  height: 2.75rem;
+}
+
 .forum {
-  background-color: rgba($color-white, .1);
   flex-grow: 1;
-  width: 70%;
-  padding: 1.5rem;
+  width: 80%;
   overflow: auto;
-
-  &_table {
-    min-height: 100%;
-    width: 100%;
-    text-align: left;
-
-    td {
-      height: 40px;
-    }
-  }
 }

@@ -10,8 +10,11 @@ import './styles/index.scss';
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
 
-startServiceWorker();
-
+// @ts-ignore
+if (PRODUCTION) {
+  startServiceWorker();
+}
+        
 hydrate(
   <Router>
     <ErrorBoundary>

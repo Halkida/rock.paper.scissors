@@ -2,14 +2,26 @@ import path from 'path';
 import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
 import router from '@/server/router/router';
 import { dbConnect } from '@/server/initSequilize';
 
 const app = express();
 const jsonParser = bodyParser.json();
 
+const csp = helmet.contentSecurityPolicy({
+  directives: {
+    'default-src': ['self', 'ya-praktikum.tech'],
+    'img-src': ['self', 'ya-praktikum.tech', 'data:']
+  },
+});
+const xssFilter = helmet.xssFilter();
+const hidePoweredBy = helmet.hidePoweredBy();
 
 app.use(compression())
+  .use(csp)
+  .use(xssFilter)
+  .use(hidePoweredBy)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))

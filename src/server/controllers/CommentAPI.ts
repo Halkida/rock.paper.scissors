@@ -6,7 +6,7 @@ export class CommentAPI {
     const { body } = req;
 
     try {
-      CommentService.create(body);
+      await CommentService.create(body);
       res.json({ message: 'Comment created' });
     } catch (e) {
       res.status(400);
@@ -19,9 +19,30 @@ export class CommentAPI {
 
     try {
       const { topicId } = query;
-      const foundComments = await CommentService.request(Number(topicId));
 
-      res.json({ comments: foundComments });
+      const [results] = await CommentService.request(Number(topicId));
+
+      const response = results.map((comment: Record<string, unknown>) => {
+        const { reply_author_id, reply_content, reply_avatar, reply_id, reply_login } = comment;
+        const replyTo = {
+          author_id: reply_author_id,
+          content: reply_content,
+          avatar: reply_avatar,
+          id: reply_id,
+          login: reply_login,
+        };
+
+        return  {
+          id: comment.id,
+          author_id: comment.author_id,
+          content: comment.content,
+          reply_to: replyTo,
+          avatar: comment.avatar,
+          login: comment.login
+        };
+      });
+
+      res.json({ comments: response });
     } catch(e) {
       res.status(404);
       res.json({ error: e.message });
