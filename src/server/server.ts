@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import https from 'https';
 import { readFileSync } from 'fs';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import router from '@/server/router/router';
 import { dbConnect } from '@/server/initSequilize';
 import { requestUserMiddleware, storeUserMiddleware } from '@/server/middlewares';
@@ -12,10 +13,22 @@ import { requestUserMiddleware, storeUserMiddleware } from '@/server/middlewares
 const app = express();
 const jsonParser = bodyParser.json();
 
+
+const csp = helmet.contentSecurityPolicy({
+  directives: {
+    'default-src': ['self', 'ya-praktikum.tech'],
+    'img-src': ['self', 'ya-praktikum.tech', 'data:']
+  },
+});
+const xssFilter = helmet.xssFilter();
+const hidePoweredBy = helmet.hidePoweredBy();
+
 app.use(compression())
-  .use(cookieParser())
   .use(requestUserMiddleware)
   .use(storeUserMiddleware)
+  .use(csp)
+  .use(xssFilter)
+  .use(hidePoweredBy)
   .use(express.static(path.resolve(__dirname, '../dist')))
   .use(express.static(path.resolve(__dirname, '../static')))
   .use(express.static('public'))

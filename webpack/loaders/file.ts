@@ -1,4 +1,4 @@
-const fileRegex = /\.(jpg|png|gif|woff|eot|ttf|svg)/;
+const fileRegex = /\.(jpg|png|gif|woff|eot|ttf|svg|mp3)/;
 
 export default {
   client: {
