@@ -36,8 +36,6 @@ export const SignIn: FC = function SignInPage() {
   const onSubmit = async (data: Record<string, unknown>) => {
     try {
       await authServise.signIn(data);
-      const { id, login, avatar } = await authServise.getUser();
-      await authServise.storeUser({id, login, avatar});
       navigate('/profile');
     } catch(error) {
       setNotification(error.message);

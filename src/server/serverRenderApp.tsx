@@ -1,13 +1,19 @@
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { App } from '@/components/App/App';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { configureStore, getInitialState } from '@/store';
+import { loadSuccess } from '@/store/user/actions';
+import { ExpressResponse } from '@/types';
 
-export default (req: Request, res: Response) => {
+export default (req: Request, res: ExpressResponse) => {
   const store = configureStore(getInitialState());
+
+  if (res.user) {
+    store.dispatch(loadSuccess(res.user));
+  }
   const reduxState = store.getState();
 
   const jsx = (

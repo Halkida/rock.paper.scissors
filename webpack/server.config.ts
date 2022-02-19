@@ -1,8 +1,8 @@
-
 import * as path from 'path';
 import { Configuration } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
-import { DIST_DIR, SRC_DIR, SERVER_DIR  } from './env';
+import CopyPlugin from 'copy-webpack-plugin';
+import { DIST_DIR, SRC_DIR, SERVER_DIR, ROOT_DIR  } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
@@ -33,6 +33,17 @@ const config: Configuration = {
         },
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
     },
+
+    plugins: [
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.join(ROOT_DIR, 'certs'),
+            to:'./certs/'
+          }
+        ],
+      })
+    ],
 
     devtool: 'source-map',
     externals: [nodeExternals({ allowlist: [/\.(?!(?:tsx?|json)$).{1,5}$/i] })],

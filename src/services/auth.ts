@@ -9,9 +9,11 @@ class AuthApi {
     this.http = getAxiosInstance('https://ya-praktikum.tech/api/v2/auth');
   }
 
-  getUser(): Promise<IUser> {
-    return this.http.get<IUser>('/user')
-      .then((response) => response.data);
+  getUser(options?: Record<string, unknown>): Promise<IUser> {
+    return this.http.get<IUser>('/user', { ...options })
+      .then((response) => {
+        return response.data;
+      });
   }
 
   signIn(data: Record<string, unknown>): Promise<unknown> {
@@ -44,17 +46,6 @@ class AuthApi {
           throw error;
         }
       });
-  }
-
-  async storeUser(data: Record<string, unknown>) {
-    const http = getAxiosInstance('/');
-    const {data: user} = await http.get(`user?id=${data.id}`);
-
-    if (user === null) {
-      return http.post('user/create', data);
-    } else {
-      return http.post('user/update', data);
-    }
   }
 }
 
