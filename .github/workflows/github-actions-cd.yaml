@@ -1,0 +1,37 @@
+name: Delivery
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+
+      - name: Update project
+        run: ssh staging 'cd rock.paper.scissors && git fetch && git reset --hard origin/main'
+
+      - name: Stop project
+        run: ssh staging 'cd rock.paper.scissors && docker-compose stop'
+
+      - name: Build project
+        run: ssh staging 'cd rock.paper.scissors && docker-compose build rps'
+
+      - name: Start project
+        run: ssh staging 'cd rock.paper.scissors && docker-compose up -d nginx'
